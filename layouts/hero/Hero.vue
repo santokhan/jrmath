@@ -23,7 +23,7 @@
                         Most Popular: <strong>Math</strong>
                     </p>
                     <NuxtLink to="/courses"
-                        class="text-white bg-orange-500 font-medium rounded-lg text-sm px-4 py-2.5 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 focus:outline-none">
+                        class="text-white bg-orange-500 font-medium rounded-lg px-4 py-2.5 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 focus:outline-none">
                         Get started</NuxtLink>
                 </div>
             </div>

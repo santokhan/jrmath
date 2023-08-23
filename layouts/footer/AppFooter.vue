@@ -53,14 +53,19 @@
                         <div class="col-span-2 md:col-span-1">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Contact Us</h2>
                             <div class="text-gray-700">
-                                <a :href="'tel:' + phone[0]"
-                                    class="flex items-center gap-2 mb-4 text-gray-800 hover:text-orange-500">
-                                    <IconsIcoCall /><span class="font-medium">{{ phone[0] }}<br> {{ phone[1] }}</span>
-                                </a>
-                                <a :href="'mailto:' + email[0]"
-                                    class="flex flex-wrap items-center gap-2 text-gray-800 hover:text-orange-500">
-                                    <IconsIcoMail /><span class="font-medium">{{ email[0] }}</span>
-                                </a>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <IconsIcoCall />
+                                    <a :href="'tel:' + phone[0]" class="font-medium text-gray-800 hover:text-orange-500">
+                                        {{ phone[0] }}</a>,
+                                    <a :href="'tel:' + phone[1]" class="font-medium text-gray-800 hover:text-orange-500">
+                                        {{ phone[1] }}</a>
+                                </div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <IconsIcoMail />
+                                    <a :href="'mailto:' + email[0]" class="font-medium text-gray-800 hover:text-orange-500">
+                                        {{ email[0] }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
