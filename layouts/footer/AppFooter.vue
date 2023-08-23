@@ -1,7 +1,7 @@
 <template>
     <footer class="">
         <div class="bg-white">
-            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-4">
+            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div class="md:flex md:justify-between py-6">
                     <div class="mb-6 md:mb-0 space-y-5">
                         <a href="/" class="">
@@ -43,10 +43,10 @@
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Legal</h2>
                             <ul class="text-gray-700  font-medium">
                                 <li class="mb-4">
-                                    <NuxtLink to="/privacy" class="hover:text-orange-500">Privacy Policy</NuxtLink>
+                                    <NuxtLink to="/question-bank" class="hover:text-orange-500">Question Bank</NuxtLink>
                                 </li>
                                 <li>
-                                    <NuxtLink to="/terms" class="hover:text-orange-500">Terms &amp; Conditions</NuxtLink>
+                                    <NuxtLink to="/about" class="hover:text-orange-500">About</NuxtLink>
                                 </li>
                             </ul>
                         </div>
