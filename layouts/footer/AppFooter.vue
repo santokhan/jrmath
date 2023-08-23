@@ -1,8 +1,8 @@
 <template>
     <footer class="">
         <div class="bg-white">
-            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                <div class="md:flex md:justify-between py-8">
+            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-4">
+                <div class="md:flex md:justify-between py-6">
                     <div class="mb-6 md:mb-0 space-y-5">
                         <a href="/" class="">
                             <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Logo" /> -->
@@ -27,9 +27,9 @@
                                 class="focus:outline-none text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2.5">Subscribe</button>
                         </form>
                     </div>
-                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                        <div>
-                            <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase">Resources</h2>
+                    <div class="grid grid-cols-2 gap-12 sm:gap-6 sm:grid-cols-3 py-4 md:py-0">
+                        <div class="">
+                            <h2 class="mb-4 font-bold text-gray-900 uppercase">Resources</h2>
                             <ul class="text-gray-700  font-medium">
                                 <li class="mb-4">
                                     <NuxtLink to="/" class="hover:text-orange-500">Home</NuxtLink>
@@ -39,8 +39,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase">Legal</h2>
+                        <div class="">
+                            <h2 class="mb-4 font-bold text-gray-900 uppercase">Legal</h2>
                             <ul class="text-gray-700  font-medium">
                                 <li class="mb-4">
                                     <NuxtLink to="/privacy" class="hover:text-orange-500">Privacy Policy</NuxtLink>
@@ -50,13 +50,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <h2 class="mb-6 text-sm font-bold text-gray-900 uppercase">Contact Us</h2>
+                        <div class="col-span-2 md:col-span-1">
+                            <h2 class="mb-4 font-bold text-gray-900 uppercase">Contact Us</h2>
                             <div class="text-gray-700">
-                                <a :href="'tel:' + phone[0]" class="flex items-center gap-2 mb-4 hover:text-orange-500">
+                                <a :href="'tel:' + phone[0]"
+                                    class="flex items-center gap-2 mb-4 text-gray-800 hover:text-orange-500">
                                     <IconsIcoCall /><span class="font-medium">{{ phone[0] }}<br> {{ phone[1] }}</span>
                                 </a>
-                                <a :href="'mailto:' + email[0]" class="flex items-center gap-2 hover:text-orange-500">
+                                <a :href="'mailto:' + email[0]"
+                                    class="flex flex-wrap items-center gap-2 text-gray-800 hover:text-orange-500">
                                     <IconsIcoMail /><span class="font-medium">{{ email[0] }}</span>
                                 </a>
                             </div>
@@ -101,14 +103,15 @@
             </div> -->
             </div>
         </div>
+
         <div class="p-4 bg-orange-500">
-            <div class="w-full max-w-screen-xl">
-                <div class="sm:flex sm:items-center sm:justify-between">
+            <div class="w-full max-w-screen-xl mx-auto">
+                <div class="flex items-center justify-between">
                     <span class="text-sm text-white sm:text-center">© 2023 <a href="/" class="hover:underline">JRMath™</a>.
                         Developed by <a href="https://santokhan.github.io" class="hover:underline">Santo</a>
                     </span>
-                    <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
-                        <a href="#" class="text-white hover:text-white/50">
+                    <div class="flex space-x-5 sm:justify-center items-center">
+                        <a :href="socialMedia.facebook" class="text-white hover:text-white/50">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                 viewBox="0 0 8 19">
                                 <path fill-rule="evenodd"
@@ -117,7 +120,7 @@
                             </svg>
                             <span class="sr-only">Facebook page</span>
                         </a>
-                        <a href="#" class="text-white hover:text-white/50">
+                        <a :href="socialMedia.youtube" class="text-white hover:text-white/50">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                 viewBox="0 0 20 17">
                                 <path fill-rule="evenodd"
@@ -126,14 +129,13 @@
                             </svg>
                             <span class="sr-only">Twitter page</span>
                         </a>
-                        <a href="#" class="text-white hover:text-white/50">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
-                                    clip-rule="evenodd" />
+                        <a :href="socialMedia.youtube" class="text-white hover:text-white/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 24 24" fill="none">
+                                <path fill="currentColor"
+                                    d="M17 4H7C4 4 2 6 2 9v6c0 3 2 5 5 5h10c3 0 5-2 5-5V9c0-3-2-5-5-5zm-3.11 9.03l-2.47 1.48c-1 .6-1.82.14-1.82-1.03v-2.97c0-1.17.82-1.63 1.82-1.03l2.47 1.48c.95.58.95 1.5 0 2.07z">
+                                </path>
                             </svg>
-                            <span class="sr-only">Dribbble account</span>
+                            <span class="sr-only">Twitter page</span>
                         </a>
                     </div>
                 </div>
@@ -143,7 +145,7 @@
 </template>
 
 <script setup lang="ts">
-import { email, phone } from '../../components/data/contact';
+import { email, phone, socialMedia } from '../../components/data/contact';
 
 function handleSubmit(e: any) {
     e.preventDefault();

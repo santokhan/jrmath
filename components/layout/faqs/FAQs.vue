@@ -10,10 +10,10 @@
 
             <div class="flex flex-wrap justify-center gap-4 py-8">
                 <div v-for="(item, index) in info" :key="index" class="w-full max-w-4xl bg-white rounded-xl">
-                    <button type="button" class="w-full flex justify-between items-center px-6 py-4" @click="() => {
+                    <button type="button" class="w-full flex justify-between items-center px-4 md:px-6 py-4" @click="() => {
                         active = active === index ? null : index
                     }">
-                        <h4 class="text-lg font-medium text-gray-800">{{ item.title }}</h4>
+                        <h4 class="text-lg font-medium text-gray-800 text-start">{{ item.title }}</h4>
                         <IconsAngleDown :class="[false ? 'rotate-180' : '']" />
                     </button>
                     <p v-if="active === index" class="text-gray-500 mx-6 py-4 border-t">{{ item.desc }}</p>
