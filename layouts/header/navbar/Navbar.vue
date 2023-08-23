@@ -51,7 +51,7 @@
                 <ul ref="targetNavDD"
                     class="flex flex-col font-medium p-3 md:p-0 mt-4 bg-white md:bg-transparent border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
                     <li v-for="item, index in navs" :key="index">
-                        <NuxtLink :to="item.to" :class="[
+                        <NuxtLink :to="item.to" @click="dropdown = false" :class="[
                             item.to === route.path ? 'block py-2 pl-3 pr-4 text-white bg-orange-500 rounded md:bg-transparent md:text-orange-500 md:p-0' :
                                 'block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0',
                             'capitalize'

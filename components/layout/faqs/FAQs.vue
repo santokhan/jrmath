@@ -10,7 +10,7 @@
 
             <div class="flex flex-wrap justify-center gap-4 py-8">
                 <div v-for="(item, index) in info" :key="index" class="w-full max-w-4xl bg-white rounded-xl">
-                    <button type="button" class="w-full flex justify-between items-center px-4 md:px-6 py-4" @click="() => {
+                    <button type="button" class="w-full flex justify-between items-center gap-3 px-4 md:px-6 py-4" @click="() => {
                         active = active === index ? null : index
                     }">
                         <h4 class="text-lg font-medium text-gray-800 text-start">{{ item.title }}</h4>
