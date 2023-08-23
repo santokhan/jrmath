@@ -2,15 +2,14 @@
     <!-- component -->
     <section class="flex gap-12 justify-center bg-orange-500 h-10 border-b-2">
         <ul class="flex items-center text-white gap-6 md:gap-8">
-            <a :href="'tel:' + phone[0]" class="hidden md:flex items-center gap-2 hover:underline ">
-                <IconsIcoCall /><span class="font-medium">{{ phone[0] }}, {{ phone[1] }}</span>
-            </a>
-            <a :href="'tel:' + phone[0]" class="flex md:hidden items-center gap-2 hover:underline">
-                <IconsIcoCall /><span class="font-medium">{{ phone[0] }}</span>
-            </a>
-            <a :href="'mailto:' + email[0]" class="flex items-center gap-2 hover:underline">
-                <IconsIcoMail /><span class="font-medium">{{ email[0] }}</span>
-            </a>
+            <div class="flex items-center gap-2">
+                <IconsIcoCall />
+                <a :href="'tel:' + phone[0]" class="font-medium hover:underline hidden md:block">{{ phone[0] }}</a>
+                <a :href="'tel:' + phone[1]" class="font-medium hover:underline ">{{ phone[1] }}</a>
+            </div>
+            <div class="flex items-center gap-2">
+                <IconsIcoMail /><a :href="'mailto:' + email[0]" class="font-medium hover:underline">{{ email[0] }}</a>
+            </div>
         </ul>
     </section>
 </template>

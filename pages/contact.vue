@@ -29,7 +29,7 @@
                         </div>
                         <div class="flex items-center gap-2 mb-4">
                             <IconsMap />
-                            <a href="mailto:" class="text-gray-800 hover:text-orange-500">
+                            <a href="https://www.google.com/maps?ll=24.925114,89.947019&z=14&t=m&hl=en&gl=BD&mapclient=embed&q=Jamalpur" class="text-gray-800 hover:text-orange-500">
                                 {{ address }}
                             </a>
                         </div>
