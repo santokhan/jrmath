@@ -8,7 +8,7 @@
                     <img src="../../assets/images/hero/count-card-small.png" alt="count-card.png"
                         class="absolute bottom-0 left-1/2  -translate-x-1/2 translate-y-1/2 w-10/12 block md:hidden">
                 </div>
-                <div class="lg:order-1 pt-36 md:pt-16">
+                <div class="lg:order-1 pt-32 md:pt-16">
                     <div class="text-orange-500 uppercase font-medium">ONLINE EDUCATION</div>
                     <h1
                         class="max-w-2xl mb-4 text-4xl font-bold tracking-loose !leading-[1.3] md:text-5xl xl:text-6xl mt-2 text-gray-800">

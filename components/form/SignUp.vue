@@ -1,6 +1,6 @@
 <template>
-    <section class="py-8">
-        <div class="flex flex-col items-center justify-center px-6 py-16 mx-auto lg:py-0">
+    <section class="py-12 md:py-16">
+        <div class="flex flex-col items-center justify-center px-6 mx-auto lg:py-0">
             <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -29,8 +29,8 @@
                         </div>
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
-                                <input id="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50"
-                                    :required="true">
+                                <input type="checkbox"
+                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 accent-orange-500">
                             </div>
                             <div class="ml-3 text-sm">
                                 <label for="terms" class="font-light text-gray-500">I accept the <a
