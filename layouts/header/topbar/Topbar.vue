@@ -1,6 +1,6 @@
 <template>
     <!-- component -->
-    <section class="flex gap-12 justify-center bg-orange-500 h-10 border-b-2">
+    <section class="flex gap-12 justify-center bg-orange-500 h-10">
         <ul class="flex items-center text-white gap-5 md:gap-8">
             <div class="flex items-center gap-1 md:gap-2">
                 <IconsIcoCall />

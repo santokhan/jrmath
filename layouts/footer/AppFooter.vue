@@ -4,11 +4,7 @@
             <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div class="md:flex md:justify-between py-6">
                     <div class="mb-6 md:mb-0 space-y-5">
-                        <a href="/" class="">
-                            <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Logo" /> -->
-                            <h3 class="self-center text-3xl font-semibold whitespace-nowrap"><span
-                                    class="text-orange-500">JR</span> <span>Math</span></h3>
-                        </a>
+                        <LazyLogoJRMath />
                         <form @submit="handleSubmit" class="relative flex gap-2 items-center">
                             <div class="flex items-center relative">
                                 <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-gray-400"

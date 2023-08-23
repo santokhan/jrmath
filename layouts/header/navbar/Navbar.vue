@@ -2,12 +2,7 @@
     <nav
         :class="[sticky ? 'sticky top-0 left-0 w-full z-[13] bg-white/80 backdrop-blur-sm h-16 drop-down' : 'border-gray-200 h-16 md:h-16 border-b relative']">
         <div class="h-full max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
-            <a href="/" class="flex items-center">
-                <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" /> -->
-                <h3 class="self-center text-3xl font-semibold whitespace-nowrap">
-                    <span class="text-orange-500">JR</span> <span>Math</span>
-                </h3>
-            </a>
+            <LazyLogoJRMath />
             <div class="flex items-center md:order-2 relative">
                 <NuxtLink to="/signin" class="flex mr-3 text-sm rounded-full md:mr-0">
                     <IconUser class="text-orange-500 w-7 h-7" />
