@@ -26,14 +26,11 @@
                     <div class="grid grid-cols-2 gap-12 sm:gap-6 sm:grid-cols-3 py-4 md:py-0">
                         <div class="">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Resources</h2>
-                            <ul class="text-gray-700  font-medium">
-                                <li class="mb-4">
-                                    <NuxtLink to="/" class="hover:text-orange-500">Home</NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/courses" class="hover:text-orange-500">Courses</NuxtLink>
-                                </li>
-                            </ul>
+                            <div class="text-gray-700  font-medium flex flex-col gap-3">
+                                <NuxtLink to="/" class="hover:text-orange-500">Home</NuxtLink>
+                                <NuxtLink to="/courses" class="hover:text-orange-500">Courses</NuxtLink>
+                                <NuxtLink to="/admin" class="hover:text-orange-500">Admin</NuxtLink>
+                            </div>
                         </div>
                         <div class="">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Legal</h2>
