@@ -6,6 +6,10 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                         Sign in to your account
                     </h1>
+                    <div>
+                        <button type="button" @click="handleFacebookSignIn"
+                            class="bg-blue-600 rounded-lg text-white h-10 font-medium px-4">Continue with Facebook</button>
+                    </div>
                     <!-- Firebase error -->
                     <div class="text-sm text-orange-400">{{ error }}</div>
                     <form class="space-y-4 md:space-y-6" @submit="handleSubmit">
@@ -88,6 +92,10 @@ function handleSubmit(e: any) {
     } else {
         email.err = 'Invalid email address'
     }
+}
+
+function handleFacebookSignIn() {
+    Auth.signInWithFacebook()
 }
 </script>
 

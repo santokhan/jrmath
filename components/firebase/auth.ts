@@ -1,7 +1,7 @@
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { FacebookAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import app from "./config"
 
-// Auth class
+// Auth classF
 // Sign In + Sign Up
 class Auth {
     auth = getAuth(app)
@@ -72,6 +72,46 @@ class Auth {
         }).catch((err) => {
             console.log(`Failed signed out. `, err)
         })
+    }
+    signInWithFacebook() {
+        const provider = new FacebookAuthProvider();
+        // provider.addScope('user_birthday');
+        // this.auth.languageCode = 'it';
+        // // To apply the default browser preference instead of explicitly setting it.
+        // // auth.useDeviceLanguage();
+        // provider.setCustomParameters({
+        //     'display': 'popup'
+        // });
+        // console.log(provider);
+
+        signInWithPopup(this.auth, provider)
+            .then((result) => {
+                // The signed-in user info.
+                const user = result.user;
+
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                const credential = FacebookAuthProvider.credentialFromResult(result);
+                const accessToken = credential?.accessToken;
+
+                console.log(credential);
+
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = FacebookAuthProvider.credentialFromError(error);
+
+                // ...
+            });
+    }
+    signUpWithFacebook() {
+
     }
 }
 

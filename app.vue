@@ -12,8 +12,8 @@ import Topbar from './layouts/header/topbar/Topbar.vue'
 import Navbar from './layouts/header/navbar/Navbar.vue'
 import AppFooter from './layouts/footer/AppFooter.vue';
 
-const route=useRoute()
-console.log(route.path);
+// const route=useRoute()
+// console.log(route.path);
 </script>
 
 <style scoped></style>

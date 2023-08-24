@@ -1,7 +1,7 @@
 <template>
     <section>
         <LayoutAppContainer>
-            <FormSignIn />
+            <FormSignIn />          
         </LayoutAppContainer>
     </section>
 </template>
