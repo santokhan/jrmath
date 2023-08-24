@@ -10,7 +10,7 @@
                         <button type="button" @click="handleFacebookSignIn"
                             class="bg-blue-600 rounded-lg text-white h-10 font-medium px-4">Continue with Facebook</button>
                     </div>
-                    <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
+                    <div class="fb-login-button" data-width="" data-size="medium" data-button-type="" data-layout=""
                         data-auto-logout-link="false" data-use-continue-as="false"></div>
                     <!-- Firebase error -->
                     <div class="text-sm text-orange-400">{{ error }}</div>

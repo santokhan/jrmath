@@ -73,18 +73,9 @@ class Auth {
             console.log(`Failed signed out. `, err)
         })
     }
-    signInWithFacebook() {
+    async signInWithFacebook() {
         const provider = new FacebookAuthProvider();
-        // provider.addScope('user_birthday');
-        // this.auth.languageCode = 'it';
-        // // To apply the default browser preference instead of explicitly setting it.
-        // // auth.useDeviceLanguage();
-        // provider.setCustomParameters({
-        //     'display': 'popup'
-        // });
-        // console.log(provider);
-
-        signInWithPopup(this.auth, provider)
+        await signInWithPopup(this.auth, provider)
             .then((result) => {
                 // The signed-in user info.
                 const user = result.user;
@@ -93,7 +84,7 @@ class Auth {
                 const credential = FacebookAuthProvider.credentialFromResult(result);
                 const accessToken = credential?.accessToken;
 
-                console.log(credential);
+                console.log(result, credential);
 
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
