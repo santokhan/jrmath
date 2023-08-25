@@ -32,12 +32,12 @@ class Auth {
      * @param password 
      * @param callback 
      */
-    signIn(email: string, password: string, callback: () => void, onError: (err: any) => void) {
+    signIn(email: string, password: string, callback: (user: any) => void, onError: (err: any) => void) {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, email, password).then(userCredential => {
             // Signed in
-            // const user = userCredential.user
-            callback()
+            const user = userCredential.user
+            callback(user)
             console.log(`Successfully signed in.`)
         }).catch(err => {
             onError(err)
@@ -49,19 +49,15 @@ class Auth {
      * 
      * @returns 
      */
-    observer(callBack: (user: any) => void) {
+    observer(userExist: (user: any) => void, userNotExist?: () => void) {
         onAuthStateChanged(this.auth, (user) => {
             if (user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/auth.user
-                const uid = user.uid;
-                callBack({
-                    uid: user.uid,
-                    email: user.email
-                })
+                userExist({ uid: user.uid, email: user.email })
             } else {
                 // User is signed out
-                // ...
+                userNotExist && userNotExist()
             }
         })
     }
@@ -129,6 +125,9 @@ class Auth {
             // ...
             console.log(error);
         });
+    }
+    currentUser() {
+        return this.auth.currentUser
     }
 }
 

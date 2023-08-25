@@ -19,7 +19,7 @@
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
                             <div class="relative">
                                 <input :type="eye ? 'text' : 'password'" placeholder="••••••••" v-model="password.value"
-                                    :required="true" pattern="[A-Za-z\d]{6,}$"
+                                    :required="true"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
                                 <button type="button" @click="eye = !eye"
                                     class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center">
@@ -32,7 +32,6 @@
                             <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900">
                                 Confirm password</label>
                             <input type="password" placeholder="••••••••" v-model="password.confirm" :required="true"
-                                pattern="[A-Za-z\d]{6,}$"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
                         </div>
                         <div class="flex items-start">

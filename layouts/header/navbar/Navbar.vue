@@ -4,7 +4,7 @@
         <div class="h-full max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
             <LazyLogoJRMath />
             <div class="flex items-center md:order-2 relative">
-                <NuxtLink to="/signin" class="flex mr-3 text-sm rounded-full md:mr-0">
+                <NuxtLink to="/profile" class="flex mr-3 text-sm rounded-full md:mr-0">
                     <IconUser class="text-orange-500 w-7 h-7" />
                 </NuxtLink>
                 <button type="button" class="fle x hidden mr-3 text-sm rounded-full md:mr-0 " id="user-menu-button"

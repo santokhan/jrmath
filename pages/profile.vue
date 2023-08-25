@@ -21,7 +21,7 @@
                         <div class="mt-2">Course Access: {{ access }}</div>
                     </div>
                     <div class="mt-8">
-                        <ButtonsLogout :handleLogout="handleLogout"/>
+                        <ButtonsLogout :handleLogout="handleLogout" />
                     </div>
                 </div>
             </section>
@@ -37,18 +37,25 @@ const email = ref('')
 const name = ref('User Name')
 const access = ref('')
 
-Auth.observer((props) => {
-    if (props.uid) {
-        email.value = props.email
-        // router.replace("/profile")
-    }
-})
-
 function handleLogout() {
     Auth.signOut(() => {
         router.push('/signin')
     })
 }
+
+definePageMeta({
+    middleware: [
+        function (to, from) {
+            if (to.path === '/profile') {
+                if (!Auth.currentUser()) {
+                    // Current user not exists
+                    // Redirect to `/signin`
+                    return navigateTo({ path: '/signin' })
+                }
+            }
+        },
+    ],
+});
 </script>
 
 <style scoped></style>

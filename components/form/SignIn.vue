@@ -7,8 +7,8 @@
                         Sign in to your account
                     </h1>
                     <div class="flex items-center justify-center gap-3">
-                        <FormGoogleButton :handleGoogleSignIn="handleGoogleSignIn"/>
-                        <FormFacebookButton :handleFacebookSignIn="handleFacebookSignIn"/>
+                        <FormGoogleButton :handleGoogleSignIn="handleGoogleSignIn" />
+                        <FormFacebookButton :handleFacebookSignIn="handleFacebookSignIn" />
                     </div>
                     <div class="fb-login-button" data-width="" data-size="medium" data-button-type="" data-layout=""
                         data-auto-logout-link="false" data-use-continue-as="false"></div>
@@ -83,10 +83,13 @@ function handleSubmit(e: any) {
     e.preventDefault();
     if (email.value) {
         if (password.value) {
-            Auth.signIn(email.value, password.value, () => {
+            Auth.signIn(email.value, password.value, (user: any) => {
                 // Signed in
                 // Redirect to `/courses` page
-                router.push('/courses')
+                console.log(user);
+                console.log(Auth.currentUser());
+                
+                // router.push('/signin')
             }, (err) => { error.value = err })
         } else {
             password.err = 'Invalid password'
@@ -98,12 +101,13 @@ function handleSubmit(e: any) {
 
 function handleFacebookSignIn() {
     Auth.signInWithGoogle(() => {
-        router.push('/profile')
+        console.log(Auth.currentUser());
+        // router.push('/profile')
     })
 }
 function handleGoogleSignIn() {
     Auth.signInWithGoogle(() => {
-        router.push('/profile')
+        // router.push('/profile')
     })
 }
 </script>
