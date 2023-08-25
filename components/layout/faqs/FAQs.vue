@@ -2,9 +2,9 @@
     <section class="">
         <LayoutAppContainer>
             <SectionTitleBox>
-                <SectionTag>WHAT WE GIVE</SectionTag>
+                <SectionTag>FAQs</SectionTag>
                 <SectionHeading>
-                    Course Builder
+                    Frequently Asked Questions
                 </SectionHeading>
             </SectionTitleBox>
 
@@ -24,26 +24,63 @@
 </template>
 
 <script setup lang="ts">
-const active = ref(null)
+const active = ref<number | null>(null)
 
 const info = [
     {
-        title: "What is included with JR Math course?",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,",
+        title: "ভাইয়া ক্লাসগুলো কি রেকর্ড ভিডিও নাকি লাইভ?",
+        desc: "আমরা লাইভ এবং রের্কড দুই সিস্টেমেই পড়াই।",
     },
     {
-        title: "Are there any recurring fees?",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,",
+        title: "ভাইয়া লাইভ ক্লাস করলে কি রেকর্ড ভিডিও পাবো না?",
+        desc: "অবশ্যই পাবেন যারা লাইভ করবেন তারা রের্কড ফ্রি পাবেন।",
     },
     {
-        title: "Where can I get support?",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,",
+        title: "ভাইয়া ক্লাসগুলো কিভাবে করবো?",
+        desc: `লাইভ জুম লাইভে, রের্কড ফেসবুক প্রাইভেট গ্রুপে।`,
     },
     {
-        title: "Why should I trust JR Math",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,",
+        title: "ভাইয়া নোট পিডিএফ দিবেন না",
+        desc: "অবশ্যই, টেলিগ্রাম গ্রুপে দিয়ে থাকি।"
+    },
+    {
+        title: "ভাইয়া রেকর্ড মানে কি শুধু অডিও",
+        desc: "না ভাইয়া,আমাদের রেকর্ড ভিডিও মানে হচ্ছে টিউটোরিয়াল ভিডিও।যা আমাদের ইউটিউব চ্যানেল ভিজিট করলেই বুঝতে পারবেন।"
+    },
+    {
+        title: "ভাইয়া খাতায় লিখে নাকি বোর্ডে",
+        desc: "ভাইয়া আমরা বোর্ডে লেকচার দিয়ে থাকি ফেস টু ফেস, আপনার মনে হবে আপনি সামনা সামনি ক্লাস করছেন।"
+    },
+    {
+        title: "ভাইয়া আপনারা কি পুরো বই করান",
+        desc: "ভাইয়া, পুরো বই বলতে আমরা অধ্যায়ভিত্তিক সাজেশন তৈরি করে পড়ায়। কারণ সাতটা সাবজেক্ট আপনাদের। ফুল বই পড়ার সময় কোথায়।তবে যদি কেউ কোন অধ্যায় আগ্রহ দেখায় আমরা সমাধান করে দেয়।"
+    },
+    {
+        title: "ভাইয়া আপনারা উপপাদ্যগুলো করান না",
+        desc: "যেহেতু উপপাদ্য গণিতের বিষয়, তাহলে করাবো না কেন।অবশ্যই করানো হয়।"
+    },
+    {
+        title: "ভাইয়া ফেসবুকে এমবি বেশি কাটে, যাতে এমবি কম কাটে পরামর্শ দেন",
+        desc: "আপনারা ফেসবুক লাইট ব্যবহার করতে পারেন।"
+    },
+    {
+        title: "ভাইয়া রেকর্ড ভিডিও দেখে যদি না বুঝি তাহলে কি করণীয়",
+        desc: "সরাসরি ইনবক্স, আমরা দুইজন স্যার আপনাদের মেসেজের অপেক্ষায়।"
+    },
+    {
+        title: "ভাইয়া কোর্স ফি এবং পেমেন্ট সম্পর্কে যদি বলতেন।",
+        desc: "আমরা বিকাশে পেমেন্ট নেয়।"
+    },
+    {
+        title: "ভাইয়া কোন পাবলিকেশন বই পড়ান",
+        desc: "বাংলা ভাষায় তুহিন প্রকাশনী এবং ইংরেজি তিতাস।"
     },
 ]
+
+let a = `
+desc:""
+
+`
 </script>
 
 <style scoped></style>
