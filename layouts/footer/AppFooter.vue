@@ -2,8 +2,8 @@
     <footer class="">
         <div class="bg-white">
             <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                <div class="md:flex md:justify-between py-6">
-                    <div class="mb-6 md:mb-0 space-y-5">
+                <div class="lg:flex lg:justify-between py-6 gap-8">
+                    <div class="lg:w-6/12 mb-6 lg:mb-0 space-y-5">
                         <LazyLogoJRMath />
                         <form @submit="handleSubmit" class="relative flex gap-2 items-center">
                             <div class="flex items-center relative">
@@ -23,7 +23,7 @@
                                 class="focus:outline-none text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2.5">Subscribe</button>
                         </form>
                     </div>
-                    <div class="grid grid-cols-2 gap-12 sm:gap-6 sm:grid-cols-3 py-4 md:py-0">
+                    <div class="w-full grid grid-cols-2 gap-12 sm:gap-6 lg:grid-cols-3 py-4 lg:py-0">
                         <div class="">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Resources</h2>
                             <div class="text-gray-700  font-medium flex flex-col gap-3">
@@ -43,14 +43,14 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-span-2 md:col-span-1">
+                        <div class="col-span-2 lg:col-span-1">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Contact Us</h2>
                             <div class="text-gray-700">
                                 <div class="flex items-center gap-2 mb-4">
                                     <IconsIcoCall />
-                                    <a :href="'tel:' + phone[0]" class="font-medium text-gray-800 hover:text-orange-500">
+                                    <a :href="'tel:' + phone[0]" class="font-medium text-gray-800 hover:text-orange-500 whitespace-nowrap">
                                         {{ phone[0] }}</a>,
-                                    <a :href="'tel:' + phone[1]" class="font-medium text-gray-800 hover:text-orange-500">
+                                    <a :href="'tel:' + phone[1]" class="font-medium text-gray-800 hover:text-orange-500 whitespace-nowrap">
                                         {{ phone[1] }}</a>
                                 </div>
                                 <div class="flex items-center gap-2 mb-4">

@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import { getAuth } from 'firebase/auth';
 import Auth from '../components/firebase/auth';
 
 const router = useRouter()
@@ -43,19 +44,33 @@ function handleLogout() {
     })
 }
 
-definePageMeta({
-    middleware: [
-        function (to, from) {
-            if (to.path === '/profile') {
-                if (!Auth.currentUser()) {
-                    // Current user not exists
-                    // Redirect to `/signin`
-                    return navigateTo({ path: '/signin' })
-                }
-            }
-        },
-    ],
-});
+onBeforeMount(() => {
+    Auth.observer(() => {
+        const user = getAuth().currentUser
+        console.log(user);
+        if (user) {
+            // Current user not exists
+            // Redirect to `/signin`
+            return navigateTo({ path: '/signin' })
+        }
+    })
+})
+
+// definePageMeta({
+//     middleware: function (to, from) {
+//         Auth.observer(() => {
+//             if (to.path === '/profile') {
+//                 const user = getAuth().currentUser
+//                 console.log(user);
+//                 if (user) {
+//                     // Current user not exists
+//                     // Redirect to `/signin`
+//                     return navigateTo({ path: '/signin' })
+//                 }
+//             }
+//         })
+//     }
+// });
 </script>
 
 <style scoped></style>

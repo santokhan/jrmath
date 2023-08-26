@@ -25,6 +25,8 @@
     "flowbite": "^1.8.1",
     "nuxt-icon": "^0.5.0",
     "nuxt-icons": "^3.2.1",
-    "swiper": "^10.2.0"
+    "nuxt-vuefire": "^0.2.17",
+    "swiper": "^10.2.0",
+    "vuefire": "^3.1.15"
   }
 }

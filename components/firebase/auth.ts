@@ -14,8 +14,7 @@ class Auth {
      * @param callback 
      */
     signUp(email: string, password: string, callback: () => void, onError: (err: any) => void) {
-        const auth = getAuth()
-        createUserWithEmailAndPassword(auth, email, password).then(userCredential => {
+        createUserWithEmailAndPassword(this.auth, email, password).then(userCredential => {
             // Signed in
             // const user = userCredential.user
             callback()
@@ -33,11 +32,9 @@ class Auth {
      * @param callback 
      */
     signIn(email: string, password: string, callback: (user: any) => void, onError: (err: any) => void) {
-        const auth = getAuth()
-        signInWithEmailAndPassword(auth, email, password).then(userCredential => {
+        signInWithEmailAndPassword(this.auth, email, password).then(userCredential => {
             // Signed in
             const user = userCredential.user
-            callback(user)
             console.log(`Successfully signed in.`)
         }).catch(err => {
             onError(err)
@@ -47,6 +44,8 @@ class Auth {
     /**
      * Return Firebase user instance
      * 
+     * Will be called on each state change like login, logout
+     * 
      * @returns 
      */
     observer(userExist: (user: any) => void, userNotExist?: () => void) {
@@ -54,6 +53,8 @@ class Auth {
             if (user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/auth.user
+
+                // console.log(user);
                 userExist({ uid: user.uid, email: user.email })
             } else {
                 // User is signed out
@@ -127,7 +128,11 @@ class Auth {
         });
     }
     currentUser() {
-        return this.auth.currentUser
+        const user = ref<any>(null)
+        onAuthStateChanged(this.auth, () => {
+            user.value = this.auth.currentUser
+        })
+        return user.value;
     }
 }
 

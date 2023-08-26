@@ -54,6 +54,37 @@
                     </div>
                 </div>
             </div>
+
+            <div class="space-y-8">
+                <div class="">
+                    <SectionHeading>Bunny</SectionHeading>
+                    <br>
+                    <div style="position:relative;padding-top:56.25%;"><iframe
+                            src="https://iframe.mediadelivery.net/embed/150582/9294f084-62dd-410c-a8b4-4449aae58910?autoplay=true&loop=false&muted=false&preload=true"
+                            loading="lazy" style="border:none;position:absolute;top:0;height:100%;width:100%;"
+                            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                            allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+                <div class="">
+                    <SectionHeading>Vimeo</SectionHeading>
+                    <br>
+                    <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+                            src="https://player.vimeo.com/video/858244150?badge=0&autopause=0&player_id=0&app_id=58479/embed"
+                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0"
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+                </div>
+                <div class="">
+                    <SectionHeading>VdoChiper</SectionHeading>
+                    <br>
+                    <div style="padding-top:56%;position:relative;">
+                        <iframe
+                            src="https://player.vdocipher.com/v2/?otp=20160313versASE323P5W7wP6Jr1OP0ds9gDwfpGDO22qspV54lpcTBzqfto54ny&playbackInfo=eyJ2aWRlb0lkIjoiODVjNzFiY2Q5ZTFkNGMyNzhiMTAxMTI3MWMyMGZjOWIifQ=="
+                            style="border:0;max-width:100%;position:absolute;top:0;left:0;height:100%;width:100%;"
+                            allowFullScreen="true" allow="encrypted-media"></iframe>
+                    </div>
+                </div>
+            </div>
         </LayoutAppContainer>
     </section>
 </template>

@@ -86,10 +86,10 @@ function handleSubmit(e: any) {
             Auth.signIn(email.value, password.value, (user: any) => {
                 // Signed in
                 // Redirect to `/courses` page
-                console.log(user);
-                console.log(Auth.currentUser());
+                // console.log(user);
+                // console.log(Auth.currentUser());
                 
-                // router.push('/signin')
+                router.push('/signin')
             }, (err) => { error.value = err })
         } else {
             password.err = 'Invalid password'
