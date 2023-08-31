@@ -127,12 +127,29 @@ class Auth {
             console.log(error);
         });
     }
+    /**
+     * Return a promise 
+     * 
+     * If user exist in `onAuthStateChanged` call resolve and pass user as parameter
+     * 
+     * const user = await auth.currentUser();
+     * 
+     * @returns 
+     */
     currentUser() {
-        const user = ref<any>(null)
-        onAuthStateChanged(this.auth, () => {
-            user.value = this.auth.currentUser
+        const currentUser = this.auth.currentUser
+
+        return new Promise((resolve, reject) => {
+            if (currentUser) {
+                resolve(currentUser)
+            }
+            const unsubscribe = onAuthStateChanged(this.auth, (user: any) => {
+                // I don't know the uses of this I have to learn more
+                unsubscribe()
+                
+                resolve(user)
+            }, reject)
         })
-        return user.value;
     }
 }
 

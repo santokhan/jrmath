@@ -11,16 +11,13 @@
 <script setup lang="ts">
 import Topbar from './layouts/header/topbar/Topbar.vue'
 import Navbar from './layouts/header/navbar/Navbar.vue'
-import AppFooter from './layouts/footer/AppFooter.vue';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import AppFooter from './layouts/footer/AppFooter.vue'
+import auth from './components/firebase/auth';
 
-onAuthStateChanged(getAuth(), (user) => {
-  if (user) {
-    // User is signed in
-    console.log(`User exist`)
-  } else {
-    // User is signed out
-  }
+auth.observer((user) => {
+    if (user) {
+        // console.log(getAuth().currentUser);
+    }
 })
 </script>
 

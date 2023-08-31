@@ -66,6 +66,7 @@ import Auth from '../../components/firebase/auth';
 const PATTERN = ['[A-Za-z\d]{6,}$', '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$']
 
 const router = useRouter()
+const route = useRoute()
 
 const eye = ref(false)
 const error = ref<any>("")
@@ -79,18 +80,23 @@ const password = reactive({
     err: ""
 })
 
+function onSignIn() {
+    if (route.redirectedFrom) {
+        router.push(route.redirectedFrom.path)
+    } else {
+        router.push("/profile")
+    }
+}
+
 function handleSubmit(e: any) {
     e.preventDefault();
     if (email.value) {
         if (password.value) {
             Auth.signIn(email.value, password.value, (user: any) => {
-                // Signed in
-                // Redirect to `/courses` page
-                // console.log(user);
-                // console.log(Auth.currentUser());
-                
-                router.push('/signin')
-            }, (err) => { error.value = err })
+                onSignIn()
+            }, (err) => {
+                error.value = err
+            })
         } else {
             password.err = 'Invalid password'
         }
@@ -101,13 +107,13 @@ function handleSubmit(e: any) {
 
 function handleFacebookSignIn() {
     Auth.signInWithGoogle(() => {
-        console.log(Auth.currentUser());
-        // router.push('/profile')
+        onSignIn()
     })
 }
+
 function handleGoogleSignIn() {
     Auth.signInWithGoogle(() => {
-        // router.push('/profile')
+        onSignIn()
     })
 }
 </script>

@@ -84,6 +84,16 @@
                             allowFullScreen="true" allow="encrypted-media"></iframe>
                     </div>
                 </div>
+                <div class="">
+                    <SectionHeading>VdoChiper</SectionHeading>
+                    <br>
+                    <!-- The script tag should live in the head of your page if at all possible -->
+
+                    <!-- Put this wherever you would like your player to appear -->
+                    <img style="width: 100%; margin: auto; display: block;" class="vidyard-player-embed"
+                        src="https://play.vidyard.com/cK3VBAZF3nJjCXd1p7shrz.jpg" data-uuid="cK3VBAZF3nJjCXd1p7shrz"
+                        data-v="4" data-type="inline" />
+                </div>
             </div>
         </LayoutAppContainer>
     </section>
