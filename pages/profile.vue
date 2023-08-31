@@ -17,11 +17,11 @@
 
                     <div class="mt-8">
                         <div class="font-semibold text-lg text-gray-800">Your Details</div>
-                        <div class="grid grid-cols-3 gap-2 my-3 text-gray-600">
+                        <div v-if="userInfo" class="grid grid-cols-3 gap-2 my-3 text-gray-600">
                             <div class="font-medium">Email:</div>
                             <div class="col-span-2">{{ userInfo.email }}</div>
                             <div class="font-medium">Course Access:</div>
-                            <div class="col-span-2">{{ userInfo.access }}</div>
+                            <div class="col-span-2">{{ userInfo.access || '[ ]' }}</div>
                             <div class="font-medium">User Status:</div>
                             <div class="col-span-2 flex items-center gap-1">
                                 <span class="block w-1 h-1 bg-green-400 rounded-full"></span>

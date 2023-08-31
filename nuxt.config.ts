@@ -6,5 +6,8 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   vuefire: {
     config: firebaseConfig
+  },
+  tailwindcss: {
+    viewer: false
   }
 })
