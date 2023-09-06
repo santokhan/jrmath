@@ -15,6 +15,12 @@ async function singleUser() {
       auth.activeDevice(currentUser.uid, () => {
         router.push('/signin')
       })
+
+      setInterval(() => {
+        auth.activeDevice(currentUser.uid, () => {
+          router.push('/signin')
+        })
+      }, 10000)
     }
   }
 }
