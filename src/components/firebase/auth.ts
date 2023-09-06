@@ -1,5 +1,5 @@
 import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, getRedirectResult, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut } from 'firebase/auth'
-import app, { firestore } from "./config"
+import app, { firestore } from "../firebase/config.ts"
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import hashLibrary from 'short-unique-id'
 
