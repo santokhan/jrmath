@@ -2,7 +2,6 @@ import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPasswor
 import app, { firestore } from "./config"
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import hashLibrary from 'short-unique-id'
-import { useUserStore } from '../../store/userStore'
 
 class Auth {
     auth = getAuth(app)
@@ -17,7 +16,7 @@ class Auth {
     signUp(email: string, password: string, callback: () => void, onError: (err: any) => void) {
         createUserWithEmailAndPassword(this.auth, email, password).then(userCredential => {
             // Signed in
-            // const user = userCredential.user
+            const user = userCredential.user
             callback()
             console.log(`Successfully signed up.`)
         }).catch(err => {

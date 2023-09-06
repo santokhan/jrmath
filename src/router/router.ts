@@ -7,7 +7,7 @@ import ContactView from '../views/ContactView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import SignInView from '../views/SignInView.vue'
 import AdminView from '../views/AdminView.vue'
-import { getCurrentUser, useCurrentUser } from 'vuefire'
+import { getCurrentUser } from 'vuefire'
 import NUHVue from '../views/coureses/NUH.vue'
 import SignUpView from '../views/SignUpView.vue'
 

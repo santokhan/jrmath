@@ -23,6 +23,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+
 const dropdown = ref(false)
 const accessButton = ref(null)
 const buttonRef = ref(null)
