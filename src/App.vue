@@ -20,7 +20,7 @@ async function singleUser() {
         auth.activeDevice(currentUser.uid, () => {
           router.push('/signin')
         })
-      }, 10000)
+      }, 30000)
     }
   }
 }

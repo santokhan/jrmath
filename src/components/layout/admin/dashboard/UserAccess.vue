@@ -1,6 +1,6 @@
 <template>
     <div class="relative overflow-x-auto p-4 md:px-12 md:pt-12 pb-28">
-        <table class="w-full text-sm text-left text-gray-500">
+        <table v-if="userData.length > 0" class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item, index) in dataSchema.filter(e => e.email)" :key="index" class="bg-white">
+                <tr v-for="(item, index) in userData" :key="index" class="bg-white">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 overflow-auto whitespace-nowrap">
                         {{ item.name }}
                     </th>
@@ -32,7 +32,7 @@
                         {{ item.phone }}
                     </td>
                     <td class="px-6 py-4 overflow-auto whitespace-nowrap">
-                        {{ item.transectionId.join(",") }}
+                        {{ item.role }}
                     </td>
                     <td class="px-6 py-4 relative flex justify-start">
                         <AccessButton />
@@ -44,7 +44,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { dataSchema } from './dummyData'
+import admin from '../../../firebase/admin';
+import AccessButton from '../../../access/Button.vue'
+
+const userData = ref<any>([])
+
+admin.readUserData((data) => {
+    userData.value = data
+})
 </script>
 
 <style scoped></style>
