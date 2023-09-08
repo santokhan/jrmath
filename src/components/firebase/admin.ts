@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth"
 import app, { firestore } from "../firebase/config.ts"
-import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from 'firebase/firestore'
 
 export interface VideoData {
     _id: string,
@@ -16,6 +16,20 @@ class Admin {
     auth = getAuth(app)
     video_collection = "courses"
     user_collection = "user"
+    role_collection = "role"
+
+    // Check user role on Admin route
+    async role(email: string, callBack: (role: any) => void) {
+        if (email) {
+            const docRef = doc(firestore, this.role_collection, email)
+            await getDoc(docRef).then((doc) => {
+                const role = doc.data()
+                if (role) {
+                    callBack(role.role)
+                }
+            }).catch(err => { console.log(err) })
+        } else { console.log(`Can not get email`); }
+    }
 
     async readUserData(callBack: (data: any) => void) {
         const colRef = collection(firestore, this.user_collection)
@@ -67,15 +81,29 @@ class Admin {
 
         // console.log(videoSnapShot);
     }
-    async updateVideo(data: VideoData) {
+    async watchSingleVideo(_id: string, callBack: (data: any) => void) {
+        const docRef = doc(firestore, this.video_collection, _id)
+        await getDoc(docRef).then(doc => {
+            const data = doc.data()
+            if (data) {
+                callBack(data)
+            }
+        }).catch(err => { console.log(err) })
+    }
+    async updateVideo(data: VideoData, callBack: () => void) {
         if (data._id) {
             const docRef = doc(firestore, this.video_collection, data._id)
-            await updateDoc(docRef, {}).catch(err => {
-                console.log(err);
-            })
-        } else {
-            console.log(`Can not read video`);
-        }
+            await updateDoc(docRef, {
+                title: data.title,
+                category: data.category,
+                lesson: data.lesson,
+                courseName: data.courseName,
+                vdoChiperId: data.vdoChiperId,
+                description: data.description,
+            }).then(() => {
+                callBack()
+            }).catch(err => { console.log(err) })
+        } else { console.log(`Can not read video`); }
     }
     async deleteVideo(videoId: string) {
         if (videoId) {

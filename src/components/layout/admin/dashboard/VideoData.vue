@@ -3,7 +3,6 @@
         <div class="mb-6">
             <Add @click="addForm = !addForm" />
             <AddVideoForm v-if="addForm" :renderVideoData="renderVideoData" />
-            <UpdateForm :data="vdoData" :renderVideoData="renderVideoData" :hideUpdateForm="hideUpdateForm"/>
         </div>
         <table v-if="videoData" class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -52,7 +51,7 @@
                         {{ item.courseName }}
                     </td>
                     <td class="px-6 py-4 relative flex gap-2 items-center">
-                        <Edit @click="() => { vdoData = item }" />
+                        <Edit :to="`/update-video/${item._id}`" />
                         <Delete @click="() => {
                             admin.deleteVideo(item._id);
                             renderVideoData()
@@ -73,6 +72,7 @@ import admin, { VideoData } from '../../../firebase/admin';
 import { videoSchema } from './dummyData'
 import AddVideoForm from './AddVideoForm.vue'
 import UpdateForm from './UpdateForm.vue';
+import { useUpdateFormStore } from '../../../../store/updateForm';
 
 const videoData = ref<any>([])
 
@@ -85,18 +85,18 @@ renderVideoData()
 
 const addForm = ref(false)
 
-const vdoData = ref<VideoData>({
-    _id: "",
-    category: "",
-    lesson: -1,
-    description: "",
-    title: "",
-    vdoChiperId: "",
-    courseName: "",
-})
-
+const updateStore = useUpdateFormStore()
 function hideUpdateForm() {
-    vdoData.value._id = ""
+    // set empty
+    updateStore.handleVdoData({
+        _id: "",
+        category: "",
+        lesson: -1,
+        description: "",
+        title: "",
+        vdoChiperId: "",
+        courseName: "",
+    })
 }
 </script>
 

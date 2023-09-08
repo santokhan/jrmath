@@ -1,9 +1,7 @@
 <template>
-    <pre>
-        {{ formData }}
-    </pre>
-    <form v-if="formData._id" class="bg-white mt-6 px-4 py-4 rounded-lg grid grid-cols-1 md:grid-cols-2 max-w-4xl relative"
-        @submit="handleSubmit">
+    <form 
+        class="bg-white mt-6 px-4 py-4 rounded-lg grid grid-cols-1 md:grid-cols-2 max-w-4xl relative"
+        @submit="">
         <div class="absolute top-4 right-4"><button @click="props.hideUpdateForm" type="button"
                 class="w-8 h-8 rounded-lg hover:bg-gray-100 focus:bg-orange-500 focus:text-white"><i
                     class="fa fa-plus rotate-45"></i></button></div>
@@ -20,7 +18,6 @@
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                 required>
         </div>
-        nb
         <div class="w-full px-2 py-3">
             <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
             <input type="text" id="category" v-model="formData.category"
@@ -55,10 +52,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import admin, { type VideoData } from '../../../firebase/admin';
+import { useUpdateFormStore } from '../../../../store/updateForm';
 
-const props = defineProps<{ data: VideoData, renderVideoData: () => void, hideUpdateForm: () => void }>()
+const updateStore = useUpdateFormStore()
+
+const props = defineProps<{ renderVideoData: () => void, hideUpdateForm: () => void }>()
 
 const formData = reactive<VideoData>({
     _id: "",
@@ -69,24 +69,14 @@ const formData = reactive<VideoData>({
     vdoChiperId: "",
     courseName: "",
 })
-formData._id = props.data._id
 
-function handleSubmit(e: any) {
-    e.preventDefault();
-
-    admin.updateVideo({
-        _id: props.data._id,
-        category: formData.category,
-        lesson: formData.lesson,
-        description: formData.description,
-        title: formData.title,
-        vdoChiperId: formData.vdoChiperId,
-        courseName: formData.courseName
-    })
-
-    // Re-assign
-    props.renderVideoData()
-}
+formData._id = updateStore.vdoData._id
+formData.category = updateStore.vdoData.category
+formData.lesson = updateStore.vdoData.lesson
+formData.description = updateStore.vdoData.description
+formData.title = updateStore.vdoData.title
+formData.vdoChiperId = updateStore.vdoData.vdoChiperId
+formData.courseName = updateStore.vdoData.courseName
 </script>
 
 <style scoped></style>

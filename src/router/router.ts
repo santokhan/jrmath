@@ -9,7 +9,7 @@ import SignInView from '../views/SignInView.vue'
 import AdminView from '../views/AdminView.vue'
 import { getCurrentUser } from 'vuefire'
 import NUHVue from '../views/coureses/NUH.vue'
-import SignUpView from '../views/SignUpView.vue'
+import UpdateFormView from '../views/coureses/UpdateFormView.vue'
 
 const routes = [
     {
@@ -64,12 +64,12 @@ const routes = [
         path: '/admin',
         component: AdminView,
         meta: {
-            requiresAuth: false
+            requiresAuth: true
         }
     },
     {
-        path: '/signup',
-        component: SignUpView,
+        path: '/update-video/:id',
+        component: UpdateFormView,
         meta: {
             requiresAuth: true
         }

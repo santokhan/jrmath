@@ -1,5 +1,5 @@
 <template>
-    <div class="relative overflow-x-auto p-4 md:px-12 md:pt-12 pb-28">
+    <div class="relative overflow-x-auto p-4 md:px-12 md:pt-12 pb-60">
         <table v-if="userData.length > 0" class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
@@ -35,7 +35,7 @@
                         {{ item.role }}
                     </td>
                     <td class="px-6 py-4 relative flex justify-start">
-                        <AccessButton />
+                        <AccessButton :courses="item.courseAccess" />
                     </td>
                 </tr>
             </tbody>

@@ -1,5 +1,5 @@
 <template>
-    <button type="button" @click=""
+    <RouterLink :to="props.to" type="button"
         class="w-8 h-8 grid place-items-center text-gray-800 hover:bg-gray-100 focus:bg-orange-500 focus:text-white font-medium rounded-lg text-sm text-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
             <path d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2" stroke="currentColor" stroke-width="1.5"
@@ -12,10 +12,11 @@
             <path d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94" stroke="currentColor" stroke-width="1.5"
                 stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
-    </button>
+    </RouterLink>
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{ to: string }>()
 </script>
 
 <style scoped></style>

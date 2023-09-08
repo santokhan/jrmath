@@ -50,6 +50,10 @@
 </template>
 
 <script setup lang="ts">
+import AppContainer from '../../components/layout/AppContainer.vue';
+import Heading from '../../components/section/Heading.vue';
+import Tag from '../../components/section/Tag.vue';
+import TitleBox from '../../components/section/TitleBox.vue';
 </script>
 
 <style scoped></style>
