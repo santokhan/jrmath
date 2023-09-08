@@ -28,20 +28,28 @@
             </select>
         </div>
         <div class="w-full px-2 py-3">
+            <label for="vdoStorage" class="block mb-2 text-sm font-medium text-gray-900">Video Storage</label>
+            <select name="vdoStorage" id="vdoStorage" v-model="formData.vdoStorage" required
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5">
+                <option value="youtube">YouTube</option>
+                <option value="vdoChiper">VdoChiper</option>
+            </select>
+        </div>
+        <div class="w-full px-2 py-3">
             <label for="lesson" class="block mb-2 text-sm font-medium text-gray-900">Lesson</label>
             <input type="number" id="lesson" v-model="formData.lesson"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                 required>
-            <div class="col-span-2 pt-6">
-                <button type="submit"
-                    class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 text-center">Submit</button>
-            </div>
         </div>
         <div class="px-2 py-3">
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
             <textarea id="message" rows="4" v-model="formData.description" required
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
         </div>
+        <div class="col-span-2 p-2">
+                <button type="submit"
+                    class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2 text-center">Submit</button>
+            </div>
     </form>
 </template>
 
@@ -57,7 +65,8 @@ const formData = reactive<VideoData>({
     description: "",
     title: "",
     vdoChiperId: "",
-    courseName: ""
+    courseName: "",
+    vdoStorage: ""
 })
 
 function handleSubmit(e: any) {
@@ -69,7 +78,8 @@ function handleSubmit(e: any) {
         description: formData.description,
         title: formData.title,
         vdoChiperId: formData.vdoChiperId,
-        courseName: formData.courseName
+        courseName: formData.courseName,
+        vdoStorage: formData.vdoStorage
     })
 
     // Re-assign

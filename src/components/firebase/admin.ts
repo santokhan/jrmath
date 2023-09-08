@@ -2,7 +2,7 @@ import { getAuth } from "firebase/auth"
 import app, { firestore } from "../firebase/config.ts"
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from 'firebase/firestore'
 
-export interface VideoData {
+export interface VideoDataWith_Id {
     _id: string,
     category: string,
     lesson: number,
@@ -10,6 +10,17 @@ export interface VideoData {
     title: string,
     vdoChiperId: string,
     courseName: string,
+    vdoStorage: string
+}
+
+export interface VideoData {
+    category: string,
+    lesson: number,
+    description: string,
+    title: string,
+    vdoChiperId: string,
+    courseName: string,
+    vdoStorage: string
 }
 
 class Admin {
@@ -90,7 +101,7 @@ class Admin {
             }
         }).catch(err => { console.log(err) })
     }
-    async updateVideo(data: VideoData, callBack: () => void) {
+    async updateVideo(data: VideoDataWith_Id, callBack: () => void) {
         if (data._id) {
             const docRef = doc(firestore, this.video_collection, data._id)
             await updateDoc(docRef, {

@@ -1,6 +1,6 @@
 // stores/counter.js
 import { defineStore } from 'pinia'
-import { VideoData } from '../components/firebase/admin';
+import { type VideoDataWith_Id } from '../components/firebase/admin';
 
 export const useUpdateFormStore = defineStore('updateVdoData', {
     state: () => {
@@ -13,14 +13,15 @@ export const useUpdateFormStore = defineStore('updateVdoData', {
                 title: "",
                 vdoChiperId: "",
                 courseName: "",
+                vdoStorage: ""
             }
         }
-    }, 
+    },
     actions: {
         getVdoData() {
             return this.vdoData;
         },
-        handleVdoData(data: VideoData) {
+        handleVdoData(data: VideoDataWith_Id) {
             this.vdoData = data;
         }
     },

@@ -26,6 +26,9 @@
                         Course Name
                     </th>
                     <th scope="col" class="w-20 px-6 py-3 whitespace-nowrap">
+                        Video Storage
+                    </th>
+                    <th scope="col" class="w-20 px-6 py-3 whitespace-nowrap">
                         Action
                     </th>
                 </tr>
@@ -50,6 +53,9 @@
                     <td class="px-6 py-4 overflow-auto whitespace-nowrap">
                         {{ item.courseName }}
                     </td>
+                    <td class="px-6 py-4 overflow-auto whitespace-nowrap">
+                        {{ item.vdoStorage }}
+                    </td>
                     <td class="px-6 py-4 relative flex gap-2 items-center">
                         <Edit :to="`/update-video/${item._id}`" />
                         <Delete @click="() => {
@@ -69,12 +75,9 @@ import Add from '../../../dashboard/video/Add.vue';
 import Delete from '../../../dashboard/video/Delete.vue';
 import Edit from '../../../dashboard/video/Edit.vue';
 import admin, { VideoData } from '../../../firebase/admin';
-import { videoSchema } from './dummyData'
 import AddVideoForm from './AddVideoForm.vue'
-import UpdateForm from './UpdateForm.vue';
-import { useUpdateFormStore } from '../../../../store/updateForm';
 
-const videoData = ref<any>([])
+const videoData = ref<any[]>([])
 
 function renderVideoData() {
     admin.watchVideo((data) => {
@@ -84,20 +87,20 @@ function renderVideoData() {
 renderVideoData()
 
 const addForm = ref(false)
-
-const updateStore = useUpdateFormStore()
-function hideUpdateForm() {
-    // set empty
-    updateStore.handleVdoData({
-        _id: "",
-        category: "",
-        lesson: -1,
-        description: "",
-        title: "",
-        vdoChiperId: "",
-        courseName: "",
-    })
-}
+// const updateStore = useUpdateFormStore()
+// function hideUpdateForm() {
+//     // set empty
+//     updateStore.handleVdoData({
+//         _id: "",
+//         category: "",
+//         lesson: -1,
+//         description: "",
+//         title: "",
+//         vdoChiperId: "",
+//         courseName: "",
+//         vdoStorage: ""
+//     })
+// }
 </script>
 
 <style scoped></style>

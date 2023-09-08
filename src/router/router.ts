@@ -8,8 +8,9 @@ import ProfileView from '../views/ProfileView.vue'
 import SignInView from '../views/SignInView.vue'
 import AdminView from '../views/AdminView.vue'
 import { getCurrentUser } from 'vuefire'
-import NUHVue from '../views/coureses/NUH.vue'
 import UpdateFormView from '../views/coureses/UpdateFormView.vue'
+import NUHView from '../views/coureses/NUHView.vue'
+import DUACView from '../views/coureses/DUACView.vue'
 
 const routes = [
     {
@@ -22,14 +23,14 @@ const routes = [
     },
     {
         path: '/courses/nuh',
-        component: NUHVue,
+        component: NUHView,
         meta: {
             requiresAuth: true
         }
     },
     {
-        path: '/courses/dauc',
-        component: NUHVue,
+        path: '/courses/duac',
+        component: DUACView,
         meta: {
             requiresAuth: true
         }

@@ -1,17 +1,27 @@
 <template>
     <section class="">
-        <LayoutAppContainer>
+        <AppContainer>
             <TitleBox>
-                <SectionTag>FIND A COURSE</SectionTag>
-                <Heading>
-                    Pick A Course To Get Started
-                </Heading>
+                <Tag>Welcome to</Tag>
+                <Heading>National University (NUH) Course</Heading>
             </TitleBox>
 
-            <div class="space-y-8">
+            <div v-for="(item, index) in videoData.slice(0, 1)" :key="index" 
+                class="mt-8">
+                <iframe v-if="item.vdoStorage === 'youtube'" class="w-full h-[400px] md:h-[650px]" src="https://www.youtube.com/embed/dtmgM6HmOTs?list=PLiDwAbhrwG_9uTYkP4zwE4ICHD0wqd8tx" :title="item.title" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="space-y-2 max-w-md mt-16 bg-white rounded-lg border p-4">
+                <h4 class="font-semibold mb-4">Lessons</h4>
+                <div v-for="item in videoData" :key="item.id" class="hover:bg-gray-100">
+                    <div class="border h-12 flex items-center p-4 rounded-lg bg-white font-medium">{{ item.title }}</div>
+                </div>
+            </div>
+
+            <!-- <div class="space-y-8">
                 <div class="">
-                    <Heading>Bunny</Heading>
-                    <br>
                     <div style="position:relative;padding-top:56.25%;"><iframe
                             src="https://iframe.mediadelivery.net/embed/150582/9294f084-62dd-410c-a8b4-4449aae58910?autoplay=true&loop=false&muted=false&preload=true"
                             loading="lazy" style="border:none;position:absolute;top:0;height:100%;width:100%;"
@@ -20,16 +30,12 @@
                     </div>
                 </div>
                 <div class="">
-                    <Heading>Vimeo</Heading>
-                    <br>
                     <div style="padding:56.25% 0 0 0;position:relative;"><iframe
                             src="https://player.vimeo.com/video/858244150?badge=0&autopause=0&player_id=0&app_id=58479/embed"
                             allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0"
                             style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
                 </div>
                 <div class="">
-                    <Heading>VdoChiper</Heading>
-                    <br>
                     <div style="padding-top:41%;position:relative;">
                         <iframe
                             src="https://player.vdocipher.com/v2/?otp=20160313versASE323GvRWcoAwL6TXm8j2pwPGkTSKEzquDB5YDZHcAGqsbpb9iY&playbackInfo=eyJ2aWRlb0lkIjoiMDhjMTI1MzMyYjk5NDY2NmFlN2NlYTA2YTUyMzk0ZTYifQ=="
@@ -38,22 +44,29 @@
                     </div>
                 </div>
                 <div class="">
-                    <Heading>VdoChiper</Heading>
-                    <br>
-                    <img style="width: 100%; margin: auto; display: block;" class="vidyard-player-embed"
+                                <img style="width: 100%; margin: auto; display: block;" class="vidyard-player-embed"
                         src="https://play.vidyard.com/cK3VBAZF3nJjCXd1p7shrz.jpg" data-uuid="cK3VBAZF3nJjCXd1p7shrz"
                         data-v="4" data-type="inline" />
                 </div>
-            </div>
-        </LayoutAppContainer>
+            </div> -->
+        </AppContainer>
     </section>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import admin from '../../components/firebase/admin';
 import AppContainer from '../../components/layout/AppContainer.vue';
 import Heading from '../../components/section/Heading.vue';
 import Tag from '../../components/section/Tag.vue';
 import TitleBox from '../../components/section/TitleBox.vue';
+
+const videoData = ref<any[]>([])
+
+admin.watchVideo((data) => {
+    videoData.value = data
+    console.log(data);
+})
 </script>
 
 <style scoped></style>

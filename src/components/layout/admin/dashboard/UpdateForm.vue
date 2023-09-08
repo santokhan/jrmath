@@ -60,23 +60,23 @@ const updateStore = useUpdateFormStore()
 
 const props = defineProps<{ renderVideoData: () => void, hideUpdateForm: () => void }>()
 
-const formData = reactive<VideoData>({
-    _id: "",
-    category: "",
-    lesson: -1,
-    description: "",
-    title: "",
-    vdoChiperId: "",
-    courseName: "",
-})
+// const formData = reactive<VideoData>({
+//     _id: "",
+//     category: "",
+//     lesson: -1,
+//     description: "",
+//     title: "",
+//     vdoChiperId: "",
+//     courseName: "",
+// })
 
-formData._id = updateStore.vdoData._id
-formData.category = updateStore.vdoData.category
-formData.lesson = updateStore.vdoData.lesson
-formData.description = updateStore.vdoData.description
-formData.title = updateStore.vdoData.title
-formData.vdoChiperId = updateStore.vdoData.vdoChiperId
-formData.courseName = updateStore.vdoData.courseName
+// formData._id = updateStore.vdoData._id
+// formData.category = updateStore.vdoData.category
+// formData.lesson = updateStore.vdoData.lesson
+// formData.description = updateStore.vdoData.description
+// formData.title = updateStore.vdoData.title
+// formData.vdoChiperId = updateStore.vdoData.vdoChiperId
+// formData.courseName = updateStore.vdoData.courseName
 </script>
 
 <style scoped></style>
