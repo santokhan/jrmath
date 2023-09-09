@@ -29,6 +29,13 @@ const routes = [
         }
     },
     {
+        path: '/courses/nuh/:id',
+        component: NUHView,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/courses/duac',
         component: DUACView,
         meta: {
