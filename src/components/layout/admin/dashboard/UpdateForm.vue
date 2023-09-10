@@ -1,7 +1,5 @@
 <template>
-    <form 
-        class="bg-white mt-6 px-4 py-4 rounded-lg grid grid-cols-1 md:grid-cols-2 max-w-4xl relative"
-        @submit="">
+    <form class="bg-white mt-6 px-4 py-4 rounded-lg grid grid-cols-1 md:grid-cols-2 max-w-4xl relative" @submit="">
         <div class="absolute top-4 right-4"><button @click="props.hideUpdateForm" type="button"
                 class="w-8 h-8 rounded-lg hover:bg-gray-100 focus:bg-orange-500 focus:text-white"><i
                     class="fa fa-plus rotate-45"></i></button></div>
@@ -53,22 +51,23 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import admin, { type VideoData } from '../../../firebase/admin';
+import { type VideoDataWith_Id } from '../../../firebase/admin';
 import { useUpdateFormStore } from '../../../../store/updateForm';
 
 const updateStore = useUpdateFormStore()
 
 const props = defineProps<{ renderVideoData: () => void, hideUpdateForm: () => void }>()
 
-// const formData = reactive<VideoData>({
-//     _id: "",
-//     category: "",
-//     lesson: -1,
-//     description: "",
-//     title: "",
-//     vdoChiperId: "",
-//     courseName: "",
-// })
+const formData = reactive<VideoDataWith_Id>({
+    _id: "",
+    category: "",
+    lesson: -1,
+    description: "",
+    title: "",
+    vdoChiperId: "",
+    courseName: "",
+    vdoStorage: ''
+})
 
 // formData._id = updateStore.vdoData._id
 // formData.category = updateStore.vdoData.category
@@ -77,6 +76,7 @@ const props = defineProps<{ renderVideoData: () => void, hideUpdateForm: () => v
 // formData.title = updateStore.vdoData.title
 // formData.vdoChiperId = updateStore.vdoData.vdoChiperId
 // formData.courseName = updateStore.vdoData.courseName
+// formData.vdoStorage = updateStore.vdoData.vdoStorage
 </script>
 
 <style scoped></style>
