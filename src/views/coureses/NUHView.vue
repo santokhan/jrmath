@@ -7,7 +7,7 @@
             </TitleBox>
 
             <div v-if="vdoToPlay" class="mt-8">
-                <div class="h-[400px] md:h-[650px]" v-if="vdoToPlay.vdoChiperId"
+                <div class="h-[360px] md:h-[650px]" v-if="vdoToPlay.vdoChiperId"
                     v-html="generateIframe(vdoToPlay.vdoChiperId)"></div>
                 <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }}</h3>
             </div>
