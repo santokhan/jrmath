@@ -3,10 +3,9 @@
         <AppContainer>
             <TitleBox>
                 <Tag>FIND A COURSE</Tag>
-                <Heading>
-                    Pick A Course To Get Started
-                </Heading>
+                <Heading>Pick A Course To Get Started</Heading>
             </TitleBox>
+
             <div class="flex flex-wrap justify-center gap-8 py-8">
                 <div v-for="(item, index) in courses" :key="index"
                     class="max-w-[22rem] space-y-4 bg-white rounded-xl overflow-hidden relative" title="card">

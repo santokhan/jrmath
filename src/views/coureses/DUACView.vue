@@ -1,50 +1,78 @@
 <template>
-    <section class="">
-        <AppContainer>
-            <TitleBox>
-                <Tag>Welcome to</Tag>
-                <Heading>DUAC Course</Heading>
-            </TitleBox>
+    <AppContainer>
+        <TitleBox>
+            <Tag>Welcome to</Tag>
+            <Heading>DUAC Course</Heading>
+        </TitleBox>
 
-            <div class="space-y-8">
-                <div class="">
-                    <div style="position:relative;padding-top:56.25%;"><iframe
-                            src="https://iframe.mediadelivery.net/embed/150582/9294f084-62dd-410c-a8b4-4449aae58910?autoplay=true&loop=false&muted=false&preload=true"
-                            loading="lazy" style="border:none;position:absolute;top:0;height:100%;width:100%;"
-                            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-                            allowfullscreen="true"></iframe>
-                    </div>
-                </div>
-                <div class="">
-                    <div style="padding:56.25% 0 0 0;position:relative;"><iframe
-                            src="https://player.vimeo.com/video/858244150?badge=0&autopause=0&player_id=0&app_id=58479/embed"
-                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0"
-                            style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
-                </div>
-                <div class="">
-                    <div style="padding-top:41%;position:relative;"><iframe
-                            src="https://player.vdocipher.com/v2/?otp=20160313versASE323GvRWcoAwL6TXm8j2pwPGkTSKEzquDB5YDZHcAGqsbpb9iY&playbackInfo=eyJ2aWRlb0lkIjoiMDhjMTI1MzMyYjk5NDY2NmFlN2NlYTA2YTUyMzk0ZTYifQ=="
-                            style="border:0;max-width:100%;position:absolute;top:0;left:0;height:100%;width:100%;"
-                            allowFullScreen="true" allow="encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="">
-                    <!-- The script tag should live in the head of your page if at all possible -->
-                    <!-- Put this wherever you would like your player to appear -->
-                    <img style="width: 100%; margin: auto; display: block;" class="vidyard-player-embed"
-                        src="https://play.vidyard.com/cK3VBAZF3nJjCXd1p7shrz.jpg" data-uuid="cK3VBAZF3nJjCXd1p7shrz"
-                        data-v="4" data-type="inline" />
+        <div v-if="vdoToPlay" class="mt-8">
+            <div class="h-[260px] md:h-[650px]" v-if="vdoToPlay.vdoChiperId" v-html="generateIframe(vdoToPlay.vdoChiperId)">
+            </div>
+        </div>
+
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-2/3">
+                <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }}</h3>
+                <p>{{ vdoToPlay.description }}</p>
+            </div>
+            <div class="w-full md:w-1/3">
+                <div class="space-y-2 max-w-md bg-white rounded-lg border p-3 mt-8">
+                    <h4 class="font-semibold mb-4">Lessons</h4>
+                    <RouterLink type="button" v-for="(item, index) in videoData" :key="index"
+                        @click="() => { handleVideoPlay(index) }" class="block w-full hover:bg-gray-100"
+                        :to="`/courses/nuh/${item._id}`">
+                        <div class="border h-12 flex items-center gap-2 p-2 rounded-lg bg-white font-medium">
+                            <Play class="w-8 h-8 text-gray-600" />{{ item.title }}
+                        </div>
+                    </RouterLink>
                 </div>
             </div>
-        </AppContainer>
-    </section>
+        </div>
+    </AppContainer>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import admin from '../../components/firebase/admin';
 import AppContainer from '../../components/layout/AppContainer.vue';
 import Heading from '../../components/section/Heading.vue';
 import Tag from '../../components/section/Tag.vue';
 import TitleBox from '../../components/section/TitleBox.vue';
+import { useRoute, useRouter } from 'vue-router';
+import Play from '../../components/icons/Play.vue'
+
+const videoData = ref<any[]>([])
+const vdoToPlay = ref<any>({})
+const route = useRoute()
+const router = useRouter()
+
+function assinInitial() {
+    if (videoData.value.length > 0) {
+        let filtered: any = {}
+        videoData.value.forEach(e => { if (e._id === route.params.id) filtered = e })
+
+        if (filtered.title) {
+            vdoToPlay.value = filtered
+        } else {
+            vdoToPlay.value = videoData.value[0]
+        }      
+    }
+}
+
+onMounted(() => {
+    setTimeout(() => { assinInitial() }, 1000);
+})
+
+admin.watchVideo((data) => { videoData.value = data })
+
+function generateIframe(src: string) {
+    return `<iframe class="w-full h-full" src="${src}" :title="vdoToPlay.title" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+}
+function handleVideoPlay(index: number) {
+    if (videoData.value.length > 0) {
+        vdoToPlay.value = videoData.value[index]
+    }
+}
 </script>
 
 <style scoped></style>

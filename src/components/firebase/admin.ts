@@ -10,17 +10,21 @@ export interface VideoDataWith_Id {
     title: string,
     vdoChiperId: string,
     courseName: string,
-    vdoStorage: string
+    vdoStorage: string,
+    price: number,
+    discountPrice: number
 }
 
 export interface VideoData {
-    category: string,
+    category: number,
     lesson: number,
     description: string,
     title: string,
     vdoChiperId: string,
     courseName: string,
-    vdoStorage: string
+    vdoStorage: string,
+    price: number,
+    discountPrice: number
 }
 
 class Admin {
@@ -111,6 +115,8 @@ class Admin {
                 courseName: data.courseName,
                 vdoChiperId: data.vdoChiperId,
                 description: data.description,
+                price: data.description,
+                discountPrice: data.discountPrice
             }).then(() => {
                 callBack()
             }).catch(err => { console.log(err) })

@@ -4,55 +4,52 @@
         <div class="h-full max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
             <JRMath />
             <div class="flex items-center md:order-2 relative">
-                <RouterLink to="/profile" class="flex mr-3 text-sm rounded-full md:mr-0">
+                <RouterLink to="/profile" class="flex mr-1 text-sm rounded-full">
                     <IconUser class="text-orange-500 w-7 h-7" />
                 </RouterLink>
-                <button type="button" class="fle x hidden mr-3 text-sm rounded-full md:mr-0 " id="user-menu-button"
-                    ref="profileBtn" @click="handleUserDD" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                    data-dropdown-placement="bottom"><span class="sr-only">Open user menu</span>
-                    <IconUser class="text-orange-500 w-7 h-7" />
-                </button>
-                <!-- Dropdown menu -->
-                <div v-if="isOpenUserDD" ref="targetUserDD"
-                    class="my-4 text-base list-none divide-y bg-white divide-gray-100 rounded-lg shadow absolute right-0 top-full w-60 z-[11]"
-                    id="user-dropdown">
-                    <div class="px-4 py-3">
-                        <span class="block text-gray-900 font-semibold">John Doe</span>
-                        <span class="block  text-gray-400 truncate">doe@domain.com</span>
-                    </div>
-                    <ul class="py-2" aria-labelledby="user-menu-button">
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 font-medium">Profile</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 font-medium">Sign out</a>
-                        </li>
-                    </ul>
-                </div>
+
                 <button data-collapse-toggle="navbar-user" type="button" @click="handleDropdown" ref="hamburger"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-800 rounded-lg md:hidden hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-200"
+                    class="inline-flex items-center p-2 w-8 h-8 justify-center text-sm text-gray-800 rounded-lg md:hidden hover:bg-white"
                     aria-controls="navbar-user" aria-expanded="false">
-                    <IcoClose v-if="dropdown" />
-                    <svg v-else class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
+                    <IcoClose v-if="dropdown" class="w-6 h-6" />
+                    <Hamburger v-else class="w-6 h-6" />
                 </button>
             </div>
-            <div :class="[
-                dropdown ? 'absolute right-0 top-12 w-60 z-[12]' : 'items-center justify-between hidden w-full md:flex md:w-auto md:order-1',
-            ]" id="navbar-user">
+            <!-- Dropdown -->
+            <div
+                :class="[dropdown ? 'absolute right-0 top-12 w-60 z-[12]' : 'hidden w-full h-full md:flex md:items-center md:justify-between md:w-auto md:order-1',]">
                 <ul ref="targetNavDD"
-                    class="flex flex-col font-medium p-3 md:p-0 mt-4 bg-white md:bg-transparent border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-                    <li v-for="item, index in navs" :key="index">
-                        <RouterLink :to="item.to" @click="dropdown = false" :class="[
-                            item.to === route.path ? 'block py-2 pl-3 pr-4 text-white bg-orange-500 rounded md:bg-transparent md:text-orange-500 md:p-0' :
-                                'block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0',
-                            'capitalize'
+                    class="h-full flex flex-col font-medium py-3 md:py-0 bg-white md:bg-transparent border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:border-0">
+                    <li v-for="item, index in navs" :key="index" class="flex items-center h-full">
+                        <RouterLink v-if="item.to" :to="item.to" @click="dropdown = false" :class="[
+                            item.to === route.path ? 'text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
+                                'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',
+                            'capitalize w-full flex items-center pl-4 py-2'
                         ]" aria-current="page">{{ item.name }}</RouterLink>
-                    </li>
 
+                        <div v-else-if="item.dropdown" class="w-full h-full relative group">
+                            <button :class="[
+                                item.to === route.path ? 'text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
+                                    'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',
+                                'capitalize w-full h-full flex items-center gap-2 pl-4 py-2'
+                            ]">{{ item.name }}<i class="fa fa-angle-down group-hover:rotate-180"></i></button>
+
+                            <div class="w-full group-hover:flex gap-4 hidden md:absolute top-full z-[12] bg-white md:w-80 shadow">
+                                <div v-for="(ddItem, ddIndex) in item.dropdown" :key="ddIndex" class="w-full p-2">
+                                    <h5 class="font-medium px-4 py-2">{{ ddItem.name }}</h5>
+                                    <hr>
+                                    <div class="space-y-3 p-4">
+                                        <RouterLink v-for="(link, linkIndex) in ddItem.links" :key="linkIndex" :to="link.to"
+                                            :class="[
+                                                link.to === route.path ? 'block text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
+                                                    'block text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',
+                                                'capitalize whitespace-nowrap'
+                                            ]">{{ link.name }}</RouterLink>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -67,20 +64,10 @@ import { onClickOutside } from '@vueuse/core'
 import { useRoute } from 'vue-router';
 import JRMath from '../../../components/logo/JRMath.vue';
 import IcoClose from '../../../components/icons/IcoClose.vue';
+import Hamburger from '../../../components/icons/Hamburger.vue';
 
 const isOpenUserDD = ref(false)
 const dropdown = ref(false)
-
-const targetUserDD = ref(null)
-const profileBtn = ref(null)
-
-function handleUserDD() {
-    isOpenUserDD.value = !isOpenUserDD.value
-    dropdown.value = false
-    onClickOutside(targetUserDD, () => {
-        isOpenUserDD.value = false
-    }, { ignore: [profileBtn] })
-}
 
 const targetNavDD = ref(null)
 const hamburger = ref(null)
