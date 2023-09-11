@@ -1,6 +1,8 @@
 <?php
 
-// http://localhost.com/?vdoChiperId=4595b6ed1298443e9dd97dee7e407e66
+header('Access-Control-Allow-Origin: *');
+
+// http://localhost/jrmath/?vdoChiperId=4595b6ed1298443e9dd97dee7e407e66
 $queries = array();
 parse_str($_SERVER['QUERY_STRING'], $queries);
 $vdoChiperId = $queries["vdoChiperId"];
