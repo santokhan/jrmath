@@ -6,11 +6,11 @@
         </TitleBox>
 
         <div class="mt-8" v-if="vdoToPlay.vdoStorage === 'youtube'">
-            <div class="h-[260px] md:h-[650px] relative" v-html="iframe(vdoToPlay.vdoChiperId)"></div>
+            <div class="w-full h-[260px] md:h-[650px] relative" v-html="iframe(vdoToPlay.vdoChiperId)"></div>
         </div>
-        <div v-else class="">
+        <div v-else class="w-full">
             <iframe v-if="otp.otp" :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
-                class="h-[260px] md:h-[650px] relative" allow="encrypted-media" allowfullscreen></iframe>
+                class="w-full h-[260px] md:h-[650px] relative" allow="encrypted-media" allowfullscreen></iframe>
         </div>
 
         <div class="flex flex-wrap">
