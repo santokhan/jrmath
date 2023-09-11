@@ -9,9 +9,8 @@
             <div class="h-[260px] md:h-[650px] relative" v-html="iframe(vdoToPlay.vdoChiperId)"></div>
         </div>
         <div v-else class="">
-            {{ getOTP(vdoToPlay.vdoChiperId) }}
-            <iframe
-                :src="`https://player.vdocipher.com/v2/?otp=[[REPLACE_WITH_OTP]]&playbackInfo=[[REPLACE_WITH_PLAYBACKINFO]]`"
+            {{ otp }}
+            <iframe v-if="otp.otp" :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
                 style="border:0;width:720px;height:405px" allow="encrypted-media" allowfullscreen></iframe>
         </div>
 
@@ -109,31 +108,19 @@ function handleVideoPlay(index: number) {
     }
 }
 
-async function otpPlayBackInfo(vdoChiperId: string, callBack: (otp: OTP) => void) {
-    await fetch(`https://dev.vdocipher.com/api/videos/${vdoChiperId}/otp`, {
-        method: "POST",
-        headers: {
-            "Authorization": "Apisecret e2v0ojeaus1EMJWsLru61ztYD5Hj7k9fJKkACeg1XbxbarZ3KwXP4HvnlY6VTpGd",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ ttl: 300 })
-    }).then(res => res.json()).then((data) => {
-        console.log(data);        
-        callBack(data)
+async function otpPlayBackInfo(vdoChiperId: string) {
+    await fetch(`http://localhost:7001/?vdoChiperId=${vdoChiperId}`).then(res => res.json()).then((data) => {
+        console.log(data)
+        otp.otp = data.otp
+        otp.playbackInfo = data.playbackInfo
     }).catch(err => { console.log(err) })
 }
 
-function getOTP(id: string) {
-    otpPlayBackInfo(id, (data) => {
-        console.log(data);        
-        otp.otp = data.otp
-        otp.playbackInfo = data.playbackInfo
-    })
-    return {
-        otp: otp.otp,
-        playBackInfo: otp.playbackInfo
+watch(vdoToPlay, () => {
+    if (vdoToPlay.value) {
+        otpPlayBackInfo(vdoToPlay.value.vdoChiperId)
     }
-}
+})
 </script>
 
 <style scoped></style>
