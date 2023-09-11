@@ -1,10 +1,5 @@
 <template>
     <AppContainer v-if="vdoToPlay">
-        <TitleBox>
-            <Tag>Welcome to</Tag>
-            <Heading>JRMath Courses</Heading>
-        </TitleBox>
-
         <div class="mt-8" v-if="vdoToPlay.vdoStorage === 'youtube'">
             <div class="w-full h-[260px] md:h-[650px] relative" v-html="iframe(vdoToPlay.vdoChiperId)"></div>
         </div>
