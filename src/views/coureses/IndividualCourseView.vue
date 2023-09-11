@@ -113,7 +113,7 @@ async function otpPlayBackInfo(vdoChiperId: string, callBack: (otp: OTP) => void
     await fetch(`https://dev.vdocipher.com/api/videos/${vdoChiperId}/otp`, {
         method: "POST",
         headers: {
-            "Authorization": "Bearer e2v0ojeaus1EMJWsLru61ztYD5Hj7k9fJKkACeg1XbxbarZ3KwXP4HvnlY6VTpGd",
+            "Authorization": "Apisecret e2v0ojeaus1EMJWsLru61ztYD5Hj7k9fJKkACeg1XbxbarZ3KwXP4HvnlY6VTpGd",
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ ttl: 300 })
