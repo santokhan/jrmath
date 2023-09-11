@@ -8,15 +8,7 @@
                 class="w-full h-[260px] md:h-[650px] relative" allow="encrypted-media" allowfullscreen></iframe>
         </div>
 
-        <div style="padding-top:56.25%;position:relative;">
-            <iframe
-                src="https://app.tpstreams.com/embed/eeu52u/9q6fAceZPbR/?access_token=3c0db764-b2bc-463a-9d8b-4e0dad5a8f17"
-                style="border:0;max-width:100%;position:absolute;top:0;left:0;height:100%;width:100%;"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope picture-in-picture"
-                allowfullscreen frameborder="0"></iframe>
-        </div>
-
-        <div class="flex flex-wrap">
+        <div class=" flex flex-wrap">
             <div class="w-full md:w-2/3">
                 <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }}</h3>
                 <p>{{ vdoToPlay.description }}</p>
