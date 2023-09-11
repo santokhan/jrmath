@@ -9,12 +9,10 @@
             <div class="h-[260px] md:h-[650px] relative" v-html="iframe(vdoToPlay.vdoChiperId)"></div>
         </div>
         <div v-else class="">
-            <div style="padding-top:56%;position:relative;">
-                <iframe
-                    src="https://player.vdocipher.com/v2/?otp=20160313versASE323ziabNAMGe3anuYXtrkhqJLV3tDlWyFAJaV6Z8UkAjTh13K&playbackInfo=eyJ2aWRlb0lkIjoiNDU5NWI2ZWQxMjk4NDQzZTlkZDk3ZGVlN2U0MDdlNjYifQ=="
-                    style="border:0;max-width:100%;position:absolute;top:0;left:0;height:100%;width:100%;"
-                    allowFullScreen="true" allow="encrypted-media"></iframe>
-            </div>
+            {{ getOTP(vdoToPlay.vdoChiperId) }}
+            <iframe
+                :src="`https://player.vdocipher.com/v2/?otp=[[REPLACE_WITH_OTP]]&playbackInfo=[[REPLACE_WITH_PLAYBACKINFO]]`"
+                style="border:0;width:720px;height:405px" allow="encrypted-media" allowfullscreen></iframe>
         </div>
 
         <div class="flex flex-wrap">
@@ -50,9 +48,12 @@ import TitleBox from '../../components/section/TitleBox.vue';
 import { useRoute } from 'vue-router';
 import Play from '../../components/icons/Play.vue'
 
+interface OTP { otp: string, playbackInfo: string }
+
 const videoData = ref<VideoDataWith_Id[]>([])
 const vdoToPlay = ref<VideoDataWith_Id | null>()
 const route = useRoute()
+const otp = reactive<OTP>({ otp: "", playbackInfo: "" })
 
 const requirement = reactive({
     course: typeof route.params.course === 'string' ? route.params.course : route.params.course[0],
@@ -105,6 +106,32 @@ function iframe(src: string) {
 function handleVideoPlay(index: number) {
     if (videoData.value.length > 0) {
         vdoToPlay.value = videoData.value[index]
+    }
+}
+
+async function otpPlayBackInfo(vdoChiperId: string, callBack: (otp: OTP) => void) {
+    await fetch(`https://dev.vdocipher.com/api/videos/${vdoChiperId}/otp`, {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer e2v0ojeaus1EMJWsLru61ztYD5Hj7k9fJKkACeg1XbxbarZ3KwXP4HvnlY6VTpGd",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ ttl: 300 })
+    }).then(res => res.json()).then((data) => {
+        console.log(data);        
+        callBack(data)
+    }).catch(err => { console.log(err) })
+}
+
+function getOTP(id: string) {
+    otpPlayBackInfo(id, (data) => {
+        console.log(data);        
+        otp.otp = data.otp
+        otp.playbackInfo = data.playbackInfo
+    })
+    return {
+        otp: otp.otp,
+        playBackInfo: otp.playbackInfo
     }
 }
 </script>
