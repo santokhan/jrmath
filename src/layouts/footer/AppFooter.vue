@@ -26,7 +26,7 @@
                     <div class="w-full grid grid-cols-2 gap-12 sm:gap-6 lg:grid-cols-3 py-4 lg:py-0">
                         <div class="">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Resources</h2>
-                            <div class="text-gray-700  font-medium flex flex-col gap-3">
+                            <div class="text-gray-700 font-medium flex flex-col items-start gap-3">
                                 <RouterLink to="/" class="hover:text-orange-500">Home</RouterLink>
                                 <RouterLink to="/courses" class="hover:text-orange-500">Courses</RouterLink>
                                 <RouterLink to="/admin" class="hover:text-orange-500">Admin</RouterLink>
