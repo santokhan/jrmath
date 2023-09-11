@@ -85,7 +85,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 const formData = reactive<VideoDataWith_Id>({
     _id: "",
-    category: "",
+    category: 0,
     lesson: -1,
     description: "",
     title: "",
