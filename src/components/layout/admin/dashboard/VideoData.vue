@@ -2,7 +2,7 @@
     <div class="relative p-4 md:px-8 md:pt-8 pb-28">
         <div class="mb-6">
             <Add @click="addForm = !addForm" />
-            <AddVideoForm v-if="addForm" :renderVideoData="renderVideoData" />
+            <AddVideoForm v-if="addForm" :renderVideoData="renderVideoData" :hideForm="() => { addForm = false }" />
         </div>
         <table v-if="videoData" class="w-full text-sm text-left text-gray-500 overflow-auto">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">

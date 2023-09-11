@@ -4,7 +4,7 @@ import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from '
 
 export interface VideoDataWith_Id {
     _id: string,
-    category: string,
+    category: number,
     lesson: number,
     description: string,
     title: string,

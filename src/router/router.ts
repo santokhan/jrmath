@@ -11,6 +11,8 @@ import { getCurrentUser } from 'vuefire'
 import UpdateFormView from '../views/coureses/UpdateFormView.vue'
 import NUHView from '../views/coureses/NUHView.vue'
 import DUACView from '../views/coureses/DUACView.vue'
+import IndividualCourseView from '../views/coureses/IndividualCourseView.vue'
+import RedirectView from '../views/coureses/RedirectView.vue'
 
 const routes = [
     {
@@ -22,22 +24,15 @@ const routes = [
         component: CoursesView,
     },
     {
-        path: '/courses/nuh',
-        component: NUHView,
+        path: '/courses/:course/:year/',
+        component: IndividualCourseView,
         meta: {
             requiresAuth: true
         }
     },
     {
-        path: '/courses/nuh/:id',
-        component: NUHView,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/courses/duac',
-        component: DUACView,
+        path: '/courses/:course/:year/:id',
+        component: IndividualCourseView,
         meta: {
             requiresAuth: true
         }

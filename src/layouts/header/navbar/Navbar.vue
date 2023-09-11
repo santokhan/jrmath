@@ -17,7 +17,7 @@
             </div>
             <!-- Dropdown -->
             <div
-                :class="[dropdown ? 'absolute right-0 top-12 w-60 z-[12]' : 'hidden w-full h-full md:flex md:items-center md:justify-between md:w-auto md:order-1',]">
+                :class="[dropdown ? 'absolute right-0 top-16 w-60 z-[12]' : 'hidden w-full h-full md:flex md:items-center md:justify-between md:w-auto md:order-1',]">
                 <ul ref="targetNavDD"
                     class="h-full flex flex-col font-medium py-3 md:py-0 bg-white md:bg-transparent border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:border-0">
                     <li v-for="item, index in navs" :key="index" class="flex items-center h-full">
@@ -28,25 +28,14 @@
                         ]" aria-current="page">{{ item.name }}</RouterLink>
 
                         <div v-else-if="item.dropdown" class="w-full h-full relative group">
-                            <button :class="[
-                                item.to === route.path ? 'text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
-                                    'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',
+                            <div :class="[item.to === route.path ? 'text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
+                                'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',
                                 'capitalize w-full h-full flex items-center gap-2 pl-4 py-2'
-                            ]">{{ item.name }}<i class="fa fa-angle-down group-hover:rotate-180"></i></button>
+                            ]">{{ item.name }}<i class="fa fa-angle-down group-hover:rotate-180"></i></div>
 
-                            <div class="w-full group-hover:flex gap-4 hidden md:absolute top-full z-[12] bg-white md:w-80 shadow">
-                                <div v-for="(ddItem, ddIndex) in item.dropdown" :key="ddIndex" class="w-full p-2">
-                                    <h5 class="font-medium px-4 py-2">{{ ddItem.name }}</h5>
-                                    <hr>
-                                    <div class="space-y-3 p-4">
-                                        <RouterLink v-for="(link, linkIndex) in ddItem.links" :key="linkIndex" :to="link.to"
-                                            :class="[
-                                                link.to === route.path ? 'block text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
-                                                    'block text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',
-                                                'capitalize whitespace-nowrap'
-                                            ]">{{ link.name }}</RouterLink>
-                                    </div>
-                                </div>
+                            <div
+                                class="w-full group-hover:block hidden md:absolute top-full z-[12] bg-white md:w-40 md:shadow-lg md:py-2">
+                                <NestedDropdown :nav="item" />
                             </div>
                         </div>
                     </li>
@@ -65,6 +54,7 @@ import { useRoute } from 'vue-router';
 import JRMath from '../../../components/logo/JRMath.vue';
 import IcoClose from '../../../components/icons/IcoClose.vue';
 import Hamburger from '../../../components/icons/Hamburger.vue';
+import NestedDropdown from './NestedDropdown.vue';
 
 const isOpenUserDD = ref(false)
 const dropdown = ref(false)

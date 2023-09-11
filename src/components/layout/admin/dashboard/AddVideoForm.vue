@@ -73,7 +73,7 @@
 import { reactive } from 'vue'
 import admin, { type VideoData } from '../../../firebase/admin';
 
-const props = defineProps<{ renderVideoData: () => void }>()
+const props = defineProps<{ renderVideoData: () => void, hideForm: () => void }>()
 
 const formData = reactive<VideoData>({
     category: 1,
@@ -104,6 +104,7 @@ function handleSubmit(e: any) {
 
     // Re-assign
     props.renderVideoData()
+    props.hideForm()
 }
 </script>
 
