@@ -7,6 +7,8 @@
             <iframe v-if="otp.otp" :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
                 class="w-full h-[260px] md:h-[650px] relative" allow="encrypted-media" allowfullscreen></iframe>
         </div>
+        <iframe src="https://drive.google.com/file/d/15s-q3mk_KdUxKXeHhXIzVwUwY5SJ40ZV/preview" width="100%" height="400"
+            allow="autoplay"></iframe>
 
         <div class=" flex flex-wrap">
             <div class="w-full md:w-2/3">
