@@ -123,7 +123,7 @@ class Auth {
                 // ...
             });
     }
-    async signInWithGoogle(callBack: () => void) {
+    async signInWithGoogle(callBack: (user: any) => void) {
         const provider = new GoogleAuthProvider();
 
         await signInWithPopup(this.auth, provider).then(result => {
@@ -135,7 +135,7 @@ class Auth {
 
             // IdP data available using getAdditionalUserInfo(result)
             // ...
-            callBack()
+            callBack(user)
             this.setActiveDevice(user.uid)
             // console.log(result, credential);
         }).catch((error) => {
@@ -210,9 +210,11 @@ class Auth {
         const hash = new hashLibrary()
         const uniqueId = hash.rnd()
         localStorage.setItem("deviceId", uniqueId)
-        return uniqueId
         // console.log(uniqueId);
+        return uniqueId
     }
 }
 
-export default new Auth()
+const auth = new Auth()
+
+export default auth

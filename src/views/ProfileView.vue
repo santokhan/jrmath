@@ -34,6 +34,8 @@
                                 <span class="block w-1 h-1 bg-green-400 rounded-full"></span>
                                 <span class="text-green-400 text-sm">Active</span>
                             </div>
+                            <div class="font-medium">Coin:</div>
+                            <div class="col-span-2">{{ userInfo.coin || 0 }}</div>
                         </div>
                     </div>
                     <div class="mt-8">
@@ -57,7 +59,7 @@ import Heading from '../components/section/Heading.vue';
 import AppContainer from '../components/layout/AppContainer.vue';
 import TitleBox from '../components/section/TitleBox.vue';
 import AddUserInfo from '../components/profile/modal/AddUserInfo.vue'
-import profile from '../components/firebase/profile';
+import profile, { coin } from '../components/firebase/profile';
 import { getCurrentUser } from 'vuefire';
 
 const router = useRouter()
@@ -81,6 +83,13 @@ currentUser.then(user => {
 
 Auth.currentUser().then(data => {
     userInfo.value = data
+
+    coin.read(userInfo.value.email, data => {
+        // console.log(userInfo.value.email == data.email);
+        if (userInfo.value.email == data.email) {
+            userInfo.value.coin = data.coin
+        }
+    })
 })
 
 function handleLogout() {

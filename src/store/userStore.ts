@@ -2,8 +2,10 @@
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('userData', {
-    state: () => {
-        return { multipleUser: false }
+    state: (): any => {
+        return {
+            multipleUser: false,
+        }
     },
     actions: {
         getMultipleUser() {
@@ -11,6 +13,6 @@ export const useUserStore = defineStore('userData', {
         },
         handleMultipleUser() {
             this.multipleUser = true;
-        }
+        },
     },
 })

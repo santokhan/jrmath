@@ -1,18 +1,19 @@
 <template>
     <AppContainer v-if="vdoToPlay">
-        <div class="mt-8" v-if="vdoToPlay.vdoStorage === 'youtube'">
+        <div class="mt-8" v-if="vdoToPlay.vdoStorage === 'google-drive'">
             <div class="w-full h-[260px] md:h-[650px] relative" v-html="iframe(vdoToPlay.vdoChiperId)"></div>
         </div>
-        <div v-else class="w-full">
+        <div v-if="vdoToPlay.vdoStorage === 'vdoChiper'" class="w-full">
             <iframe v-if="otp.otp" :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
                 class="w-full h-[260px] md:h-[650px] relative" allow="encrypted-media" allowfullscreen></iframe>
         </div>
-        <iframe src="https://drive.google.com/file/d/15s-q3mk_KdUxKXeHhXIzVwUwY5SJ40ZV/preview" class="w-full h-[260px] md:h-[650px] relative]"
-            allow="autoplay"></iframe>
 
         <div class=" flex flex-wrap">
-            <div class="w-full md:w-2/3">
-                <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }}</h3>
+            <div class="w-full md:w-2/3 mt-4">
+                <div class="flex items-center gap-8 justify-between">
+                    <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }}</h3>
+                    <Share />
+                </div>
                 <p>{{ vdoToPlay.description }}</p>
             </div>
             <div class="w-full md:w-1/3" v-if="videoData.length > 0">
@@ -37,11 +38,9 @@
 import { reactive, ref, watch } from 'vue';
 import admin, { VideoDataWith_Id } from '../../components/firebase/admin';
 import AppContainer from '../../components/layout/AppContainer.vue';
-import Heading from '../../components/section/Heading.vue';
-import Tag from '../../components/section/Tag.vue';
-import TitleBox from '../../components/section/TitleBox.vue';
 import { useRoute } from 'vue-router';
 import Play from '../../components/icons/Play.vue'
+import Share from '../../components/buttons/Share.vue';
 
 interface OTP { otp: string, playbackInfo: string }
 
@@ -51,7 +50,7 @@ const route = useRoute()
 const otp = reactive<OTP>({ otp: "", playbackInfo: "" })
 
 const requirement = reactive({
-    course: typeof route.params.course === 'string' ? route.params.course : route.params.course[0],
+    course: typeof route.params.course === 'string' ? route.params.course : "",
     year: typeof route.params.year === 'string' ? parseInt(route.params.year) : parseInt(route.params.year[0]),
 })
 
@@ -89,13 +88,13 @@ function assignVideoData(course: string, year: number) {
 assignVideoData(requirement.course, requirement.year)
 
 watch(() => route.params, () => {
-    requirement.course = typeof route.params.course === 'string' ? route.params.course : route.params.course[0];
-    requirement.year = typeof route.params.year === 'string' ? parseInt(route.params.year) : parseInt(route.params.year[0]);
+    requirement.course = typeof route.params.course === 'string' ? route.params.course : "";
+    requirement.year = typeof route.params.year === 'string' ? parseInt(route.params.year) : 0;
     assignVideoData(requirement.course, requirement.year)
 })
 
 function iframe(src: string) {
-    return `<iframe class="w-full h-full" src="${src}" :title="vdoToPlay.title" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+    return `<iframe src="${src}" class="w-full h-[260px] md:h-[650px] relative]" allow="autoplay" onload="()=> {document.querySelector("[aria-label='Pop out']").style.display = 'none'}"></iframe>`
 }
 
 function handleVideoPlay(index: number) {
@@ -122,4 +121,9 @@ watch(vdoToPlay, () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+[aria-label="Pop out"],
+[aria-tooltip="Pop out"] {
+    display: none;
+}
+</style>

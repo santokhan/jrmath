@@ -12,7 +12,7 @@ import UpdateFormView from '../views/coureses/UpdateFormView.vue'
 import NUHView from '../views/coureses/NUHView.vue'
 import DUACView from '../views/coureses/DUACView.vue'
 import IndividualCourseView from '../views/coureses/IndividualCourseView.vue'
-import RedirectView from '../views/coureses/RedirectView.vue'
+import ReferralView from '../views/ReferralView.vue'
 
 const routes = [
     {
@@ -73,6 +73,13 @@ const routes = [
     {
         path: '/update-video/:id',
         component: UpdateFormView,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/referral/:id',
+        component: ReferralView,
         meta: {
             requiresAuth: true
         }

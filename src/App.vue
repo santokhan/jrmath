@@ -25,7 +25,6 @@ async function singleUser() {
   }
 }
 singleUser()
-
 </script>
 
 <template>
