@@ -2,10 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "app.mjs",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.mjs",
+    "dev": "nodemon app",
     "start": "node app",
     "pm2": "pm2 start app",
     "super": "npx supervisor app"
