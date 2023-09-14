@@ -6,9 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index",
-    "start": "pm2 start index.js",
-    "super":"npx supervisor index.js"
+    "dev": "nodemon app",
+    "start": "pm2 start app",
+    "super":"npx supervisor app"
   },
   "keywords": [],
   "author": "",
