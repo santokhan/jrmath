@@ -1,7 +1,7 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const cors = require('cors')
-const fetch = require('node-fetch')
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+import fetch from 'node-fetch'
 
 dotenv.config()
 const port = process.env.PORT || 7002
