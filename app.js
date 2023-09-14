@@ -11,7 +11,7 @@ const app = express()
 app.use(cors())
 
 app.get("/", async (req, res) => {
-    const vdoId = "48860640a4d64b4d809158abd872e5ef";
+    const vdoId = "Hi Santo, how are you?";
     // const vdoId = req.query.vdoChiperId
     res.json(vdoId)
     // await fetch(`https://dev.vdocipher.com/api/videos/${vdoId}/otp`, {
