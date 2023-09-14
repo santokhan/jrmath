@@ -11,9 +11,17 @@ const app = express()
 app.use(cors())
 
 app.get("/", async (req, res) => {
-    const vdoId = "Hi Santo, how are you?";
+    const vdoId = "48860640a4d64b4d809158abd872e5ef";
     // const vdoId = req.query.vdoChiperId
-    res.json(vdoId)
+
+    const response = await axios.post(`https://dev.vdocipher.com/api/videos/${vdoId}/otp`, { ttl: 300 }, {
+        headers: {
+            Authorization: "Apisecret e2v0ojeaus1EMJWsLru61ztYD5Hj7k9fJKkACeg1XbxbarZ3KwXP4HvnlY6VTpGd",
+            "Content-Type": "application/json",
+        },
+    })
+
+    res.json(response.data)
     // await fetch(`https://dev.vdocipher.com/api/videos/${vdoId}/otp`, {
     //     method: "POST",
     //     headers: {
