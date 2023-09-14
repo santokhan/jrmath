@@ -5,9 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app",
-    "start": "pm2 start app",
+    "start": "node app",
+    "pm2": "pm2 start app",
     "super":"npx supervisor app"
   },
   "keywords": [],
