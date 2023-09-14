@@ -4,16 +4,16 @@ import cors from 'cors';
 import fetch from 'node-fetch'
 
 dotenv.config()
-const port = process.env.PORT || 7001
+const port = process.env.PORT || 7002
 
 const app = express()
 
 app.use(cors())
 
 app.get("/", async (req, res) => {
-    const dummyId = "4595b6ed1298443e9dd97dee7e407e66";
-    const vdoId = req.query.vdoChiperId
-    console.log(vdoId);
+    const vdoId = "48860640a4d64b4d809158abd872e5ef";
+    // const vdoId = req.query.vdoChiperId
+
     await fetch(`https://dev.vdocipher.com/api/videos/${vdoId}/otp`, {
         method: "POST",
         headers: {
@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
             ttl: 300
         }),
     }).then(res => res.json()).then(data => {
-        res.send(data)
+        res.json({ status: data })
     }).catch(err => {
         res.send(err)
     })
