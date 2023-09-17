@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_details",
+  "info": {
+    "singularName": "course-detail",
+    "pluralName": "course-details",
+    "displayName": "Course Details"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "university": {
+      "type": "enumeration",
+      "enum": [
+        "NUH",
+        "DUAC"
+      ],
+      "required": true
+    }
+  }
+}

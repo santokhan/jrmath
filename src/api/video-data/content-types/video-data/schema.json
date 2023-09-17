@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "video_datas",
+  "info": {
+    "singularName": "video-data",
+    "pluralName": "video-datas",
+    "displayName": "video-data",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "googleDrive": {
+      "type": "string"
+    },
+    "lecture": {
+      "type": "integer"
+    },
+    "chapter": {
+      "type": "integer"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "pdf": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "unique": {
+      "type": "uid"
+    },
+    "year": {
+      "type": "integer",
+      "max": 4,
+      "min": 1,
+      "required": true
+    },
+    "vdoCipherId": {
+      "type": "string",
+      "maxLength": 32,
+      "minLength": 32
+    },
+    "university": {
+      "type": "enumeration",
+      "enum": [
+        "NUH",
+        "DUAC"
+      ],
+      "required": true,
+      "default": "NUH"
+    }
+  }
+}
