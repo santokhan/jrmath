@@ -12,9 +12,10 @@ import UpdateFormView from '../views/coureses/UpdateFormView.vue'
 import NUHView from '../views/coureses/NUHView.vue'
 import DUACView from '../views/coureses/DUACView.vue'
 import IndividualCourseView from '../views/coureses/IndividualCourseView.vue'
+import PlayListView from '../views/coureses/PlayListView.vue'
 import ReferralView from '../views/ReferralView.vue'
 
-const routes = [
+const routes_public = [
     {
         path: '/',
         component: HomeView
@@ -22,24 +23,6 @@ const routes = [
     {
         path: '/courses',
         component: CoursesView,
-    },
-    {
-        path: '/courses/:course/:year/',
-        component: IndividualCourseView,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/courses/:course/:year/:id',
-        component: IndividualCourseView,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/question-bank',
-        component: QuestionBankView
     },
     {
         path: '/about',
@@ -50,46 +33,61 @@ const routes = [
         component: ContactView
     },
     {
+        path: '/question-bank',
+        component: QuestionBankView
+    },
+]
+
+const routes_protected = [
+    // Courses
+    {
+        path: '/courses/:course/:year/',
+        component: IndividualCourseView,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/courses/:course/:year/:id',
+        component: IndividualCourseView,
+        // meta: { requiresAuth: true }
+    },
+    {
+        path: '/courses/:university/:year/:subject/:chapter/:lecture',
+        component: PlayListView,
+        meta: { requiresAuth: true }
+    },
+    // Authorization
+    {
         path: '/profile',
         component: ProfileView,
-        meta: {
-            requiresAuth: true
-        }
+        meta: { requiresAuth: true }
     },
     {
         path: '/signin',
         component: SignInView,
-        meta: {
-            requiresAuth: false
-        }
+        meta: { requiresAuth: false }
     },
+    // Admin
     {
         path: '/admin',
         component: AdminView,
-        meta: {
-            requiresAuth: true
-        }
+        meta: { requiresAuth: true }
     },
     {
         path: '/update-video/:id',
         component: UpdateFormView,
-        meta: {
-            requiresAuth: true
-        }
+        meta: { requiresAuth: true }
     },
     {
         path: '/referral/:id',
         component: ReferralView,
-        meta: {
-            requiresAuth: true
-        }
+        meta: { requiresAuth: true }
     },
 ]
 
 export const router = createRouter({
     // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
     history: createWebHashHistory(),
-    routes, // short for `routes: routes`
+    routes: [...routes_public, ...routes_protected], // short for `routes: routes`
 })
 
 router.beforeEach(async (to, from) => {

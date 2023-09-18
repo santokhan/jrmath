@@ -29,7 +29,7 @@
                             <div class="text-gray-700 font-medium flex flex-col items-start gap-3">
                                 <RouterLink to="/" class="hover:text-orange-500">Home</RouterLink>
                                 <RouterLink to="/courses" class="hover:text-orange-500">Courses</RouterLink>
-                                <RouterLink to="/admin" class="hover:text-orange-500">Admin</RouterLink>
+                                <RouterLink to="/admin" class="hover:text-orange-500" v-if="isAdmin">Admin</RouterLink>
                             </div>
                         </div>
                         <div class="">
@@ -48,9 +48,11 @@
                             <div class="text-gray-700">
                                 <div class="flex items-center gap-2 mb-4">
                                     <IcoCall />
-                                    <a :href="'tel:' + phone[0]" class="font-medium text-gray-800 hover:text-orange-500 whitespace-nowrap">
+                                    <a :href="'tel:' + phone[0]"
+                                        class="font-medium text-gray-800 hover:text-orange-500 whitespace-nowrap">
                                         {{ phone[0] }}</a>,
-                                    <a :href="'tel:' + phone[1]" class="font-medium text-gray-800 hover:text-orange-500 whitespace-nowrap">
+                                    <a :href="'tel:' + phone[1]"
+                                        class="font-medium text-gray-800 hover:text-orange-500 whitespace-nowrap">
                                         {{ phone[1] }}</a>
                                 </div>
                                 <div class="flex items-center gap-2 mb-4">
@@ -143,6 +145,8 @@
 </template>
 
 <script setup lang="ts">
+import { onBeforeMount, ref } from 'vue'
+import admin from '../../components/firebase/admin'
 import { email, phone, socialMedia } from '../../components/data/contact';
 import IcoCall from '../../components/icons/IcoCall.vue';
 import IcoMail from '../../components/icons/IcoMail.vue';
@@ -151,6 +155,13 @@ import JRMath from '../../components/logo/JRMath.vue';
 function handleSubmit(e: any) {
     e.preventDefault();
 }
+
+const isAdmin = ref(false)
+onBeforeMount(async () => {
+    admin.adminValidation(bool => {
+        isAdmin.value = bool
+    })
+})
 </script>
 
 <style scoped></style>

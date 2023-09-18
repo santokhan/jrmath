@@ -5,6 +5,7 @@ import AppFooter from './layouts/footer/AppFooter.vue'
 import auth from './components/firebase/auth'
 import { getCurrentUser } from 'vuefire';
 import { useRouter } from 'vue-router';
+import getSheetsData from './google-sheets/googleSheetsAPI'
 
 const router = useRouter()
 

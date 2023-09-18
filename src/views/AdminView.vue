@@ -27,13 +27,9 @@ function goToVideoData() {
 }
 
 const isAdmin = ref(false)
-onBeforeMount(() => {
-    admin.role("santokhan1999@gmail.com", (role) => {
-        if (role === "admin") {
-            isAdmin.value = true
-        } else {
-            isAdmin.value = false
-        }
+onBeforeMount(async () => {
+    admin.adminValidation(bool => {
+        isAdmin.value = bool
     })
 })
 </script>

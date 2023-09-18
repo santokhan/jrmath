@@ -5,38 +5,56 @@
                 <Tag>User Profile</Tag>
                 <Heading>Welcome to profile page</Heading>
             </TitleBox>
-            <section class="max-w-xl mx-auto bg-white rounded-2xl px-8 py-6 mt-4 shadow-lg">
+            <section class="max-w-xl mx-auto bg-white rounded-2xl p-6 mt-4 shadow-lg">
                 <div class="mt-6 w-fit mx-auto">
                     <img src="../assets/images/profile/user.jpg" class="rounded-full w-40 h-40 border bg-gray-50"
                         alt="profile picture" srcset="">
                 </div>
 
-                <div class="mt-8 ">
+                <div class="mt-8">
                     <h2 class="text-gray-800 font-semibold text-2xl tracking-wide"></h2>
-
                     <div class="mt-8">
                         <div class="font-semibold text-lg text-gray-800">Your Details</div>
-                        <div v-if="userInfo" class="grid grid-cols-3 gap-3 my-3 text-gray-600">
-                            <div class="font-medium">Name:</div>
-                            <div class="col-span-2">{{ userDetails.name }}</div>
-                            <div class="font-medium">Phone:</div>
-                            <div class="col-span-2">
-                                <a :href="`tel:${userDetails.phone}`" class="hover:underline">{{ userDetails.phone }}</a>
-                            </div>
-                            <div class="font-medium">Email:</div>
-                            <div class="col-span-2">
-                                <a :href="`mailto:${userInfo.email}`" class="hover:underline">{{ userInfo.email }}</a>
-                            </div>
-                            <div class="font-medium">Course Access:</div>
-                            <div class="col-span-2">{{ userInfo.access || '[ ]' }}</div>
-                            <div class="font-medium">User Status:</div>
-                            <div class="col-span-2 flex items-center gap-1">
-                                <span class="block w-1 h-1 bg-green-400 rounded-full"></span>
-                                <span class="text-green-400 text-sm">Active</span>
-                            </div>
-                            <div class="font-medium">Coin:</div>
-                            <div class="col-span-2">{{ userInfo.coin || 0 }}</div>
-                        </div>
+                        <table v-if="userInfo" class="w-full text-gray-700 mt-1">
+                            <tbody>
+                                <tr>
+                                    <td class="py-1.5 whitespace-nowrap" width="32%">Name</td>
+                                    <td class="py-1.5 col-span-2">{{ userDetails.name || '...' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 whitespace-nowrap">Phone</td>
+                                    <td class="py-1.5 col-span-2">
+                                        <a :href="`tel:${userDetails.phone}`" class="hover:underline">
+                                            {{ userDetails.phone }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 whitespace-nowrap">Email</td>
+                                    <td class="py-1.5 col-span-2">
+                                        <a :href="`mailto:${userInfo.email}`" class="hover:underline">
+                                            {{ userInfo.email || '...' }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 whitespace-nowrap">Course Access</td>
+                                    <td class="py-1.5 col-span-2">{{ userInfo.access || '...' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 whitespace-nowrap">Coin</td>
+                                    <td class="py-1.5 col-span-2">{{ userInfo.coin || '...' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5 whitespace-nowrap">User Status</td>
+                                    <td class="py-1.5 col-span-2">
+                                        <div class="col-span-2 flex items-center gap-1 text-green-500 text-sm">
+                                            <span class="block w-1 h-1 bg-green-400 rounded-full"></span>Active
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="mt-8">
                         <Logout :handleLogout="handleLogout" />
@@ -50,6 +68,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import Auth from '../components/firebase/auth';
@@ -101,7 +120,7 @@ function handleLogout() {
 const modalOpen = ref(false)
 setTimeout(() => {
     modalOpen.value = true
-}, 1000);
+}, 2000);
 </script>
 
 <style scoped></style>

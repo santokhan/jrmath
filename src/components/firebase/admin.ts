@@ -1,6 +1,7 @@
 import { getAuth } from "firebase/auth"
 import app, { firestore } from "../firebase/config.ts"
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from 'firebase/firestore'
+import { getCurrentUser } from "vuefire"
 
 export interface VideoDataWith_Id {
     _id: string,
@@ -129,6 +130,16 @@ class Admin {
                 console.log(`Video has been deleted.`);
             }).catch(err => { console.log(err) })
         }
+    }
+    async adminValidation(callBack: (bool: boolean) => void) {
+        await getCurrentUser().then(user => {
+            const email = typeof user?.email === 'string' ? user.email : ""
+            this.role(email, (role) => {
+                callBack(role === "admin")
+            })
+        }).catch(err => {
+            console.log(err);
+        })
     }
 }
 
