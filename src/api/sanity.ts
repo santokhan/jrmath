@@ -70,16 +70,35 @@ class SanityAPI {
             callBack(data)
         })
     }
-    async getVideoByCourseTitle(university: string, year: string | number, courseTitle: string, callBack: (data: any) => void) {
-        if (!university && !year && !courseTitle) return;
+    async getCourseTitle(courseId: string, callBack: (data: any[]) => void) {
+        if (!courseId) return;
 
         // The `"videos"` is collection on Sanity
-        const url = this.build_api(`?query=*[_type in path("videos")] %26%26 university == '${university}' %26%26 year == '${year}' %26%26 courseTitle == '${courseTitle}'`)
+        const url = this.build_api(`?query=*[_type in path("courses") %26%26 _id == '${courseId}']`)
 
         await fetch(url).catch(err => {
             throw err
         }).then(res => res.json()).then(data => {
-            callBack(data)
+            callBack(data.result)
+        })
+    }
+    async getVideoByCourseTitle(university: string, year: number, courseId: string, callBack: (data: any) => void) {
+        if (!university && !year && !courseId) return;
+
+        this.getCourseTitle(courseId, async (data) => {
+            if (Array.isArray(data)) {
+                const courseTitle = data[0].title
+                // The `"videos"` is collection on Sanity
+                // ✅ output *[_type in path('videos') && university == 'nuh' && year == 3 && courseTitle == 'Numerical Analysis']
+                const url = this.build_api(`?query=*[_type in path("videos") %26%26 university == '${university}' %26%26 year == ${year} %26%26 courseTitle == '${courseTitle}']`)
+
+                await fetch(url).catch(err => {
+                    throw err
+                }).then(res => res.json()).then(data => {
+                    console.log(data);
+                    callBack(data)
+                })
+            }
         })
     }
 }

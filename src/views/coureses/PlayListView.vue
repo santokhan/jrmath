@@ -61,9 +61,9 @@ const rq = reactive({
 
 function setActiveVideo(videoData: any[]) {
     if (videoData.length > 0) {
-        if (route.params.videoId) {
+        if (rq.videoId) {
             videoData.forEach((e: any) => {
-                if (e._id == route.params.videoId) {
+                if (e._id == rq.videoId) {
                     vdoToPlay.value = e
                 }
             })
@@ -72,17 +72,18 @@ function setActiveVideo(videoData: any[]) {
 }
 
 function assignVideoData() {
-    if (!rq.course && !rq.year && !rq.courseId && !rq.videoId) {
+    if (!rq.course && !rq.year && !rq.courseId) {
         return
     } else {
-        sanityAPI.getVideos(data => {
+        // sanityAPI.getVideos(data => {
+        //     videoData.value = sort_videos(data.result)
+        //     setActiveVideo(videoData.value)
+        // })
+
+        sanityAPI.getVideoByCourseTitle(rq.course, rq.year, rq.courseId, data => {
             videoData.value = sort_videos(data.result)
             setActiveVideo(videoData.value)
         })
-
-        // sanityAPI.getVideoByCourseTitle(rq.course, rq.year, rq.courseId, data => {
-        //     console.log(data);
-        // })
     }
 } assignVideoData()
 

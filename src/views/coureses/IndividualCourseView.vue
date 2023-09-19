@@ -6,7 +6,7 @@
             <Overview />
         </div>
         <CourseInstructions :iframeSrc="courseObject.coursePreview" />
-        <PlayListWIthHeader :videoData="[]" :courseId="courseObject._id" />
+        <PlayListWIthHeader :courseId="courseObject._id" />
         <WhatYouWillLearn :list="courseObject.whatYouWillLearn || []" />
     </AppContainer>
 </template>

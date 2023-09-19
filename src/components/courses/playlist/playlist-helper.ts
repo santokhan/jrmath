@@ -1,5 +1,5 @@
 export function to(params: any, videoId: string) {
-    return `/playlist/${params.course}/${params.year}/${params.courseId}/${videoId}`
+    return `/playlist/${params.course}/${params.year}/${params.id}/${videoId}`
 }
 
 export function sort_videos(videos: any[]): any[] {

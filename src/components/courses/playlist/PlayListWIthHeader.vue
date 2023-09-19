@@ -34,20 +34,27 @@
  * 3. Only Authorized user will be able to click video button. Otherwise freeze ✅
  * 4. On click video item it will redirect to video page ✅
  */
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { useRoute } from 'vue-router';
 import PlayListItem from './PlayListItem.vue';
 import PlayListItemDisabled from './PlayListItemDisabled.vue';
 import sanityAPI from "../../../api/sanity";
 import { sort_videos, to } from "./playlist-helper";
+import { valid } from "../../../global/functions";
 
 const videoData = ref<any[]>([])
 
 const route = useRoute()
 const props = defineProps<{ courseId: string }>()
+const { course, year, id } = route.params
+const params = reactive({
+    course: valid(course),
+    year: parseInt(valid(year)),
+    id: valid(id),
+})
 
 // Make API requset with `courseId` to get videos for this course
-sanityAPI.getVideos(data => {
+sanityAPI.getVideoByCourseTitle(params.course, params.year, params.id, data => {
     videoData.value = sort_videos(data.result)
 })
 
