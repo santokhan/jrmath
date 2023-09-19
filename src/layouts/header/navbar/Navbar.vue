@@ -35,7 +35,13 @@
 
                             <div
                                 class="w-full group-hover:block hidden md:absolute top-full z-[12] bg-white md:w-40 md:shadow-lg md:py-2">
-                                <NestedDropdown :nav="item" :hideDropdown="handleDropdown"/>
+                                <!-- Hide dropdown on small screen when user navigate from dropdown -->
+                                <div class="hidden md:block">
+                                    <NestedDropdown :nav="item" />
+                                </div>
+                                <div class="block md:hidden">
+                                    <NestedDropdown :nav="item" :hideDropdown="handleDropdown" />
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -55,6 +61,7 @@ import JRMath from '../../../components/logo/JRMath.vue';
 import IcoClose from '../../../components/icons/IcoClose.vue';
 import Hamburger from '../../../components/icons/Hamburger.vue';
 import NestedDropdown from './NestedDropdown.vue';
+import NestedDropdownMobile from './NestedDropdownMobile.vue';
 
 const isOpenUserDD = ref(false)
 const dropdown = ref(false)
