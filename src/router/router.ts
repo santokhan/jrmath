@@ -9,8 +9,6 @@ import SignInView from '../views/SignInView.vue'
 import AdminView from '../views/AdminView.vue'
 import { getCurrentUser } from 'vuefire'
 import UpdateFormView from '../views/coureses/UpdateFormView.vue'
-import NUHView from '../views/coureses/NUHView.vue'
-import DUACView from '../views/coureses/DUACView.vue'
 import IndividualCourseView from '../views/coureses/IndividualCourseView.vue'
 import PlayListView from '../views/coureses/PlayListView.vue'
 import ReferralView from '../views/ReferralView.vue'
@@ -42,16 +40,19 @@ const routes_protected = [
     // Courses
     {
         path: '/courses/:course/:year/',
-        component: IndividualCourseView,
+        component: CoursesView, // it will be card view
         meta: { requiresAuth: true }
     },
     {
         path: '/courses/:course/:year/:id',
         component: IndividualCourseView,
-        // meta: { requiresAuth: true }
     },
     {
-        path: '/courses/:university/:year/:subject/:chapter/:lecture',
+        path: '/playlist/:course/:year/:courseId/',
+        component: PlayListView, // this view will removed when we will get videoId
+    },
+    {
+        path: '/playlist/:course/:year/:courseId/:videoId',
         component: PlayListView,
         meta: { requiresAuth: true }
     },

@@ -3,7 +3,10 @@
 </template>
 
 <script setup lang="ts">
-import Courses from '../components/layout/Courses.vue';
+/**
+ * Developed for course view per year
+ */
+import Courses from '../components/layout/course/Courses.vue';
 </script>
 
 <style scoped></style>
