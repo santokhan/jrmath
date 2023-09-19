@@ -30,13 +30,15 @@
                                     <span class="text-gray-700">{{ item.reviews }} reviews</span>
                                 </div> -->
                             </div>
-                            <CourseTitle :title="item.title + ' Santo khan is a professional web developer and system designer'" />
+                            <CourseTitle
+                                :title="item.title + ' Santo khan is a professional web developer and system designer'" />
                             <div class="flex justify-between items-center py-2">
                                 <div class="flex items-center gap-1">
                                     <Video /> 18x Lesson
                                 </div>
                                 <div class="course-btn">
-                                    <RouterLink :to="`${route.fullPath}/${coursesData[0]._id}`"
+                                    <!-- :to="`${route.fullPath}/${coursesData[0]._id}`" -->
+                                    <RouterLink :to="`/courses/${item.university}/${item.year}/${item._id}`"
                                         class="text-white bg-orange-500 font-medium rounded-lg px-4 py-2 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 focus:outline-none">
                                         Get started</RouterLink>
                                 </div>
