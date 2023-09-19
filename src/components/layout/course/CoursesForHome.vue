@@ -54,6 +54,8 @@
 <script setup lang="ts">
 /**
  * Developed only for home page
+ * Fetch all courses from Sanity. Render sliced array from courses.slice(0, 3)
+ * Build to route form courses item. Course item object have `university`, `year`,`_id` properties.
  */
 import Video from '../../icons/Video.vue';
 import Heading from '../../section/Heading.vue';
