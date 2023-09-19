@@ -41,7 +41,6 @@ const routes_protected = [
     {
         path: '/courses/:course/:year/',
         component: CoursesView, // it will be card view
-        meta: { requiresAuth: true }
     },
     {
         path: '/courses/:course/:year/:id',
@@ -49,7 +48,8 @@ const routes_protected = [
     },
     {
         path: '/playlist/:course/:year/:courseId/',
-        component: PlayListView, // this view will removed when we will get videoId
+        component: PlayListView, // this view will removed when we will get videoId 
+        // we will check `currentUser` inside `PlayListView` component
     },
     {
         path: '/playlist/:course/:year/:courseId/:videoId',
