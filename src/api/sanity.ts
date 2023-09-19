@@ -70,6 +70,18 @@ class SanityAPI {
             callBack(data)
         })
     }
+    async getVideoByCourseTitle(university: string, year: string | number, courseTitle: string, callBack: (data: any) => void) {
+        if (!university && !year && !courseTitle) return;
+
+        // The `"videos"` is collection on Sanity
+        const url = this.build_api(`?query=*[_type in path("videos")] %26%26 university == '${university}' %26%26 year == '${year}' %26%26 courseTitle == '${courseTitle}'`)
+
+        await fetch(url).catch(err => {
+            throw err
+        }).then(res => res.json()).then(data => {
+            callBack(data)
+        })
+    }
 }
 
 const sanityAPI = new SanityAPI()

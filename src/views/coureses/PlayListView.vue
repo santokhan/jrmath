@@ -22,7 +22,7 @@
                     <h4 class="font-semibold mb-4">Lessons</h4>
                     <div class="space-y-2">
                         <PlayListItem v-for="(item, index) in videoData" :key="index" :title="item.title"
-                            :to="to(requirement, item._id)" :active="vdoToPlay._id === item._id" />
+                            :to="to(rq, item._id)" :active="vdoToPlay._id === item._id" />
                     </div>
                 </div>
             </div>
@@ -40,17 +40,23 @@ import Share from '../../components/buttons/Share.vue';
 import sanityAPI from '../../api/sanity';
 import PlayListItem from '../../components/courses/playlist/PlayListItem.vue';
 import { type OTP, type VideoData } from '../../components/courses/types.course'
+import { sort_videos } from '../../components/courses/playlist/playlist-helper'
 
 const videoData = ref<VideoData[]>([])
 const vdoToPlay = ref<VideoData>()
 const route = useRoute()
 const otp = reactive<OTP>({ otp: "", playbackInfo: "" })
 
-const requirement = reactive({
-    course: typeof route.params.course === 'string' && route.params.course,
-    year: typeof route.params.year === 'string' && parseInt(route.params.year),
-    courseId: typeof route.params.courseId === 'string' && route.params.courseId,
-    videoId: typeof route.params.videoId === 'string' && route.params.videoId,
+const { course, year, courseId, videoId } = route.params
+function valid(params: string | string[]) {
+    return typeof params === 'string' ? params : ""
+}
+
+const rq = reactive({
+    course: valid(course),
+    year: parseInt(valid(year)),
+    courseId: valid(courseId),
+    videoId: valid(videoId)
 })
 
 function setActiveVideo(videoData: any[]) {
@@ -66,20 +72,26 @@ function setActiveVideo(videoData: any[]) {
 }
 
 function assignVideoData() {
-    if (!requirement.course && !requirement.year && !requirement.courseId && !requirement.videoId) return;
+    if (!rq.course && !rq.year && !rq.courseId && !rq.videoId) {
+        return
+    } else {
+        sanityAPI.getVideos(data => {
+            videoData.value = sort_videos(data.result)
+            setActiveVideo(videoData.value)
+        })
 
-    sanityAPI.getVideos(data => {
-        videoData.value = data.result
-        setActiveVideo(videoData.value)
-    })
+        // sanityAPI.getVideoByCourseTitle(rq.course, rq.year, rq.courseId, data => {
+        //     console.log(data);
+        // })
+    }
 } assignVideoData()
 
 watch(() => route.params, () => {
     const { course, year, courseId, videoId } = route.params
-    requirement.course = typeof course === 'string' && course;
-    requirement.year = typeof year === 'string' && parseInt(year);
-    requirement.courseId = typeof courseId === 'string' && courseId
-    requirement.videoId = typeof videoId === 'string' && videoId
+    rq.course = valid(course)
+    rq.year = parseInt(valid(year))
+    rq.courseId = valid(courseId)
+    rq.videoId = valid(videoId)
     assignVideoData()
 })
 

@@ -39,7 +39,7 @@ import { useRoute } from 'vue-router';
 import PlayListItem from './PlayListItem.vue';
 import PlayListItemDisabled from './PlayListItemDisabled.vue';
 import sanityAPI from "../../../api/sanity";
-import { to } from "./playlist-helper";
+import { sort_videos, to } from "./playlist-helper";
 
 const videoData = ref<any[]>([])
 
@@ -48,7 +48,7 @@ const props = defineProps<{ courseId: string }>()
 
 // Make API requset with `courseId` to get videos for this course
 sanityAPI.getVideos(data => {
-    videoData.value = data.result
+    videoData.value = sort_videos(data.result)
 })
 
 const authorized = ref<boolean>(true)
