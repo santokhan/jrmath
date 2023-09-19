@@ -54,7 +54,7 @@ const routes_protected = [
     {
         path: '/playlist/:course/:year/:courseId/:videoId',
         component: PlayListView,
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: false } // It will be true in production mode
     },
     // Authorization
     {
