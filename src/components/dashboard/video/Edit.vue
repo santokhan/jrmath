@@ -19,4 +19,3 @@
 const props = defineProps<{ to: string }>()
 </script>
 
-<style scoped></style>

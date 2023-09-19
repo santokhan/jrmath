@@ -61,4 +61,3 @@ function handleDropdown() {
 }
 </script>
 
-<style scoped></style>

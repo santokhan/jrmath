@@ -57,4 +57,3 @@ const info = [
 ]
 </script>
 
-<style scoped></style>

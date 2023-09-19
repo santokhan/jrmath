@@ -107,4 +107,3 @@ function handleSubmit(e: any) {
 }
 </script>
 
-<style scoped></style>

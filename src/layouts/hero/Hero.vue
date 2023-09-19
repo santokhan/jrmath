@@ -39,4 +39,3 @@
 import BgHero from './BgHero.vue'
 </script>
 
-<style scoped></style>

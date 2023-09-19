@@ -12,4 +12,3 @@
 import Plus from '../../icons/Plus.vue';
 </script>
 
-<style scoped></style>

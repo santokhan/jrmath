@@ -55,4 +55,3 @@ import Tag from '../components/section/Tag.vue';
 import TitleBox from '../components/section/TitleBox.vue';
 </script>
 
-<style scoped></style>

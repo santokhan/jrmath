@@ -20,4 +20,3 @@
 
 </script>
 
-<style scoped></style>

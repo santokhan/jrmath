@@ -54,4 +54,3 @@ sanityAPI.getVideos(data => {
 const authorized = ref<boolean>(true)
 </script>
 
-<style scoped></style>

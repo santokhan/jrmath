@@ -17,4 +17,3 @@ import FAQs from '../components/layout/faqs/FAQs.vue';
 import CoursesForHome from '../components/layout/course/CoursesForHome.vue';
 </script>
 
-<style scoped></style>

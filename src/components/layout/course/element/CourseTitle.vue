@@ -19,4 +19,3 @@ function sliceTitle(title: string): string {
 }
 </script>
 
-<style scoped></style>

@@ -35,4 +35,4 @@ singleUser()
   <AppFooter />
 </template>
 
-<style scoped></style>
+

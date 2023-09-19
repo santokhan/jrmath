@@ -44,4 +44,3 @@ onBeforeMount(() => {
 })
 </script>
 
-<style scoped></style>

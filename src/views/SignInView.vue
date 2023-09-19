@@ -11,4 +11,3 @@ import SignIn from '../components/form/SignIn.vue';
 import AppContainer from '../components/layout/AppContainer.vue';
 </script>
 
-<style scoped></style>

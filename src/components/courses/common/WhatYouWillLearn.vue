@@ -55,4 +55,4 @@ const whatYouWillLearn = [
 ]
 </script>
 
-<style scoped></style>
+

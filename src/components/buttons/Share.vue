@@ -76,4 +76,3 @@ watch(copied, async () => {
 })
 </script>
 
-<style scoped></style>

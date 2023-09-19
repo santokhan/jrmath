@@ -18,4 +18,3 @@ const props = defineProps<{ iframeSrc: string }>()
 const iframe = `<iframe class="w-full aspect-[16/9]" src="${props.iframeSrc || 'https://www.youtube.com/embed/BkEv1AXNtbM'}" title="JR Math Tutorial Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 </script>
 
-<style scoped></style>

@@ -43,4 +43,3 @@ import AppContainer from '../AppContainer.vue';
 
 </script>
 
-<style scoped></style>

@@ -20,4 +20,3 @@ import IcoCall from '../../../components/icons/IcoCall.vue';
 import IcoMail from '../../../components/icons/IcoMail.vue';
 </script>
 
-<style scoped></style>

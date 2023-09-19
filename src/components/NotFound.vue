@@ -10,4 +10,3 @@
 import AppContainer from './layout/AppContainer.vue';
 </script>
 
-<style scoped></style>

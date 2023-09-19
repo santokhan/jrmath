@@ -10,4 +10,3 @@ import FAQs from '../components/layout/faqs/FAQs.vue';
 import Mentors from '../components/layout/mentors/Mentors.vue';
 </script>
 
-<style scoped></style>

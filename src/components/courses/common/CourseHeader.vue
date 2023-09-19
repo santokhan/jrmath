@@ -50,4 +50,3 @@ function numberWithCommasDecimal(x: number) {
 }
 </script>
 
-<style scoped></style>

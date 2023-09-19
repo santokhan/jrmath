@@ -43,4 +43,3 @@ import TitleBox from '../../section/TitleBox.vue';
 import AppContainer from '../AppContainer.vue';
 </script>
 
-<style scoped></style>

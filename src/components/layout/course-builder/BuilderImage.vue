@@ -31,4 +31,3 @@
 const props = defineProps<{ index: number }>()
 </script>
 
-<style scoped></style>

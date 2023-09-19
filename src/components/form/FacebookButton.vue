@@ -12,4 +12,3 @@ import Facebook from '../icons/Facebook.vue';
 const props = defineProps<{ handleFacebookSignIn: () => void }>()
 </script>
 
-<style scoped></style>

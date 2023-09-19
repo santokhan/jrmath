@@ -9,4 +9,4 @@
 import CourseCards from '../components/layout/course/CourseCards.vue';
 </script>
 
-<style scoped></style>
+

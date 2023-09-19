@@ -12,4 +12,3 @@
 
 </script>
 
-<style scoped></style>

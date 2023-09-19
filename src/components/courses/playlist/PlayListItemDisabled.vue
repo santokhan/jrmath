@@ -13,4 +13,3 @@ import Play from '../../icons/Play.vue';
 const props = defineProps<{ title: string }>()
 </script>
 
-<style scoped></style>

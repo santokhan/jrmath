@@ -11,4 +11,3 @@ import Logout from '../icons/Logout.vue';
 const props = defineProps<{ handleLogout: () => void }>()
 </script>
 
-<style scoped></style>

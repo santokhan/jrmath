@@ -60,4 +60,3 @@ const blogs = [
 ]
 </script>
 
-<style scoped></style>

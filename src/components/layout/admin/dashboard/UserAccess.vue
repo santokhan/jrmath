@@ -56,4 +56,3 @@ admin.readUserData((data) => {
 })
 </script>
 
-<style scoped></style>
