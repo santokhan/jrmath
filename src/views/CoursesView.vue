@@ -1,12 +1,12 @@
 <template>
-    <Courses />
+    <CourseCards />
 </template>
 
 <script setup lang="ts">
 /**
  * Developed for course view per year
  */
-import Courses from '../components/layout/course/Courses.vue';
+import CourseCards from '../components/layout/course/CourseCards.vue';
 </script>
 
 <style scoped></style>

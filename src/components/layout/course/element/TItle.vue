@@ -12,7 +12,7 @@ function sliceTitle(title: string): string {
     const max = 25
 
     if (len < max) {
-        return len
+        return title
     } else {
         return title.slice(0, max) + '...'
     }
