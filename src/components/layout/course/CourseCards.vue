@@ -30,7 +30,7 @@
                                     <span class="text-gray-700">{{ item.reviews }} reviews</span>
                                 </div> -->
                             </div>
-                            <Title :title="item.title + ' Santo khan is a professional web developer and system designer'" />
+                            <CourseTitle :title="item.title + ' Santo khan is a professional web developer and system designer'" />
                             <div class="flex justify-between items-center py-2">
                                 <div class="flex items-center gap-1">
                                     <Video /> 18x Lesson
@@ -65,7 +65,7 @@ import sanityAPI from '../../../api/sanity';
 import { ref, watch, reactive } from 'vue'
 import NotFound from '../../NotFound.vue';
 import { valid } from '../../../global/functions'
-import Title from './element/Title.vue'
+import CourseTitle from './element/CourseTitle.vue';
 
 const coursesData = ref<any[]>([])
 
