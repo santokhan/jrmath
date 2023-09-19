@@ -3,10 +3,16 @@ class SanityAPI {
     build_api(query: string) { return this.URL + query }
     course_col = 'courses'
     video_col = 'videos'
-    async getCourseById(id: number, callBack: (data: any) => void) {
+    /**
+     * Read course by course _id
+     * 
+     * @param id 
+     * @param callBack 
+     */
+    async getCourseById(id: string, callBack: (data: any) => void) {
 
         // The `"courses"` is collection on Sanity
-        const url = this.build_api(`?query=*[_type in path("courses")]`) // output https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path("courses")]
+        const url = this.build_api(`?query=*[_type in path("courses") %26%26 _id == '${id}']`) // output https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path("courses")]
 
         await fetch(url).then(res => res.json()).then(data => {
             callBack(data?.result)

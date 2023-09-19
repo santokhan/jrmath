@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!courseObject" class="text-center h-20">Loading...</div>
+    <NotFound v-if="!courseObject">Course not found on server</NotFound>
     <AppContainer v-else>
         <div class="flex flex-wrap">
             <CourseHeader :data="courseObject" />
@@ -27,25 +27,22 @@ import WhatYouWillLearn from '../../components/courses/common/WhatYouWillLearn.v
 import sanityAPI from '../../api/sanity';
 import PlayListWIthHeader from '../../components/courses/playlist/PlayListWIthHeader.vue';
 import { type CourseType } from '../../components/courses/types.course'
+import NotFound from '../../components/NotFound.vue';
 
 const route = useRoute()
+const { id } = route.params
 const requirement = reactive({
     course: typeof route.params.course === 'string' ? route.params.course : "",
     year: typeof route.params.year === 'string' ? parseInt(route.params.year) : parseInt(route.params.year[0]),
 })
 
-// watch(() => route.params, () => {
-//     requirement.course = typeof route.params.course === 'string' ? route.params.course : "";
-//     requirement.year = typeof route.params.year === 'string' ? parseInt(route.params.year) : 0;
-//     // assignVideoData(requirement.course, requirement.year)
-// })
-
-
-// Main course data object
+// Course details object of individual course
 const courseObject = ref<CourseType>()
 
-// id will comes from api parameter
-sanityAPI.getCourseById(1, (data) => {
-    courseObject.value = data[0]
-})
+// The id will comes from route.params.id
+if (typeof id === 'string') {
+    sanityAPI.getCourseById(id, (data) => {
+        courseObject.value = data[0]
+    })
+}
 </script>
