@@ -35,7 +35,7 @@
 
                             <div
                                 class="w-full group-hover:block hidden md:absolute top-full z-[12] bg-white md:w-40 md:shadow-lg md:py-2">
-                                <NestedDropdown :nav="item" />
+                                <NestedDropdown :nav="item" :hideDropdown="handleDropdown"/>
                             </div>
                         </div>
                     </li>
