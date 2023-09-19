@@ -1,5 +1,7 @@
 <template>
-    <h4 class="text-xl font-semibold whitespace-nowrap" :title="props.title">{{ sliceTitle(props.title) }}</h4>
+    <h4 class="text-xl font-semibold whitespace-nowrap" :title="props.title">
+        {{ sliceTitle(props.title) }}
+    </h4>
 </template>
 
 <script setup lang="ts">
@@ -12,7 +14,7 @@ function sliceTitle(title: string): string {
     if (len < max) {
         return len
     } else {
-        return title.slice(0, max)+'...'
+        return title.slice(0, max) + '...'
     }
 }
 </script>
