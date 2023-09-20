@@ -95,9 +95,26 @@ class SanityAPI {
                 await fetch(url).catch(err => {
                     throw err
                 }).then(res => res.json()).then(data => {
-                    console.log(data);
                     callBack(data)
                 })
+            }
+        })
+    }
+    async readUserAccess(email: string, courseTitle: string, callBack: (data: boolean) => void) {
+        if (!email && !courseTitle) return;
+
+        // The `"videos"` is collection on Sanity
+        // ✅ output *[_type in path('videos') && university == 'nuh' && year == 3 && courseTitle == 'Numerical Analysis']
+        const url = this.build_api(`?query=*[_type in path('user-access') %26%26 email == '${email}' %26%26 courseTitle == '${courseTitle}']`)
+
+        await fetch(url).catch(err => {
+            throw err
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+            if (Array.isArray(data.result) && data.result.length > 0) {
+                callBack(true)
+            } else {
+                callBack(false)
             }
         })
     }

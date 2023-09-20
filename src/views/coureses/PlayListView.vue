@@ -33,31 +33,52 @@
 <script setup lang="ts">
 // visit http://localhost:5173/#/playlist/nuh/1/89c4e26b-413f-42d3-b46f-13990edb4637/a7c1201a-6368-4c61-bc20-9e5344818140
 // Route must have /:courseId & /:videoId
-import { reactive, ref, watch, onMounted } from 'vue';
+import { reactive, ref, watch, onBeforeMount } from 'vue';
 import AppContainer from '../../components/layout/AppContainer.vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import Share from '../../components/buttons/Share.vue';
 import sanityAPI from '../../api/sanity';
 import PlayListItem from '../../components/courses/playlist/PlayListItem.vue';
 import { type OTP, type VideoData } from '../../components/courses/types.course'
 import { sort_videos } from '../../components/courses/playlist/playlist-helper'
+import { valid } from '../../global/functions';
+import checkUserAccess from '../../components/courses/playlist/check-user-access';
 
-const videoData = ref<VideoData[]>([])
-const vdoToPlay = ref<VideoData>()
 const route = useRoute()
-const otp = reactive<OTP>({ otp: "", playbackInfo: "" })
-
 const { course, year, courseId, videoId } = route.params
-function valid(params: string | string[]) {
-    return typeof params === 'string' ? params : ""
-}
-
 const rq = reactive({
     course: valid(course),
     year: parseInt(valid(year)),
     courseId: valid(courseId),
     videoId: valid(videoId)
 })
+const router = useRouter()
+
+// check user access before render component
+onBeforeMount(() => {
+    // courseTitle
+    sanityAPI.getCourseTitle(rq.courseId, data => {
+        // `courseTitle` schema in course collection is `title` not `courseTitle`
+        const courseTitle = data[0].title
+        if (!courseTitle) return;
+
+        // check access
+        checkUserAccess(courseTitle, (access: boolean) => {
+            if (!access) {
+                // user trying to enter on this router directly using url
+                // user can not find this route if don't have access
+                router.push('signin')
+            } else {
+                // stay on playlist route and play video
+                return;
+            }
+        })
+    })
+})
+
+const videoData = ref<VideoData[]>([])
+const vdoToPlay = ref<VideoData>()
+const otp = reactive<OTP>({ otp: "", playbackInfo: "" })
 
 function setActiveVideo(videoData: any[]) {
     if (videoData.length > 0) {

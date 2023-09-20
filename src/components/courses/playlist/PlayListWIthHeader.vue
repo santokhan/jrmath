@@ -29,10 +29,10 @@
 
 <script setup lang="ts">
 /** Command
- * 1. This component will read videos from Sanity database by using current `courseId` ✅
- * 2. This component will render video playlist ✅
- * 3. Only Authorized user will be able to click video button. Otherwise freeze ✅
- * 4. On click video item it will redirect to video page ✅
+ * ✅ This component will read videos from Sanity database by using current `courseId` 
+ * ✅ This component will render video playlist 
+ * ✅ Only Authorized user will be able to click video button. Otherwise freeze 
+ * ✅ On click video item it will redirect to video page 
  */
 import { reactive, ref } from "vue";
 import { useRoute } from 'vue-router';
@@ -41,11 +41,14 @@ import PlayListItemDisabled from './PlayListItemDisabled.vue';
 import sanityAPI from "../../../api/sanity";
 import { sort_videos, to } from "./playlist-helper";
 import { valid } from "../../../global/functions";
+import { getCurrentUser } from "vuefire";
+import admin from "../../firebase/admin";
+import checkUserAccess from './check-user-access'
 
 const videoData = ref<any[]>([])
+const props = defineProps<{ courseTitle: string }>()
 
 const route = useRoute()
-const props = defineProps<{ courseId: string }>()
 const { course, year, id } = route.params
 const params = reactive({
     course: valid(course),
@@ -58,6 +61,36 @@ sanityAPI.getVideoByCourseTitle(params.course, params.year, params.id, data => {
     videoData.value = sort_videos(data.result)
 })
 
-const authorized = ref<boolean>(true)
+// Check user access using user email and course title
+// By default authorized will be false
+const authorized = ref<boolean>(false)
+async function checkUserAccessOld() {
+    // vuefires getCurrentUser
+    await getCurrentUser().catch(err => { throw err }).then(user => {
+        const email = user?.email
+        if (!email) return;
+
+        // check user role
+        admin.role(email, role => {
+            if (role === 'admin') {
+                // admin have access to all page
+                authorized.value = true
+            } else {
+                // sanity check access when user is not admin
+                sanityAPI.readUserAccess(email, props.courseTitle, (data: boolean) => {
+                    if (data) {
+                        authorized.value = true
+                    } else {
+                        authorized.value = false
+                    }
+                    console.log({ authorized });
+                })
+            }
+        })
+    })
+}
+checkUserAccess(props.courseTitle, (access: boolean) => {
+    authorized.value = access
+})
 </script>
 

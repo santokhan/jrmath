@@ -6,7 +6,7 @@
             <Overview />
         </div>
         <CourseInstructions :iframeSrc="courseObject.coursePreview" />
-        <PlayListWIthHeader :courseId="courseObject._id" />
+        <PlayListWIthHeader :courseId="courseObject._id" :courseTitle="courseObject.title" />
         <WhatYouWillLearn :list="courseObject.whatYouWillLearn || []" />
     </AppContainer>
 </template>
@@ -28,12 +28,13 @@ import sanityAPI from '../../api/sanity';
 import PlayListWIthHeader from '../../components/courses/playlist/PlayListWIthHeader.vue';
 import { type CourseType } from '../../components/courses/types.course'
 import NotFound from '../../components/NotFound.vue';
+import { valid } from '../../global/functions';
 
 const route = useRoute()
-const { id } = route.params
-const requirement = reactive({
-    course: typeof route.params.course === 'string' ? route.params.course : "",
-    year: typeof route.params.year === 'string' ? parseInt(route.params.year) : parseInt(route.params.year[0]),
+const { course, year, id } = route.params
+const rq = reactive({
+    course: valid(course),
+    year: parseInt(valid(year))
 })
 
 // Course details object of individual course
