@@ -7,7 +7,7 @@
             </TitleBox>
 
             <div class="flex flex-wrap justify-center gap-8 py-8">
-                <CCard v-for="(item, index) in coursesData.slice(0, 3)" :key="index" :data="item" />
+                <CCard v-for="(item, index) in coursesData.slice(0, 6)" :key="index" :data="item" />
             </div>
         </AppContainer>
     </section>
@@ -20,7 +20,6 @@
  * Fetch all courses from Sanity. Render sliced array from courses.slice(0, 3)
  * Build to route form courses item. Course item object have `university`, `year`,`_id` properties.
  */
-import Video from '../../icons/Video.vue';
 import Heading from '../../section/Heading.vue';
 import Tag from '../../section/Tag.vue';
 import TitleBox from '../../section/TitleBox.vue';
@@ -28,8 +27,6 @@ import AppContainer from '../AppContainer.vue';
 import sanityAPI from '../../../api/sanity';
 import { ref } from 'vue'
 import NotFound from '../../NotFound.vue';
-import CourseTitle from './element/CourseTitle.vue';
-import Taka from '../../icons/Taka.vue';
 import CCard from './element/CCard.vue';
 
 const coursesData = ref<any[]>([])
