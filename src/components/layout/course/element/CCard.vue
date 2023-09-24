@@ -7,10 +7,16 @@
                     alt="thumbnail" class="h-60 w-full object-cover bg-white" title="Image size 352x240 px">
                 <img v-else src="/images/courses/1.png" alt="thumbnail" class="h-60 w-full object-cover bg-white">
             </div>
-            <div class="relative px-4 py-4 space-y-3">
-                <div
-                    class="bg-orange-500 text-white h-16 w-16 rounded-full font-bold absolute right-4 -top-6 text-xl border-2 border-white flex flex-col justify-center items-center text-[.95rem] leading-none text-center">
-                    <Taka class="w-4 h-4" />{{ props.data.price }}
+            <div class="relative px-4 py-4 space-y-3 mt-4">
+                <div class="absolute right-0 -top-12 left-0 px-4 h-16 overflow-hidden flex justify-between">
+                    <div
+                        class="bg-orange-500 text-white h-16 w-16 rounded-full font-bold text-xl border-2 border-white flex flex-col justify-center items-center text-[18px] leading-none text-center">
+                        <Taka class="w-4 h-4" />{{ props.data.price || 0 }}
+                    </div>
+                    <div
+                        class="bg-orange-500 text-white h-16 w-16 rounded-full font-bold text-xl border-2 border-white flex flex-col justify-center items-center text-[18px] leading-none text-center line-through">
+                        <Taka class="w-4 h-4" />{{ props.data.discount || 0 }}
+                    </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <div class="bg-orange-500 text-white px-1.5 rounded font-medium text-sm">
@@ -58,6 +64,7 @@ interface Card {
     _id: number | string
     lessons: number
     price: number
+    discount: number
     reviews?: number
     src: string
     tag?: any
