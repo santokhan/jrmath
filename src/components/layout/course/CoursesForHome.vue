@@ -1,5 +1,5 @@
 <template>
-    <section v-if="Array.isArray(coursesData) && coursesData.length > 0">
+    <section v-if="Array.isArray(coursesData) && coursesData.length > 0" id="courses">
         <AppContainer>
             <TitleBox>
                 <Tag>FIND A COURSE</Tag>
