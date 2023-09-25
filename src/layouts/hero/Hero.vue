@@ -22,7 +22,7 @@
                         Free online courses from the world’s Leading experts. join 18+ million Learners today.
                     </p>
                     <p class="max-w-2xl mb-6 font-light text-gray-900 lg:mb-8 md:text-lg lg:text-xl">
-                        Most Popular: <strong>Math</strong>
+                        Most Popular: <strong>Mathematics</strong>
                     </p>
                     <RouterLink to="/signin"
                         class="text-white bg-orange-500 font-medium rounded-lg px-4 py-2.5 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 focus:outline-none">

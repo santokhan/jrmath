@@ -11,7 +11,8 @@
                 <div class="absolute right-0 -top-12 left-0 px-4 h-16 overflow-hidden flex justify-between">
                     <div v-if="props.data.price"
                         class="bg-orange-500 text-white h-16 w-16 rounded-full font-bold text-xl border-2 border-white flex flex-col justify-center items-center text-[18px] leading-none text-center relative">
-                        <div class="w-[calc(100%_-_12px)] h-[3px] absolute left-1/2 -translate-x-1/2 top-[38px] bg-red-500">
+                        <div v-if="props.data.discount"
+                            class="w-[calc(100%_-_12px)] h-[3px] absolute left-1/2 -translate-x-1/2 top-[38px] bg-red-500">
                         </div>
                         <Taka class="w-4 h-4" />{{ props.data.price || 0 }}
                     </div>

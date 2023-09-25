@@ -12,6 +12,7 @@ import UpdateFormView from '../views/coureses/UpdateFormView.vue'
 import IndividualCourseView from '../views/coureses/IndividualCourseView.vue'
 import PlayListView from '../views/coureses/PlayListView.vue'
 import ReferralView from '../views/ReferralView.vue'
+import NoticeView from '../views/NoticeView.vue'
 
 const routes_public = [
     {
@@ -33,6 +34,10 @@ const routes_public = [
     {
         path: '/question-bank',
         component: QuestionBankView
+    },
+    {
+        path: '/nuh-notice',
+        component: NoticeView
     },
 ]
 

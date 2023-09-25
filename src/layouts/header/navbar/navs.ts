@@ -23,6 +23,7 @@ const navs = [
         ]
     },
     { name: "question bank", to: "/question-bank" },
+    { name: "notice", to: "/nuh-notice" },
     { name: "about", to: "/about" },
     { name: "contact", to: "/contact" },
 ]
