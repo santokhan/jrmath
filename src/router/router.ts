@@ -13,6 +13,7 @@ import IndividualCourseView from '../views/coureses/IndividualCourseView.vue'
 import PlayListView from '../views/coureses/PlayListView.vue'
 import ReferralView from '../views/ReferralView.vue'
 import NoticeView from '../views/NoticeView.vue'
+import PaymentView from '../views/PaymentView.vue'
 
 const routes_public = [
     {
@@ -38,6 +39,10 @@ const routes_public = [
     {
         path: '/nuh-notice',
         component: NoticeView
+    },
+    {
+        path: '/payment',
+        component: PaymentView
     },
 ]
 

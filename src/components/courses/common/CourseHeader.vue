@@ -13,29 +13,31 @@
                     <span class="text-sm text-gray-700 font-medium" data-testid="trust-reviews">2371 reviews</span>
                 </div>
             </div>
-            <div class="flex flex-col items-center md:items-start"><a
-                    class="group inline-block px-6 py-3 text-sm no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-gradient-to-r from-pink-500 to-orange-600  transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto"
-                    role="button" href="https://sso.teachable.com/secure/146684/checkout/2954151/all-access">Access All
-                    Courses for BDT 10,000</a></div>
+            <div class="flex flex-col items-center md:items-start">
+                <RouterLink to="/payment"
+                    class="group inline-block px-6 py-3 text-sm no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-gradient-to-r from-pink-500 to-orange-600  transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto">
+                    Access All Courses for BDT 10,000</RouterLink>
+            </div>
             <div class="mt-4 flex items-center justify-center md:justify-start">
                 <hr class="inline-block w-6 mr-2">or
                 <hr class="inline-block w-6 ml-2">
             </div>
             <div>
-                <a class="group inline-block px-6 py-3 text-sm no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-orange-500 hover:bg-orange-400 transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto"
-                    role="button"
-                    href="https://sso.teachable.com/secure/146684/checkout/4647771/ultimate-react-part1?coupon_code=G4P0DF">Buy
-                    Course for BDT {{ numberWithCommas(props.data.price) || "..." }}
+                <RouterLink
+                    class="group inline-block px-6 py-3 text-sm no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-orange-500 hover:bg-orange-400 transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto"
+                    to="/payment">Buy Course for BDT {{ numberWithCommas(props.data.price) || "..." }}
                     <span class="line-through ml-1 text-xs">
                         BDT {{ numberWithCommas(props.data.discountPrice) || "..." }}
                     </span>
-                </a>
+                </RouterLink>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
+
 const props = defineProps<{ data: any }>()
 
 // Convert a number to a string with commas
