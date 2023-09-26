@@ -14,7 +14,7 @@
                         <img src="../../../assets/images/mentors/jakaria.png" alt="mentor-1"
                             class="w-full object-cover rounded-full overflow-hidden">
                     </Outline>
-                    <div class="px-10">
+                    <div class="px-10 flex flex-col items-center lg:items-start">
                         <Name>Jakaria</Name>
                         <p class="mt-2 text-center md:text-start">Mathematics Instructor</p>
                         <MentorMedia class="mt-4" :links="social_links.jakaria" />
@@ -25,7 +25,7 @@
                         <img src="../../../assets/images/mentors/raj.png" alt="mentor-1"
                             class="w-full object-cover rounded-full overflow-hidden">
                     </Outline>
-                    <div class="px-10">
+                    <div class="px-10 flex flex-col items-center lg:items-start">
                         <Name>Hasson Raza Raz</Name>
                         <p class="mt-2 text-center md:text-start">Mathematics Instructor</p>
                         <MentorMedia class="mt-4" :links="social_links.raz" />

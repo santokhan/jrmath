@@ -120,6 +120,48 @@ class SanityAPI {
     }
 }
 
+class Blogs extends SanityAPI {
+    constructor() {
+        super()
+    }
+    async get_blogs(callBack: (data: any) => void) {
+        const url = `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('blog')]`
+
+        await fetch(url).then(res => res.json()).then(data => {
+            callBack(data?.result)
+        })
+    }
+}
+export const blogs = new Blogs()
+
+class Notice extends SanityAPI {
+    constructor() {
+        super()
+    }
+    async get_notices(callBack: (data: any) => void) {
+        const url = `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('notice')]`
+
+        await fetch(url).then(res => res.json()).then(data => {
+            callBack(data?.result)
+        })
+    }
+}
+export const notice = new Notice()
+
+class Questions extends SanityAPI {
+    constructor() {
+        super()
+    }
+    async get_questions(callBack: (data: any) => void) {
+        const url = `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('questions')]`
+
+        await fetch(url).then(res => res.json()).then(data => {
+            callBack(data?.result)
+        })
+    }
+}
+export const questions = new Questions()
+
 const sanityAPI = new SanityAPI()
 
 export default sanityAPI
