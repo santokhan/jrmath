@@ -6,7 +6,7 @@
                 <Heading>NUH Notice</Heading>
             </TitleBox>
 
-            <ul class="py-4">
+            <ul class="py-4" v-if="notices && notices.length > 0">
                 <li v-for="(item, index) in notices" :key="index"
                     class="flex items-center p-4 mb-4 text-orange-800 rounded-lg bg-white"><i class="fa fa-file"></i>
                     <h4 class="ml-3 font-medium">{{ item.title }}</h4>
