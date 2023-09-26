@@ -13,7 +13,7 @@
                     <span class="text-sm text-gray-700 font-medium" data-testid="trust-reviews">2371 reviews</span>
                 </div>
             </div>
-            <div class="flex flex-col items-center md:items-start">
+            <!-- <div class="flex flex-col items-center md:items-start">
                 <RouterLink to="/payment"
                     class="group inline-block px-6 py-3 text-sm no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-gradient-to-r from-pink-500 to-orange-600  transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto">
                     Access All Courses for BDT 10,000</RouterLink>
@@ -21,15 +21,11 @@
             <div class="mt-4 flex items-center justify-center md:justify-start">
                 <hr class="inline-block w-6 mr-2">or
                 <hr class="inline-block w-6 ml-2">
-            </div>
+            </div> -->
             <div>
                 <RouterLink
-                    class="group inline-block px-6 py-3 text-sm no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-orange-500 hover:bg-orange-400 transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto"
-                    to="/payment">Buy Course for BDT {{ numberWithCommas(props.data.price) || "..." }}
-                    <span class="line-through ml-1 text-xs">
-                        BDT {{ numberWithCommas(props.data.discountPrice) || "..." }}
-                    </span>
-                </RouterLink>
+                    class="group inline-block px-12 py-4 no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-orange-500 hover:bg-orange-400 transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto"
+                    to="/payment">Pay now</RouterLink>
             </div>
         </div>
     </div>
@@ -37,12 +33,17 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import Taka from '../../icons/Taka.vue';
 
 const props = defineProps<{ data: any }>()
 
 // Convert a number to a string with commas
-function numberWithCommas(x: number) {
-    if (typeof x === 'string') {
+function numberWithCommas(x: number, y: number) {
+    if (typeof y === 'number') {
+        return y
+    } else if (typeof x === 'number') {
+        return x
+    } else if (typeof x === 'string') {
         return `${x}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 }

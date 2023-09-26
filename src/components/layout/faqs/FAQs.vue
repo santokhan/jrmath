@@ -16,11 +16,15 @@
                         <h4 class="text-lg font-medium text-gray-800 text-start">{{ item.title }}</h4>
                         <AngleDown :class="[false ? 'rotate-180' : '']" />
                     </button>
-                    <p v-if="active === index" class="text-gray-500 mx-6 py-4 border-t">{{ item.desc }}</p>
+                    <p v-if="active === index" class="text-gray-500 mx-6 py-4 border-t">
+                    <div v-if="typeof item.desc === 'object'" v-for="(desc, i2) in item.desc" :key="i2">{{ desc }}</div>
+                    <div v-else>{{ item.desc }}</div>
+                    </p>
                 </div>
             </div>
-            <div class="flex justify-center items-center py-6 gap-2">
-                বিস্তারিত জানতে: <a href="tel:+8801790-054896" class="text-orange-500 underline hover:text-orange-700">01790-054896</a>
+            <div
+                class="flex justify-center items-center py-4 gap-2 font-medium bg-orange-500 text-white px-4 py-2 rounded-lg text-xl lg:text-2xl">
+                বিস্তারিত জানতে: <a href="tel:+8801790-054896" class="text-white">01790-054896</a>
             </div>
         </AppContainer>
     </section>
@@ -47,10 +51,10 @@ const info = [
     },
     {
         title: "ভাইয়া ক্লাসগুলো কিভাবে করবো?",
-        desc: `
-        লাইভ ➡️জুম লাইভে
-        রের্কড ➡️ আমাদের ওয়েবসাইটে পাবেন।
-        `,
+        desc: [
+            "লাইভ ➡️জুম লাইভে",
+            "রেকর্ড ➡️ আমাদের ওয়েবসাইটে পাবেন।",
+        ],
     },
     {
         title: "ভাইয়া নোট পিডিএফ দিবেন না?",

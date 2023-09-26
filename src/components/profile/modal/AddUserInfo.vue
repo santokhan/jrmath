@@ -42,6 +42,8 @@ import { reactive, ref } from 'vue'
 import profile, { type UserInfo } from '../../firebase/profile';
 import { getCurrentUser } from 'vuefire';
 
+const props = defineProps<{ hideModal: () => void }>()
+
 const email = ref<string>("")
 const currentUser = getCurrentUser()
 currentUser.then(user => {
@@ -60,6 +62,7 @@ function handleSubmit(e: any) {
     e.preventDefault();
     if (email.value) {
         profile.addUser(formData, email.value)
+        props.hideModal()
     }
 }
 </script>

@@ -7,7 +7,7 @@
             </TitleBox>
             <section class="max-w-xl mx-auto bg-white rounded-2xl p-6 mt-4 shadow-lg">
                 <div class="mt-6 w-fit mx-auto">
-                    <img src="../assets/images/profile/user.jpg" class="rounded-full w-40 h-40 border bg-gray-50"
+                    <img src="../assets/images/profile/user.png" class="rounded-full w-40 h-40 border bg-gray-50"
                         alt="profile picture" srcset="">
                 </div>
 
@@ -64,7 +64,7 @@
         </AppContainer>
     </section>
 
-    <AddUserInfo v-if="modalOpen && !userDetails.name" />
+    <AddUserInfo v-if="modalOpen && !userDetails.name" :hideModal="() => { modalOpen = !modalOpen }" />
 </template>
 
 <script setup lang="ts">

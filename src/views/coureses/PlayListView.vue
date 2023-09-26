@@ -12,7 +12,8 @@
         <div class=" flex flex-wrap">
             <div class="w-full md:w-2/3 mt-4">
                 <div class="flex items-center gap-8 justify-between">
-                    <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }}</h3>
+                    <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }} <span v-if="vdoToPlay.chapter">Chapter {{
+                        vdoToPlay.chapter }}</span></h3>
                     <Share />
                 </div>
                 <p>{{ vdoToPlay.description }}</p>
