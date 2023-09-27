@@ -21,7 +21,7 @@
             <div class="w-full md:w-1/3" v-if="videoData.length > 0">
                 <div class="space-y-2 max-w-md bg-white rounded-lg border p-3 mt-8">
                     <h4 class="font-semibold mb-4">Lessons</h4>
-                    <div class="space-y-2">
+                    <div class="space-y-3 max-h-[500px] overflow-y-auto">
                         <PlayListItem v-for="(item, index) in videoData" :key="index" :title="item.title"
                             :to="to(rq, item._id)" :active="vdoToPlay._id === item._id" />
                     </div>
