@@ -13,13 +13,13 @@
                     <img src="/images/payment/rocket.png" alt="payment" class="object-contain w-60">
                 </div>
                 <ul class="space-y-4 list-disc list-inside">
-                    <li>পেমেন্ট করার আগে উক্ত নাম্বারে কল দিয়ে কনফার্ম হোন</li>
+                    <li>পেমেন্ট করার আগে (01910-865705) নাম্বারে কল দিয়ে কনফার্ম হোন।</li>
                     <li>পেমেন্ট করার পর নিম্নের ফেসবুক আইডিতে নক দিন <a href="https://www.facebook.com/JaKaRiA.YO"
                             class="underline text-orange-500 hover:text-orange-700 font-medium">https://www.facebook.com/JaKaRiA.YO</a>
                     </li>
-                    <li>আইডিতে নক দিয়ে আপনার মোবাইল ব্যাংকিং নাম্বারের লাস্ট তিন ডিজিট জানান এবং আপনার নাম, জেলা,ফোন নাম্বার
-                        আলাদা
-                        আলাদাভাবে টেক্সট করুন
+                    <li>
+                        আইডিতে নক দিয়ে আপনার মোবাইল ব্যাংকিং নাম্বারের লাস্ট তিন ডিজিট জানান এবং আপনার নাম, জেলা,ফোন
+                        নাম্বার,ইমেইল আলাদা আলাদাভাবে টেক্সট করুন।
                         <ul class="px-4 space-y-4 my-4 py-2 list-disc list-inside bg-gray-50 rounded-lg">
                             <li>লাস্ট ডিজিট (০৮৯) এবং কতটাকা পাঠাইছেন।</li>
                             <li>আপনার ইমেইল(someone@mail.com)</li>
