@@ -2,7 +2,7 @@
     <AppContainer v-if="vdoToPlay">
         <div class="mt-8 relative" v-if="vdoToPlay.googleDrive?.includes('https://')">
             <div class="hide-tooltip"></div>
-            <div class="w-full aspect-[16/9] relative" v-html="iframe(vdoToPlay.googleDrive)"></div>
+            <div class="w-full aspect-[16/9] relative" v-html="google_drive_iframe(vdoToPlay.googleDrive)"></div>
         </div>
         <div v-if="vdoToPlay.vdeoChiperId" class="w-full">
             <iframe v-if="otp.otp" :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
@@ -43,7 +43,6 @@ import PlayListItem from '../../components/courses/playlist/PlayListItem.vue';
 import { type OTP, type VideoData } from '../../components/courses/types.course'
 import { sort_videos } from '../../components/courses/playlist/playlist-helper'
 import { valid } from '../../global/functions';
-import checkUserAccess from '../../components/courses/playlist/check-user-access';
 
 const route = useRoute()
 const { course, year, courseId, videoId } = route.params
@@ -53,7 +52,6 @@ const rq = reactive({
     courseId: valid(courseId),
     videoId: valid(videoId)
 })
-const router = useRouter()
 
 const videoData = ref<VideoData[]>([])
 const vdoToPlay = ref<VideoData>()
@@ -96,14 +94,14 @@ watch(() => route.params, () => {
     assignVideoData()
 })
 
-function iframe(src: string) {
+function google_drive_iframe(src: string) {
     // https://drive.google.com/file/d/1y-Tf7UFKiW8UVsSODscReupJrR_XrgXG/view?usp=drive_link
     // https://drive.google.com/file/d/1y-Tf7UFKiW8UVsSODscReupJrR_XrgXG/preview
     if (src.includes("view?usp=drive_link")) {
         src = src.replace("view?usp=drive_link", "preview");
     }
 
-    return `<iframe src="${src}" class="w-full aspect-[16/9] relative]" allow="autoplay"></iframe>`;
+    return `<iframe src="${src}" class="w-full aspect-[16/9] relative]" allow="autoplay" allowfullscreen="allowfullscreen"></iframe>`;
 }
 
 async function otpPlayBackInfo(vdoChiperId: string) {
