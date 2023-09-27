@@ -16,7 +16,7 @@
                         vdoToPlay.chapter }}</span></h3>
                     <Share />
                 </div>
-                <p>{{ vdoToPlay.description }}</p>
+                <p class="whitespace-pre-wrap">{{ vdoToPlay.description }}</p>
             </div>
             <div class="w-full md:w-1/3" v-if="videoData.length > 0">
                 <div class="space-y-2 max-w-md bg-white rounded-lg border p-3 mt-8">
@@ -34,9 +34,9 @@
 <script setup lang="ts">
 // visit http://localhost:5173/#/playlist/nuh/1/89c4e26b-413f-42d3-b46f-13990edb4637/a7c1201a-6368-4c61-bc20-9e5344818140
 // Route must have /:courseId & /:videoId
-import { reactive, ref, watch, onBeforeMount } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import AppContainer from '../../components/layout/AppContainer.vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import Share from '../../components/buttons/Share.vue';
 import sanityAPI from '../../api/sanity';
 import PlayListItem from '../../components/courses/playlist/PlayListItem.vue';

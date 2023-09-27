@@ -19,7 +19,8 @@
             <p class="">{{ videoData.length }} Lessons</p>
             <div class="max-w-3xl space-y-2 bg-white p-4 mt-6 rounded-lg">
                 <template v-for="item in videoData">
-                    <PlayListItem v-if="authorized" :title="item.title" :to="to(route.params, item._id)" :active="false" />
+                    <PlayListItem v-if="props.authorized" :title="item.title" :to="to(route.params, item._id)"
+                        :active="false" />
                     <PlayListItemDisabled v-else :title="item.title" />
                 </template>
             </div>
@@ -41,10 +42,9 @@ import PlayListItemDisabled from './PlayListItemDisabled.vue';
 import sanityAPI from "../../../api/sanity";
 import { sort_videos, to } from "./playlist-helper";
 import { valid } from "../../../global/functions";
-import checkUserAccess from './check-user-access'
 
 const videoData = ref<any[]>([])
-const props = defineProps<{ courseTitle: string }>()
+const props = defineProps<{ authorized: boolean }>()
 
 const route = useRoute()
 const { course, year, id } = route.params
@@ -61,17 +61,17 @@ sanityAPI.getVideoByCourseTitle(params.course, params.year, params.id, data => {
 
 // Check user access using user email and course title
 // By default authorized will be false
-const authorized = ref<boolean>(false)
+// const authorized = ref<boolean>(false)
 
-async function checkAccess() {
-    const access = await checkUserAccess(props.courseTitle)
-    if (access) {
-        authorized.value = true
-    } else {
-        authorized.value = false
-    }
-    console.log(authorized.value);    
-}
-checkAccess()
+// async function checkAccess() {
+//     const access = await checkUserAccess(props.courseTitle)
+//     if (access) {
+//         authorized.value = true
+//     } else {
+//         authorized.value = false
+//     }
+//     console.log(authorized.value);
+// }
+// checkAccess()
 </script>
 

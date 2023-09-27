@@ -22,7 +22,7 @@
                 <hr class="inline-block w-6 mr-2">or
                 <hr class="inline-block w-6 ml-2">
             </div> -->
-            <div>
+            <div v-if="!authorized">
                 <RouterLink
                     class="group inline-block px-12 py-4 no-underline uppercase text-center text-white tracking-wider font-medium md:font-semibold rounded-full bg-orange-500 hover:bg-orange-400 transition-all duration-200 ease-out hover:text-white hover:no-underline mt-3 w-full md:w-auto"
                     to="/payment">Pay now</RouterLink>
@@ -33,9 +33,8 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import Taka from '../../icons/Taka.vue';
 
-const props = defineProps<{ data: any }>()
+const props = defineProps<{ data: any, authorized: boolean }>()
 
 // Convert a number to a string with commas
 function numberWithCommas(x: number, y: number) {
