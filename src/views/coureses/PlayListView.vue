@@ -55,28 +55,6 @@ const rq = reactive({
 })
 const router = useRouter()
 
-// check user access before render component
-onBeforeMount(() => {
-    // courseTitle
-    sanityAPI.getCourseTitle(rq.courseId, data => {
-        // `courseTitle` schema in course collection is `title` not `courseTitle`
-        const courseTitle = data[0].title
-        if (!courseTitle) return;
-
-        // check access
-        checkUserAccess(courseTitle, (access: boolean) => {
-            if (!access) {
-                // user trying to enter on this router directly using url
-                // user can not find this route if don't have access
-                router.push('signin')
-            } else {
-                // stay on playlist route and play video
-                return;
-            }
-        })
-    })
-})
-
 const videoData = ref<VideoData[]>([])
 const vdoToPlay = ref<VideoData>()
 const otp = reactive<OTP>({ otp: "", playbackInfo: "" })

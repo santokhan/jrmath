@@ -35,16 +35,19 @@ class Admin {
     role_collection = "role"
 
     // Check user role on Admin route
-    async role(email: string, callBack: (role: any) => void) {
+    async role(email: string) {
         if (email) {
             const docRef = doc(firestore, this.role_collection, email)
-            await getDoc(docRef).then((doc) => {
-                const role = doc.data()
-                if (role) {
-                    callBack(role.role)
-                }
-            }).catch(err => { console.log(err) })
-        } else { console.log(`Can not get email`); }
+            const res = await getDoc(docRef)
+            const role = res.data()
+            if (role) {
+                return role.role
+            } else {
+                console.log(`User is not admin`);
+            }
+        } else {
+            console.log(`Can not get email`);
+        }
     }
 
     async readUserData(callBack: (data: any) => void) {
@@ -132,11 +135,11 @@ class Admin {
         }
     }
     async adminValidation(callBack: (bool: boolean) => void) {
-        await getCurrentUser().then(user => {
+        await getCurrentUser().then(async user => {
             const email = typeof user?.email === 'string' ? user.email : ""
-            this.role(email, (role) => {
-                callBack(role === "admin")
-            })
+            const role = await this.role(email)
+            if (!role) return;
+            callBack(role === 'admin')
         }).catch(err => {
             console.log(err);
         })

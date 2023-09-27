@@ -82,6 +82,16 @@ class SanityAPI {
             callBack(data.result)
         })
     }
+    async getCourseTitle2(courseId: string) {
+        if (!courseId) return;
+
+        // The `"videos"` is collection on Sanity
+        const url = this.build_api(`?query=*[_type in path("courses") %26%26 _id == '${courseId}']`)
+
+        const res = await fetch(url)
+        const data = await res.json()
+        return data.result;
+    }
     async getVideoByCourseTitle(university: string, year: number, courseId: string, callBack: (data: any) => void) {
         if (!university && !year && !courseId) return;
 
@@ -100,23 +110,21 @@ class SanityAPI {
             }
         })
     }
-    async readUserAccess(email: string, courseTitle: string, callBack: (data: boolean) => void) {
+    async readUserAccess(email: string, courseTitle: string) {
         if (!email && !courseTitle) return;
 
         // The `"videos"` is collection on Sanity
         // ✅ output *[_type in path('videos') && university == 'nuh' && year == 3 && courseTitle == 'Numerical Analysis']
         const url = this.build_api(`?query=*[_type in path('user-access') %26%26 email == '${email}' %26%26 courseTitle == '${courseTitle}']`)
 
-        await fetch(url).catch(err => {
-            throw err
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            if (Array.isArray(data.result) && data.result.length > 0) {
-                callBack(true)
-            } else {
-                callBack(false)
-            }
-        })
+        const res = await fetch(url)
+        const data = await res.json()
+        if (Array.isArray(data.result) && data.result.length > 0) {
+            // console.log(data.result);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

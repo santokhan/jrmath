@@ -14,6 +14,8 @@ import PlayListView from '../views/coureses/PlayListView.vue'
 import ReferralView from '../views/ReferralView.vue'
 import NoticeView from '../views/NoticeView.vue'
 import PaymentView from '../views/PaymentView.vue'
+import sanityAPI from '../api/sanity'
+import checkUserAccess from '../components/courses/playlist/check-user-access'
 
 const routes_public = [
     {
@@ -63,23 +65,27 @@ const routes_protected = [
     },
     {
         path: '/playlist/:course/:year/:courseId/:videoId',
+        name: "playlist",
         component: PlayListView,
         meta: { requiresAuth: false } // It will be true in production mode
     },
     // Authorization
     {
         path: '/profile',
+        name: "profile",
         component: ProfileView,
         meta: { requiresAuth: true }
     },
     {
         path: '/signin',
+        name: "signin",
         component: SignInView,
         meta: { requiresAuth: false }
     },
     // Admin
     {
         path: '/admin',
+        name: "admin",
         component: AdminView,
         meta: { requiresAuth: true }
     },
@@ -117,6 +123,24 @@ router.beforeEach(async (to, from) => {
                     redirect: to.fullPath,
                 },
             }
+        }
+    }
+
+    // check access after checking require auth
+    if (to.name === 'playlist') {
+        const courseId = to.params.courseId
+        const validCourseId = typeof courseId === 'string' ? courseId : courseId[0]
+
+        const data = await sanityAPI.getCourseTitle2(validCourseId)
+        const courseTitle = data[0].title
+        if (!courseTitle) return { name: "signin" };
+        // check access
+        const access = await checkUserAccess(courseTitle)
+        if (!access) {
+            console.log(courseTitle);
+            // user trying to enter on this router directly using url
+            // user can not find this route if don't have access
+            return { name: "signin" }
         }
     }
 })

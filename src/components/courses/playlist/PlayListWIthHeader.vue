@@ -41,8 +41,6 @@ import PlayListItemDisabled from './PlayListItemDisabled.vue';
 import sanityAPI from "../../../api/sanity";
 import { sort_videos, to } from "./playlist-helper";
 import { valid } from "../../../global/functions";
-import { getCurrentUser } from "vuefire";
-import admin from "../../firebase/admin";
 import checkUserAccess from './check-user-access'
 
 const videoData = ref<any[]>([])
@@ -64,33 +62,16 @@ sanityAPI.getVideoByCourseTitle(params.course, params.year, params.id, data => {
 // Check user access using user email and course title
 // By default authorized will be false
 const authorized = ref<boolean>(false)
-async function checkUserAccessOld() {
-    // vuefires getCurrentUser
-    await getCurrentUser().catch(err => { throw err }).then(user => {
-        const email = user?.email
-        if (!email) return;
 
-        // check user role
-        admin.role(email, role => {
-            if (role === 'admin') {
-                // admin have access to all page
-                authorized.value = true
-            } else {
-                // sanity check access when user is not admin
-                sanityAPI.readUserAccess(email, props.courseTitle, (data: boolean) => {
-                    if (data) {
-                        authorized.value = true
-                    } else {
-                        authorized.value = false
-                    }
-                    console.log({ authorized });
-                })
-            }
-        })
-    })
+async function checkAccess() {
+    const access = await checkUserAccess(props.courseTitle)
+    if (access) {
+        authorized.value = true
+    } else {
+        authorized.value = false
+    }
+    console.log(authorized.value);    
 }
-checkUserAccess(props.courseTitle, (access: boolean) => {
-    authorized.value = access
-})
+checkAccess()
 </script>
 
