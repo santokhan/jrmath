@@ -3,7 +3,7 @@
         <Sidebar :goToUserInfo="goToUserInfo" :goToVideoData="goToVideoData" :activeNav="activeNav" :NAVS="NAVS" />
         <div class="">
             <UserAccess v-if="activeNav === NAVS[0]" />
-            <VideoData v-if="activeNav === NAVS[1]" />
+            <!-- <VideoData v-if="activeNav === NAVS[1]" /> -->
         </div>
     </main>
     <div v-else class="text-center text-2xl text-orange-500 my-5">You don't have access to this page</div>
