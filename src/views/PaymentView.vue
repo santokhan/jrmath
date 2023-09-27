@@ -2,7 +2,8 @@
     <section>
         <AppContainer>
             <TitleBox>
-                <Heading>পেমেন্ট সিস্টেমঃ</Heading>
+                <Tag>পেমেন্ট সিস্টেম</Tag>
+                <Heading>কোর্স অ্যাক্সেস নিতে পেমেন্ট করুন</Heading>
             </TitleBox>
 
             <div class="bg-white p-4 rounded-lg mt-4">
@@ -41,6 +42,7 @@ import AppContainer from '../components/layout/AppContainer.vue';
 import Heading from '../components/section/Heading.vue';
 import TitleBox from '../components/section/TitleBox.vue';
 import Bkash from '../components/icons/Bkash.vue'
+import Tag from '../components/section/Tag.vue';
 </script>
 
 <style scoped></style>

@@ -44,6 +44,7 @@ const routes_public = [
     },
     {
         path: '/payment',
+        name: 'payment',
         component: PaymentView
     },
 ]
@@ -140,7 +141,7 @@ router.beforeEach(async (to, from) => {
             console.log(courseTitle);
             // user trying to enter on this router directly using url
             // user can not find this route if don't have access
-            return { name: "signin" }
+            return { name: "payment" }
         }
     }
 })
