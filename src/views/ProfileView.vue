@@ -56,8 +56,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-8">
+                    <div class="mt-8 flex items-center gap-4">
                         <Logout :handleLogout="handleLogout" />
+                        <button type="button" @click="editProfile"
+                            class="flex gap-2 text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm pl-3 py-2.5 pr-4 flex items-center">
+                            <i class="fa fa-edit"></i> Edit Profile
+                        </button>
                     </div>
                 </div>
             </section>
@@ -65,6 +69,8 @@
     </section>
 
     <AddUserInfo v-if="modalOpen && !userDetails.name" :hideModal="() => { modalOpen = !modalOpen }" />
+    <EditModal v-if="openEdit" :hideModal="() => { openEdit = !openEdit }" :userDetails="userDetails"
+        :readUserData="readUserData" />
 </template>
 
 <script setup lang="ts">
@@ -78,6 +84,7 @@ import Heading from '../components/section/Heading.vue';
 import AppContainer from '../components/layout/AppContainer.vue';
 import TitleBox from '../components/section/TitleBox.vue';
 import AddUserInfo from '../components/profile/modal/AddUserInfo.vue'
+import EditModal from '../components/profile/modal/EditModal.vue'
 import profile, { coin } from '../components/firebase/profile';
 import { getCurrentUser } from 'vuefire';
 
@@ -85,9 +92,14 @@ const router = useRouter()
 const userInfo = ref<any>({})
 const userDetails = reactive<any>({})
 
-const currentUser = getCurrentUser()
-currentUser.then(user => {
-    if (user?.email) {
+/**
+ * 1. Call here initially
+ * 2. Call on update form to sync update data
+ */
+async function readUserData() {
+    const user = await getCurrentUser()
+    const email = user?.email
+    if (email) {
         profile.readUser(user.email, data => {
             if (data) {
                 userDetails.name = data.name
@@ -98,7 +110,7 @@ currentUser.then(user => {
             }
         })
     }
-}).catch(err => { console.log(err) })
+} readUserData()
 
 Auth.currentUser().then(data => {
     userInfo.value = data
@@ -121,5 +133,11 @@ const modalOpen = ref(false)
 setTimeout(() => {
     modalOpen.value = true
 }, 2000);
+
+// edit
+const openEdit = ref(false)
+function editProfile() {
+    openEdit.value = true
+}
 </script>
 
