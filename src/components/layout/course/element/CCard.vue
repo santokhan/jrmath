@@ -32,7 +32,7 @@
                 <CourseTitle :title="props.data.title" />
                 <div class="flex justify-between items-center py-2">
                     <div class="flex items-center gap-1">
-                        <Video /> {{ videoData.length || 0 }}x Lesson
+                        <Video /> {{ videoData.length || 0 }}x Lessons
                     </div>
                     <div>
                         <RouterLink
