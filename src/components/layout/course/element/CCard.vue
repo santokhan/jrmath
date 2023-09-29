@@ -127,7 +127,6 @@ function getVideos() {
     if (university && year && courseId) {
         sanityAPI.getVideoByCourseTitle(university, year, courseId, data => {
             videoData.value = sort_videos(data.result)
-            console.log(videoData.value);
         })
     }
 }

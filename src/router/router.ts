@@ -17,6 +17,7 @@ import PaymentView from '../views/PaymentView.vue'
 import sanityAPI from '../api/sanity'
 import checkUserAccess from '../components/courses/playlist/check-user-access'
 import ToolsView from '../views/ToolsView.vue'
+import BlogView from '../views/BlogView.vue'
 
 const routes_public = [
     {
@@ -52,6 +53,11 @@ const routes_public = [
         path: '/tools',
         name: 'tools',
         component: ToolsView
+    },
+    {
+        path: '/blogs/:blogId',
+        name: 'blogs',
+        component: BlogView
     },
 ]
 
