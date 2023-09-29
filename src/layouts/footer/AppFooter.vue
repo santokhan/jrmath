@@ -34,14 +34,11 @@
                         </div>
                         <div class="">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Legal</h2>
-                            <ul class="text-gray-700  font-medium">
-                                <li class="mb-4">
+                            <div class="text-gray-700  font-medium flex flex-col gap-3">
                                     <RouterLink to="/question-bank" class="hover:text-orange-500">Question Bank</RouterLink>
-                                </li>
-                                <li>
                                     <RouterLink to="/about" class="hover:text-orange-500">About</RouterLink>
-                                </li>
-                            </ul>
+                                    <RouterLink to="/tools" class="hover:text-orange-500">Tools</RouterLink>
+                            </div>
                         </div>
                         <div class="col-span-2 lg:col-span-1">
                             <h2 class="mb-4 font-bold text-gray-900 uppercase">Contact Us</h2>

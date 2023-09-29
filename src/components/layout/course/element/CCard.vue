@@ -27,12 +27,12 @@
                             <div class="w-2 h-2 bg-white rounded-full"></div>{{ props.data.tag || 'All' }}
                         </div>
                     </div>
-                    <div class="text-gray-700">{{ reviews(props.data.reviews) }} reviews</div>
+                    <!-- <div class="text-gray-700">{{ reviews(props.data.reviews) }} reviews</div> -->
                 </div>
                 <CourseTitle :title="props.data.title" />
                 <div class="flex justify-between items-center py-2">
                     <div class="flex items-center gap-1">
-                        <Video /> {{ lessons(props.data.lessons) }}x Lesson
+                        <Video /> {{ videoData.length || 0 }}x Lesson
                     </div>
                     <div>
                         <RouterLink
@@ -46,12 +46,15 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import Taka from '../../../icons/Taka.vue';
 import Video from '../../../icons/Video.vue';
 import CourseTitle from './CourseTitle.vue';
 
 import { client } from '../../../../sanity/sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
+import sanityAPI from '../../../../api/sanity';
+import { sort_videos } from '../../../courses/playlist/playlist-helper';
 
 // Get a pre-configured url-builder from your sanity client
 const builder = imageUrlBuilder(client)
@@ -109,4 +112,27 @@ function to(props: Card): string {
     // route pattern /courses/:university/:year/:id
     return `/courses/${university}/${year}/${_id}` // output /courses/nuh/3/07deedcd-d6a8-4f3f-aec3-d5913fa8a18c
 }
+
+/**
+ * Below code will be used to get Total number of lessons `videoData.length`
+ */
+const videoData = ref<any[]>([])
+function getVideos() {
+
+
+    const university = props.data.university
+    const year = typeof props.data.year === 'string' ? parseInt(props.data.year) : props.data.year
+    const courseId = typeof props.data._id === 'string' && props.data._id
+
+    if (university && year && courseId) {
+        sanityAPI.getVideoByCourseTitle(university, year, courseId, data => {
+            videoData.value = sort_videos(data.result)
+            console.log(videoData.value);
+        })
+    }
+}
+
+onMounted(() => {
+    getVideos()
+})
 </script>

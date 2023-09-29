@@ -16,6 +16,7 @@ import NoticeView from '../views/NoticeView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import sanityAPI from '../api/sanity'
 import checkUserAccess from '../components/courses/playlist/check-user-access'
+import ToolsView from '../views/ToolsView.vue'
 
 const routes_public = [
     {
@@ -47,9 +48,14 @@ const routes_public = [
         name: 'payment',
         component: PaymentView
     },
+    {
+        path: '/tools',
+        name: 'tools',
+        component: ToolsView
+    },
 ]
 
-const routes_protected = [
+const routes_protected = [ 
     // Courses
     {
         path: '/courses/:course/:year/',
