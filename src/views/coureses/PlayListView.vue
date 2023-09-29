@@ -1,6 +1,6 @@
 <template>
     <AppContainer v-if="vdoToPlay">
-        <div class="mt-8 relative" v-if="vdoToPlay.googleDrive?.includes('https://')">
+        <div class="mt-8 relative" v-if="vdoToPlay.googleDrive && vdoToPlay.googleDrive.includes('https://')">
             <div class="hide-tooltip"></div>
             <div class="w-full aspect-[16/9] relative" v-html="google_drive_iframe(vdoToPlay.googleDrive)"></div>
         </div>
