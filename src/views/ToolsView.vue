@@ -46,25 +46,39 @@ const builded = ref("")
 function handleSubmit(e: any) {
     e.preventDefault()
 
-    if (URL.value.includes('src=')) {
-        // if paste iframe code
-        // <iframe width="1022" height="584" src="https://www.youtube.com/embed/s4ALTvJeuzI" title="Applied of Mathematics final Year Lecture -01" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        URL.value.replace(regex, (full, text) => {
-            builded.value = text.split('=')[1].replace(/"/g, '')
-            return text;
-        })
+    if (URL.value.includes('</iframe>')) {
+        // same for youtube and drive
+        if (URL.value.includes('src=')) {
+            // if paste iframe code
+            // <iframe width="1022" height="584" src="https://www.youtube.com/embed/s4ALTvJeuzI" title="Applied of Mathematics final Year Lecture -01" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            URL.value.replace(regex, (full, text) => {
+                builded.value = text.split('=')[1].replace(/"/g, '')
+                return text;
+            })
+        }
+    } else {
+        // youtube
+        if (URL.value.includes("https://youtu.be/")) {
+            // if paste video current url
+            // https://youtu.be/s4ALTvJeuzI
+            builded.value = URL.value.replace("https://youtu.be/", "https://www.youtube.com/embed/")
+        }
+        // youtube
+        if (URL.value.includes("https://www.youtube.com/watch?v=")) {
+            // https://www.youtube.com/watch?v=s4ALTvJeuzI
+            builded.value = URL.value.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")
+        }
+
+        // Drive
+        if (URL.value.includes("https://drive.google.com/file/d/")) {
+            // input https://drive.google.com/file/d/1-BfqJ7CzQE5Os6WcMXvZ-zYgQ07IxxlR/view
+            // output https://drive.google.com/file/d/1-BfqJ7CzQE5Os6WcMXvZ-zYgQ07IxxlR/preview
+            const split_by_view = URL.value.split("view")
+            builded.value = split_by_view[0] + 'preview'
+        }
     }
 
-    if (URL.value.includes("https://youtu.be/")) {
-        // if paste video current url
-        // https://youtu.be/s4ALTvJeuzI
-        builded.value = URL.value.replace("https://youtu.be/", "https://www.youtube.com/embed/")
-    }
 
-    if (URL.value.includes("https://www.youtube.com/watch?v=")) {
-        // https://www.youtube.com/watch?v=s4ALTvJeuzI
-        builded.value = URL.value.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")
-    }
 }
 
 async function handleCopy() {
