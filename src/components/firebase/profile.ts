@@ -1,6 +1,6 @@
 import { getAuth } from "firebase/auth"
 import app, { firestore } from "../firebase/config.ts"
-import { type DocumentData, addDoc, doc, getDoc, getDocs, setDoc, updateDoc, collection, query, where } from 'firebase/firestore'
+import { type DocumentData, addDoc, doc, getDoc, getDocs, setDoc, updateDoc, collection, query, where, deleteDoc } from 'firebase/firestore'
 import hashLibrary from 'short-unique-id'
 
 export interface UserInfo {
@@ -9,6 +9,9 @@ export interface UserInfo {
     address: string
 }
 
+/**
+ * `uid` is email here. Means email id doc _id.
+ */
 class Profile {
     auth = getAuth(app)
     user_collection = "user"
@@ -39,6 +42,10 @@ class Profile {
             phone: data.phone,
             address: data.address
         }).then(result => { console.log(result) }).catch(err => { console.log(err) })
+    }
+    delete_user(uid: string) {
+        const docRef = doc(firestore, this.user_collection, uid)
+        return deleteDoc(docRef)
     }
 }
 
@@ -100,7 +107,7 @@ class Coin {
     }
     async update(email: string, coin: number) {
         console.log(coin);
-        
+
         // read uid before update
         const docRef = doc(firestore, this.COLLECTION, email)
         await updateDoc(docRef, { usedBy: email, coin }).catch(err => { console.log(err) })

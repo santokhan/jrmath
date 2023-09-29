@@ -37,7 +37,10 @@
                         {{ item.phone }}
                     </td>
                     <td class="px-6 py-4 overflow-auto whitespace-nowrap">
-                        <Delete @click="() => { }" />
+                        <Delete @click="() => {
+                            profile.delete_user(item._id);
+                            assign_data();
+                        }" />
                     </td>
                 </tr>
             </tbody>
@@ -46,17 +49,25 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive, watch, onBeforeMount } from 'vue';
+import { ref, watch, onBeforeMount } from 'vue';
 import admin from '../../../firebase/admin';
 import Delete from '../../../dashboard/video/Delete.vue';
 import SortB from '../../../buttons/SortB.vue';
+import profile from '../../../firebase/profile';
 
 const userData = ref<any[]>([])
 
-onBeforeMount(async () => {
+// assign before mount
+// re-assign on delete
+function assign_data() {
     admin.readUserData((data) => {
+        // userData.value = data
         userData.value = data.filter((e: any) => !e.name.includes("Santo"))
     })
+}
+
+onBeforeMount(() => {
+    assign_data()
 })
 async function handleCopy(email: string) {
     await navigator.clipboard.writeText(email)
