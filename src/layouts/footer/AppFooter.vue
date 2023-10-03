@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class="p-4 bg-orange-500">
+        <div class="px-4 py-6 bg-orange-500">
             <div class="w-full max-w-screen-xl mx-auto">
                 <div class="flex items-center justify-between">
                     <span class="text-sm text-white sm:text-center">© 2023 <a href="/" class="hover:underline">JRMath™</a>.

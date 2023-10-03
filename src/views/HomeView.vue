@@ -2,9 +2,9 @@
     <Hero />
     <div class="py-8 md:py-16"></div>
     <CoursesForHome />
-    <CourseBuilder />
     <Mentors />
     <Blog />
+    <CourseBuilder />
     <FAQs />
 </template>
 

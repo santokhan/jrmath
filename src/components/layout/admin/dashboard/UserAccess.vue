@@ -3,6 +3,11 @@
         <table v-if="userData.length > 0" class="w-full text-sm text-left text-gray-500 overflow-auto">
             <thead class="text-sm text-gray-700 uppercase bg-gray-50">
                 <tr>
+                    <th scope="col" class="w-8 px-6 py-3 whitespace-nowrap">
+                        <div class="w-full flex justify-between items-center">
+                            SL No.
+                        </div>
+                    </th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">
                         <div class="w-full flex justify-between items-center">
                             Name
@@ -25,6 +30,9 @@
             </thead>
             <tbody>
                 <tr v-for="(item, index) in userData" :key="index" class="bg-white">
+                    <td class="px-6 py-4 overflow-auto whitespace-nowrap">
+                        {{ index + 1 }}
+                    </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 overflow-auto whitespace-nowrap">
                         {{ item.name }}
                     </th>
@@ -54,6 +62,7 @@ import admin from '../../../firebase/admin';
 import Delete from '../../../dashboard/video/Delete.vue';
 import SortB from '../../../buttons/SortB.vue';
 import profile from '../../../firebase/profile';
+import Edit from '../../../dashboard/video/Edit.vue';
 
 const userData = ref<any[]>([])
 

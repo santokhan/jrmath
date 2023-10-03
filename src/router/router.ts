@@ -18,6 +18,7 @@ import sanityAPI from '../api/sanity'
 import checkUserAccess from '../components/courses/playlist/check-user-access'
 import ToolsView from '../views/ToolsView.vue'
 import BlogView from '../views/BlogView.vue'
+import DummyVideos from '../views/coureses/DummyVideos.vue'
 
 const routes_public = [
     {
@@ -59,9 +60,14 @@ const routes_public = [
         name: 'blogs',
         component: BlogView
     },
+    {
+        path: '/dummy',
+        name: 'dummy',
+        component: DummyVideos
+    },
 ]
 
-const routes_protected = [ 
+const routes_protected = [
     // Courses
     {
         path: '/courses/:course/:year/',
