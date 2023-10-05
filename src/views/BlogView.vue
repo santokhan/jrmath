@@ -34,6 +34,7 @@ import { blogs } from '../api/sanity';
 import imageUrlBuilder from '@sanity/image-url'
 import { client } from "../sanity/sanityClient";
 import CountDown from "../components/timer/CountDown.vue";
+import Clock from "../components/icons/Clock.vue";
 
 const builder = imageUrlBuilder(client)
 const blogsData = ref<any[]>([])
