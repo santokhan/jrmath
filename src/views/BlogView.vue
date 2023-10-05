@@ -20,6 +20,8 @@
                     item.title.slice(0, 32) }}
                 </h4>
                 <div class="p-4 border rounded-lg mt-6">
+                    <h5 class="font-bold text-gray-700">Description</h5>
+                    <hr class="my-3">
                     <pre class="whitespace-pre-wrap text-sm">{{ item.description }}</pre>
                 </div>
             </div>
