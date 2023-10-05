@@ -19,12 +19,7 @@
                 <h4 class="text-xl font-semibold whitespace-nowrap text-ellipsis" :title="item.title">{{
                     item.title.slice(0, 32) }}
                 </h4>
-                <p class="whitespace-pre-wrap">{{ item.description }}</p>
-                <div class="flex justify-between items-center py-2">
-                    <RouterLink :to="`blogs/${item._id}`"
-                        class="text-white bg-orange-500 font-medium rounded-lg text- sm px-4 py-2 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 focus:outline-none">
-                        Read more</RouterLink>
-                </div>
+                <pre class="whitespace-pre-wrap">{{ item.description }}</pre>
             </div>
         </div>
     </AppContainer>
