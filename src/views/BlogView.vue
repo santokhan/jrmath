@@ -8,18 +8,20 @@
                 <img :src="builder.image(item.thumbnail.asset._ref).url()" alt="c"
                     class="w-full object-cover bg-white aspect-[2/1]">
             </div>
-            <div class="relative p-4 space-y-3">
+            <div class="relative p-4">
                 <div class="flex gap-2 items-center justify-between">
                     <div class="flex gap-2 items-center">
                         <Clock />
-                        <span class="text-gray-700">{{ new Date(item.createdAt).toLocaleDateString() }}</span>
+                        <span class="text-gray-700 font-medium">{{ new Date(item.createdAt).toLocaleDateString() }}</span>
                     </div>
                     <CountDown v-if="item.expairyDate" :expiryDate="item.expairyDate" />
                 </div>
-                <h4 class="text-xl font-semibold whitespace-nowrap text-ellipsis" :title="item.title">{{
+                <h4 class="text-2xl font-semibold whitespace-nowrap text-ellipsis mt-3" :title="item.title">{{
                     item.title.slice(0, 32) }}
                 </h4>
-                <pre class="whitespace-pre-wrap">{{ item.description }}</pre>
+                <div class="p-4 border rounded-lg mt-6">
+                    <pre class="whitespace-pre-wrap text-sm">{{ item.description }}</pre>
+                </div>
             </div>
         </div>
     </AppContainer>
