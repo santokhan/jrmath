@@ -170,6 +170,19 @@ class Questions extends SanityAPI {
 }
 export const questions = new Questions()
 
-const sanityAPI = new SanityAPI()
+class DemoVideos extends SanityAPI {
+    constructor() {
+        super()
+    }
+    async get_videos(callBack: (data: any) => void) {
+        const url = `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('demo')]`
 
+        await fetch(url).then(res => res.json()).then(data => {
+            callBack(data?.result)
+        })
+    }
+}
+export const demoVideos = new DemoVideos()
+
+const sanityAPI = new SanityAPI()
 export default sanityAPI
