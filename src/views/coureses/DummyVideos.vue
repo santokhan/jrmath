@@ -53,12 +53,13 @@
     </div>
     <Teleport to="body">
         <div v-if="modalData?.googleDrive"
-            class="fixed left-0 top-0 w-full h-screen bg-black/20 z-[120] grid place-items-center">
-            <div class="relative w-full max-w-7xl" ref="videoPlayer"
-                v-if="modalData.googleDrive && modalData.googleDrive.includes('https://')">
-                <div class="hide-tooltip"></div>
-                <div class="w-full aspect-[16/9] relative rounded-xl bg-gradient-to-r from-gray-200 to-white overflow-hidden"
-                    v-html="google_drive_iframe(modalData.googleDrive)">
+            class="fixed left-0 top-0 w-full h-screen bg-black/30 z-[120] grid place-items-center">
+            <div class="px-4 w-full max-w-7xl" ref="videoPlayer">
+                <div class="relative w-full" v-if="modalData.googleDrive && modalData.googleDrive.includes('https://')">
+                    <div class="hide-tooltip"></div>
+                    <div class="w-full aspect-[16/9] relative rounded-xl bg-gradient-to-r from-gray-200 to-white overflow-hidden"
+                        v-html="google_drive_iframe(modalData.googleDrive)">
+                    </div>
                 </div>
             </div>
         </div>

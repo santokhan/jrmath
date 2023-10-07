@@ -9,6 +9,10 @@
                     <img src="../../assets/images/hero/hero-image.png" alt="hero" class="px-4">
                     <img src="../../assets/images/hero/count-card-small.png" alt="count-card.png"
                         class="absolute bottom-0 left-1/2  -translate-x-1/2 translate-y-1/2 w-10/12 block md:hidden">
+
+                    <!-- 
+                        Students Mentors Course Videos
+                     -->
                 </div>
                 <div class="lg:order-1 pt-32 md:pt-16 relative">
                     <div class="text-orange-500 uppercase font-medium">ONLINE EDUCATION</div>
