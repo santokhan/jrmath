@@ -3,16 +3,15 @@
         <div class="absolute left-0 right-0 h-full overflow-y-hidden hidden md:block">
             <BgHero />
         </div>
-        <div class="max-w-screen-xl mx-auto px-4">
+        <div class="max-w-screen-xl mx-auto px-4 relative">
             <div class="grid grid-cols-1 lg:grid-cols-2 place-items-center">
                 <div class="lg:order-2 pt-16 relative">
                     <img src="../../assets/images/hero/hero-image.png" alt="hero" class="px-4">
-                    <img src="../../assets/images/hero/count-card-small.png" alt="count-card.png"
-                        class="absolute bottom-0 left-1/2  -translate-x-1/2 translate-y-1/2 w-10/12 block md:hidden">
-
-                    <!-- 
-                        Students Mentors Course Videos
-                     -->
+                    <div class="grid lg:hidden place-items-center">
+                        <div class="w-full max-w-lg rounded-xl banner-sm">
+                            <Banner />
+                        </div>
+                    </div>
                 </div>
                 <div class="lg:order-1 pt-32 md:pt-16 relative">
                     <div class="text-orange-500 uppercase font-medium">ONLINE EDUCATION</div>
@@ -33,13 +32,30 @@
                         Get started</RouterLink>
                 </div>
             </div>
-            <img src="../../assets/images/hero/count-card.png" alt="count-card.png"
-                class="md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 md:translate-y-1/2 hidden md:block w-6/12">
+            <div class="hidden md:grid place-items-center w-full absolute bottom-0 translate-y-1/2">
+                <div class="w-full max-w-2xl rounded-xl banner">
+                    <Banner />
+                </div>
+            </div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import BgHero from './BgHero.vue'
+import BgHero from './BgHero.vue';
+import Banner from './Banner.vue';
 </script>
 
+<style scoped>
+.banner {
+    background-image: url(/images/hero/bg-hero-banner.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.banner-sm {
+    background-image: url(/images/hero/bg-hero-banner-sm.png);
+    background-position: center;
+    background-size: cover;
+}
+</style>

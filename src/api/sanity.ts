@@ -110,6 +110,14 @@ class SanityAPI {
             }
         })
     }
+    async totalUser(callBack: (data: any) => void) {
+        const url = this.build_api(`?query=*[_type in path('user-access')]`)
+        const res = await fetch(url)
+        const data = await res.json()
+        if (data) {
+            callBack(data.result)
+        }
+    }
     async readUserAccess(email: string, courseTitle: string) {
         if (!email && !courseTitle) return;
 

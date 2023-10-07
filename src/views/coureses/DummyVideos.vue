@@ -1,6 +1,20 @@
 <template>
-    <div v-if="videosRef" class="relative">
-        <AppContainer class="space-y-12">
+    <AppContainer class="space-y-12">
+        <TitleBox>
+            <Tag>Free</Tag>
+            <Heading>Demo Courses</Heading>
+        </TitleBox>
+
+        <div v-if="modalData?.googleDrive" class="px-4 w-full max-w-7xl space-y-4" ref="videoPlayer">
+            <div class="relative w-full" v-if="modalData.googleDrive && modalData.googleDrive.includes('https://')">
+                <div class="hide-tooltip"></div>
+                <div class="w-full aspect-[16/9] relative rounded-xl bg-gradient-to-r from-gray-200 to-white overflow-hidden"
+                    v-html="google_drive_iframe(modalData.googleDrive)">
+                </div>
+            </div>
+            <h4 class="text-2xl font-semibold text-start relative overflow-auto">{{ modalData.title }}</h4>
+        </div>
+        <div v-else-if="videosRef" class="relative">
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-8">
                 <button type="button" v-for="(item, index) in activeVideos" :key="index" class="space-y-2"
                     @click="modalData = item">
@@ -49,21 +63,8 @@
                     </li>
                 </ul>
             </nav>
-        </AppContainer>
-    </div>
-    <Teleport to="body">
-        <div v-if="modalData?.googleDrive"
-            class="fixed left-0 top-0 w-full h-screen bg-black/30 z-[120] grid place-items-center">
-            <div class="px-4 w-full max-w-7xl" ref="videoPlayer">
-                <div class="relative w-full" v-if="modalData.googleDrive && modalData.googleDrive.includes('https://')">
-                    <div class="hide-tooltip"></div>
-                    <div class="w-full aspect-[16/9] relative rounded-xl bg-gradient-to-r from-gray-200 to-white overflow-hidden"
-                        v-html="google_drive_iframe(modalData.googleDrive)">
-                    </div>
-                </div>
-            </div>
         </div>
-    </Teleport>
+    </AppContainer>
 </template>
 
 <script setup lang="ts">
@@ -72,6 +73,9 @@ import AppContainer from '../../components/layout/AppContainer.vue';
 import { demoVideos } from '../../api/sanity';
 import { google_drive_iframe } from '../../global/functions';
 import { onClickOutside } from '@vueuse/core';
+import Heading from '../../components/section/Heading.vue';
+import Tag from '../../components/section/Tag.vue';
+import TitleBox from '../../components/section/TitleBox.vue';
 
 const videosRef = ref<any>();
 const activeVideos = ref<any[]>([]);
