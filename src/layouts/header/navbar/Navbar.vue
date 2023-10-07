@@ -1,6 +1,6 @@
 <template>
     <nav
-        :class="[sticky ? 'sticky top-0 left-0 w-full z-[13] bg-white/80 backdrop-blur-sm h-16 drop-down' : 'border-gray-200 h-16 md:h-16 border-b relative']">
+        :class="[sticky ? 'sticky top-0 left-0 w-full z-[52] bg-white/80 backdrop-blur-sm h-16 drop-down' : 'border-gray-200 h-16 md:h-16 border-b relative']">
         <div class="h-full max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
             <JRMath />
             <div class="flex items-center md:order-2 relative">
@@ -17,7 +17,7 @@
             </div>
             <!-- Dropdown -->
             <div
-                :class="[dropdown ? 'absolute right-0 top-16 w-60 z-[12]' : 'hidden w-full h-full md:flex md:items-center md:justify-between md:w-auto md:order-1',]">
+                :class="[dropdown ? 'absolute right-0 top-16 w-60 z-[51]' : 'hidden w-full h-full md:flex md:items-center md:justify-between md:w-auto md:order-1',]">
                 <ul ref="targetNavDD"
                     class="h-full flex flex-col font-medium py-3 md:py-0 bg-white md:bg-transparent border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:border-0">
                     <li v-for="item, index in navs" :key="index" class="flex items-center h-full">
@@ -34,7 +34,7 @@
                             ]">{{ item.name }}<i class="fa fa-angle-down group-hover:rotate-180"></i></div>
 
                             <div
-                                class="w-full group-hover:block hidden md:absolute top-full z-[12] bg-white md:w-40 md:shadow-lg md:py-2">
+                                class="w-full group-hover:block hidden md:absolute top-full z-[51] bg-white md:w-40 md:shadow-lg md:py-2">
                                 <!-- Hide dropdown on small screen when user navigate from dropdown -->
                                 <div class="hidden md:block">
                                     <NestedDropdown :nav="item" />

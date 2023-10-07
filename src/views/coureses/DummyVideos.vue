@@ -1,14 +1,16 @@
 <template>
-    <div v-if="videosRef">
+    <div v-if="videosRef" class="relative">
         <AppContainer class="space-y-12">
-            <div class="grid grid-cols-3 gap-8">
-                <button type="button" v-for="(item, index) in activeVideos" :key="index" class="space-y-2 relative"
+            <div class="grid grid-cols-3 gap-x-8 gap-y-12">
+                <button type="button" v-for="(item, index) in activeVideos" :key="index" class="space-y-2"
                     @click="modalData = item">
-                    <div class="absolute left-0 top-0 w-full h-full bg-white z-50 opacity-0"></div>
-                    <div class="mt-8 relative" v-if="item.googleDrive && item.googleDrive.includes('https://')">
-                        <div class="hide-tooltip"></div>
-                        <div class="w-full aspect-[16/9] relative rounded-xl bg-gradient-to-r from-gray-200 to-white overflow-hidden"
-                            v-html="google_drive_iframe(item.googleDrive)">
+                    <div class="relative border">
+                        <div class="absolute left-0 top-0 w-full h-full bg-white z-50 opacity-0"></div>
+                        <div class="relative" v-if="item.googleDrive && item.googleDrive.includes('https://')">
+                            <!-- <div class="hide-tooltip"></div> -->
+                            <div class="w-full aspect-[16/9] relative rounded-xl bg-gradient-to-r from-gray-200 to-white overflow-hidden"
+                                v-html="google_drive_iframe(item.googleDrive)">
+                            </div>
                         </div>
                     </div>
                     <h4 class="text-xl font-semibold text-start relative">{{ item._id }}</h4>
@@ -50,7 +52,8 @@
         </AppContainer>
     </div>
     <Teleport to="body">
-        <div v-if="modalData?.googleDrive" class="fixed left-0 top-0 w-full h-screen bg-black/20 z-[120] grid place-items-center">
+        <div v-if="modalData?.googleDrive"
+            class="fixed left-0 top-0 w-full h-screen bg-black/20 z-[120] grid place-items-center">
             <div class="relative w-full max-w-7xl" ref="videoPlayer"
                 v-if="modalData.googleDrive && modalData.googleDrive.includes('https://')">
                 <div class="hide-tooltip"></div>
