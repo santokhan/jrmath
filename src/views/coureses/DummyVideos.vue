@@ -1,7 +1,7 @@
 <template>
     <div v-if="videosRef" class="relative">
         <AppContainer class="space-y-12">
-            <div class="grid grid-cols-3 gap-x-8 gap-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-8">
                 <button type="button" v-for="(item, index) in activeVideos" :key="index" class="space-y-2"
                     @click="modalData = item">
                     <div class="relative">
@@ -13,7 +13,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="text-lg font-semibold text-start relative overflow-auto">{{ item.title }}</h4>
+                    <h4 class="text font-semibold text-start relative overflow-auto">{{ item.title }}</h4>
                 </button>
             </div>
             <nav class="flex justify-center">
