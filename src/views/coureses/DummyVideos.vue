@@ -4,7 +4,7 @@
             <div class="grid grid-cols-3 gap-x-8 gap-y-12">
                 <button type="button" v-for="(item, index) in activeVideos" :key="index" class="space-y-2"
                     @click="modalData = item">
-                    <div class="relative border">
+                    <div class="relative">
                         <div class="absolute left-0 top-0 w-full h-full bg-white z-50 opacity-0"></div>
                         <div class="relative" v-if="item.googleDrive && item.googleDrive.includes('https://')">
                             <!-- <div class="hide-tooltip"></div> -->
@@ -13,7 +13,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="text-xl font-semibold text-start relative">{{ item.title }}</h4>
+                    <h4 class="text-lg font-semibold text-start relative overflow-auto">{{ item.title }}</h4>
                 </button>
             </div>
             <nav class="flex justify-center">
