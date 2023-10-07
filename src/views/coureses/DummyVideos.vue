@@ -13,7 +13,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="text-xl font-semibold text-start relative">{{ item._id }}</h4>
+                    <h4 class="text-xl font-semibold text-start relative">{{ item.title }}</h4>
                 </button>
             </div>
             <nav class="flex justify-center">
