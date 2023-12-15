@@ -2,11 +2,11 @@
     <NotFound v-if="!courseObject">Course not found on server</NotFound>
     <AppContainer v-else>
         <div class="flex flex-wrap">
-            <CourseHeader :data="courseObject" :authorized="authorized"/>
+            <CourseHeader :data="courseObject" :authorized="authorized" />
             <Overview />
         </div>
         <CourseInstructions :iframeSrc="courseObject.coursePreview" />
-        <PlayListWIthHeader :courseId="courseObject._id" :courseTitle="courseObject.title" :authorized="authorized"/>
+        <PlayListWIthHeader :courseId="courseObject._id" :courseTitle="courseObject.title" :authorized="authorized" />
         <WhatYouWillLearn :list="courseObject.whatYouWillLearn || []" />
     </AppContainer>
 </template>
@@ -30,12 +30,14 @@ import { type CourseType } from '../../components/courses/types.course'
 import NotFound from '../../components/NotFound.vue';
 import { valid } from '../../global/functions';
 import checkUserAccess from '../../components/courses/playlist/check-user-access';
+import { getCourseVisibilityById } from '../../sanity/sanityClient';
 
 const route = useRoute()
 const { course, year, id } = route.params
 const rq = reactive({
     course: valid(course),
-    year: parseInt(valid(year))
+    year: parseInt(valid(year)),
+    id: valid(id)
 })
 
 // Course details object of individual course
@@ -50,9 +52,17 @@ if (typeof id === 'string') {
 
 // Check user access using user email and course title
 // By default authorized will be false
-const authorized = ref<boolean>(false)
+const authorized = ref<boolean>(false);
 
 async function checkAccess(courseTitle: string) {
+    if (rq.id) {
+        const visibility = await getCourseVisibilityById(rq.id);
+        if (visibility === 'public') {
+            authorized.value = true;
+            return;
+        }
+    }
+    // Check user access for visibility 'private'
     const access = await checkUserAccess(courseTitle)
     if (access) {
         authorized.value = true
