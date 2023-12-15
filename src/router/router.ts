@@ -19,6 +19,8 @@ import checkUserAccess from '../components/courses/playlist/check-user-access'
 import ToolsView from '../views/ToolsView.vue'
 import BlogView from '../views/BlogView.vue'
 import DummyVideos from '../views/coureses/DummyVideos.vue'
+import { getCourseVisibilityById } from '../sanity/sanityClient'
+import { valid } from '../global/functions'
 
 const routes_public = [
     {
@@ -86,37 +88,50 @@ const routes_protected = [
         path: '/playlist/:course/:year/:courseId/:videoId',
         name: "playlist",
         component: PlayListView,
-        meta: { requiresAuth: false } // It will be true in production mode
+        meta: {
+            requiresAuth: true, // It will be true in production mode
+            courseAccess: true, // It will be true in production mode
+        }
     },
     // Authorization
     {
         path: '/profile',
         name: "profile",
         component: ProfileView,
-        meta: { requiresAuth: true }
+        meta: {
+            requiresAuth: true,
+        }
     },
     {
         path: '/signin',
         name: "signin",
         component: SignInView,
-        meta: { requiresAuth: false }
+        meta: {
+            requiresAuth: false,
+        }
     },
     // Admin
     {
         path: '/admin',
         name: "admin",
         component: AdminView,
-        meta: { requiresAuth: true }
+        meta: {
+            requiresAuth: true,
+        }
     },
     {
         path: '/update-video/:id',
         component: UpdateFormView,
-        meta: { requiresAuth: true }
+        meta: {
+            requiresAuth: true,
+        }
     },
     {
         path: '/referral/:id',
         component: ReferralView,
-        meta: { requiresAuth: true }
+        meta: {
+            requiresAuth: true,
+        }
     },
 ]
 
@@ -129,8 +144,8 @@ export const router = createRouter({
 router.beforeEach(async (to, from) => {
     // routes with `meta: { requiresAuth: true }` will check for
     // the users, others won't
-    if (to.meta.requiresAuth) {
-        const currentUser = await getCurrentUser()
+    if (to.meta.requiresAuth === true) {
+        const currentUser = await getCurrentUser();
         // if the user is not logged in, redirect to the login page
         if (!currentUser) {
             return {
@@ -143,23 +158,26 @@ router.beforeEach(async (to, from) => {
                 },
             }
         }
-    }
 
-    // check access after checking require auth
-    if (to.name === 'playlist') {
-        const courseId = to.params.courseId
-        const validCourseId = typeof courseId === 'string' ? courseId : courseId[0]
+        if (to.meta.courseAccess === true) {
+            const courseId = to.params.courseId; // must have courseId on URL path
 
-        const data = await sanityAPI.getCourseTitle2(validCourseId)
-        const courseTitle = data[0].title
-        if (!courseTitle) return { name: "signin" };
-        // check access
-        const access = await checkUserAccess(courseTitle)
-        if (!access) {
-            console.log(courseTitle);
-            // user trying to enter on this router directly using url
-            // user can not find this route if don't have access
-            return { name: "payment" }
+            if (!courseId) throw new Error("courseId is not defined");
+
+            const visibility = await getCourseVisibilityById(valid(courseId));
+            if (visibility === 'public') return; // if course is public then no need to check access
+
+            const data = await sanityAPI.getCourseTitle2(valid(courseId));
+            const courseTitle = data[0].title
+            if (!courseTitle) return { name: "signin" };
+            // check access
+            const access = await checkUserAccess(courseTitle);
+            if (!access) {
+                console.log(courseTitle);
+                // user trying to enter on this router directly using url
+                // user can not find this route if don't have access
+                return { name: "payment" };
+            }
         }
     }
 })
