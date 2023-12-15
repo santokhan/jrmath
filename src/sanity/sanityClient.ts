@@ -28,3 +28,12 @@ export async function updateDocumentTitle(_id: string, title: string) {
     const result = client.patch(_id).set({ title })
     return result
 }
+
+// uses GROQ to query content: https://www.sanity.io/docs/groq
+export async function getCourseVisibilityById(_id: string): Promise<string> {
+    const slug = `{visibility}`
+    const q = `*[_type == "courses"  && _id == "${_id}"]${slug}`; // output *[_type == "courses"  && _id == "046aeaf4-43b0-4c5f-aab3-cead701ce7a4"]{visibility}
+    const visibility = await client.fetch(q);
+    // console.log(visibility);
+    return visibility[0].visibility || 'private';
+}
