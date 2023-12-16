@@ -1,3 +1,5 @@
+import { client } from "../sanity/sanityClient"
+
 class SanityAPI {
     URL = import.meta.env.VITE_SANITY_API
     build_api(query: string) { return this.URL + query }
@@ -133,6 +135,26 @@ class SanityAPI {
         } else {
             return false;
         }
+    }
+    async getCourseByTitle(university: string, year: number, title: string): Promise<any[]> {
+        if (!title && !year && !university) return [];
+        // *[_type == "courses" && university == "nuh" && year == 3 && title == "Numerical Analysis"]
+        const q = `*[_type == "courses" && university == "${university}" && year == ${year} && title == "${title}"]`;
+        // console.log(q);
+        const course = await client.fetch(q);
+        return course || [];
+    }
+    async getCourseAccessByEmail(email: string): Promise<any[]> {
+        if (!email) return [];
+
+        const q = `*[_type == "user-access" && email == "${email}"]`;
+        const purchasedCourses = await client.fetch(q);
+        return purchasedCourses || [];
+    }
+    async getAllFreeCourses(): Promise<any[]> {
+        const q = `*[_type == "courses" && visibility == "public"]`;
+        const freeCourses = await client.fetch(q);
+        return freeCourses || [];
     }
 }
 
