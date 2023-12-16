@@ -1,7 +1,6 @@
-// sanity.js
 import { createClient } from '@sanity/client'
-// Import using ESM URL imports in environments that supports it:
-// import {createClient} from 'https://esm.sh/@sanity/client'
+import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import imageUrlBuilder from '@sanity/image-url'
 
 export const client = createClient({
     projectId: import.meta.env.VITE_SANITY_ID,
@@ -19,11 +18,13 @@ export async function getPosts() {
 
 type Post = any
 
+// uses GROQ to query content: https://www.sanity.io/docs/groq
 export async function createPost(post: Post) {
     const result = client.create(post)
     return result
 }
 
+// uses GROQ to query content: https://www.sanity.io/docs/groq
 export async function updateDocumentTitle(_id: string, title: string) {
     const result = client.patch(_id).set({ title })
     return result
@@ -36,4 +37,13 @@ export async function getCourseVisibilityById(_id: string): Promise<string> {
     const visibility = await client.fetch(q);
     // console.log(visibility);
     return visibility[0].visibility || 'private';
+}
+
+// Image URL builder
+export const builder = imageUrlBuilder(client);
+
+export function urlFor(source: SanityImageSource) {
+    const url = builder.image(source);
+    // console.log(url.url());
+    return url;
 }
