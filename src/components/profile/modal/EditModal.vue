@@ -67,12 +67,16 @@ const formData = reactive<UserInfo>({
 
 const router = useRouter()
 
-function handleSubmit(e: any) {
+function handleSubmit(e: Event) {
     e.preventDefault();
+
     if (email.value) {
-        profile.addUser(formData, email.value)
-        props.hideModal()
+        profile.addUser(formData, email.value);
+        props.hideModal();
         props.readUserData();
+        router.push({ path: '/profile' })
+    } else {
+        throw new Error("Can not read Email.");
     }
 }
 </script>
