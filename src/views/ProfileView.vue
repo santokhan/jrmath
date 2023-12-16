@@ -1,72 +1,72 @@
 <template>
-    <section>
-        <AppContainer>
-            <TitleBox>
-                <Tag>User Profile</Tag>
-                <Heading>Welcome to profile page</Heading>
-            </TitleBox>
-            <section class="max-w-xl mx-auto bg-white rounded-2xl p-6 mt-4 shadow-lg">
-                <div class="mt-6 w-fit mx-auto">
-                    <img src="../assets/images/profile/user.png" class="rounded-full w-40 h-40 border bg-gray-50"
-                        alt="profile picture" srcset="">
-                </div>
+    <AppContainer>
+        <TitleBox>
+            <Tag>User Profile</Tag>
+            <Heading>Welcome to profile page</Heading>
+        </TitleBox>
+        <section class="max-w-xl mx-auto bg-white rounded-2xl p-6 mt-4 shadow-lg">
+            <div class="mt-6 w-fit mx-auto">
+                <img src="../assets/images/profile/user.png" class="rounded-full w-40 h-40 border bg-gray-50" alt="profile">
+            </div>
 
+            <div class="mt-8">
+                <h2 class="text-gray-800 font-semibold text-2xl tracking-wide"></h2>
                 <div class="mt-8">
-                    <h2 class="text-gray-800 font-semibold text-2xl tracking-wide"></h2>
-                    <div class="mt-8">
-                        <div class="font-semibold text-lg text-gray-800">Your Details</div>
-                        <table v-if="userInfo" class="w-full text-gray-700 mt-1">
-                            <tbody>
-                                <tr>
-                                    <td class="py-1.5 whitespace-nowrap" width="32%">Name</td>
-                                    <td class="py-1.5 col-span-2">{{ userDetails.name || '...' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1.5 whitespace-nowrap">Phone</td>
-                                    <td class="py-1.5 col-span-2">
-                                        <a :href="`tel:${userDetails.phone}`" class="hover:underline">
-                                            {{ userDetails.phone }}
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1.5 whitespace-nowrap">Email</td>
-                                    <td class="py-1.5 col-span-2">
-                                        <a :href="`mailto:${userInfo.email}`" class="hover:underline">
-                                            {{ userInfo.email || '...' }}
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1.5 whitespace-nowrap">Course Access</td>
-                                    <td class="py-1.5 col-span-2">{{ userInfo.access || '...' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1.5 whitespace-nowrap">Coin</td>
-                                    <td class="py-1.5 col-span-2">{{ userInfo.coin || '...' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1.5 whitespace-nowrap">User Status</td>
-                                    <td class="py-1.5 col-span-2">
-                                        <div class="col-span-2 flex items-center gap-1 text-green-500 text-sm">
-                                            <span class="block w-1 h-1 bg-green-400 rounded-full"></span>Active
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="mt-8 flex items-center gap-4">
-                        <Logout :handleLogout="handleLogout" />
-                        <button type="button" @click="editProfile"
-                            class="flex gap-2 text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm pl-3 py-2.5 pr-4 flex items-center">
-                            <i class="fa fa-edit"></i> Edit Profile
-                        </button>
-                    </div>
+                    <div class="font-semibold text-lg text-gray-800">Your Details</div>
+                    <table v-if="userInfo" class="w-full text-gray-700 mt-1">
+                        <tbody>
+                            <tr>
+                                <td class="py-1.5 whitespace-nowrap" width="32%">Name</td>
+                                <td class="py-1.5 col-span-2">{{ userDetails.name || '...' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1.5 whitespace-nowrap">Phone</td>
+                                <td class="py-1.5 col-span-2">
+                                    <a :href="`tel:${userDetails.phone}`" class="hover:underline">
+                                        {{ userDetails.phone }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1.5 whitespace-nowrap">Email</td>
+                                <td class="py-1.5 col-span-2">
+                                    <a :href="`mailto:${userInfo.email}`" class="hover:underline">
+                                        {{ userInfo.email || '...' }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1.5 whitespace-nowrap">Course Access</td>
+                                <td class="py-1.5 col-span-2">{{ userInfo.access || '...' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1.5 whitespace-nowrap">Coin</td>
+                                <td class="py-1.5 col-span-2">{{ userInfo.coin || '...' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1.5 whitespace-nowrap">User Status</td>
+                                <td class="py-1.5 col-span-2">
+                                    <div class="col-span-2 flex items-center gap-1 text-green-500 text-sm">
+                                        <span class="block w-1 h-1 bg-green-400 rounded-full"></span>Active
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </section>
-        </AppContainer>
-    </section>
+                <div class="mt-8 flex items-center gap-4">
+                    <Logout :handleLogout="handleLogout" />
+                    <button type="button" @click="editProfile"
+                        class="flex gap-2 text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm pl-3 py-2.5 pr-4 flex items-center">
+                        <i class="fa fa-edit"></i> Edit Profile
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <FreeCourses />
+        <PurchasedCourses v-if="userInfo.email" :email="userInfo.email" />
+    </AppContainer>
 
     <AddUserInfo v-if="modalOpen && !userDetails.name" :hideModal="() => { modalOpen = !modalOpen }" />
     <EditModal v-if="openEdit" :hideModal="() => { openEdit = !openEdit }" :userDetails="userDetails"
@@ -87,6 +87,8 @@ import AddUserInfo from '../components/profile/modal/AddUserInfo.vue'
 import EditModal from '../components/profile/modal/EditModal.vue'
 import profile, { coin } from '../components/firebase/profile';
 import { getCurrentUser } from 'vuefire';
+import FreeCourses from '../ui/profile-view/FreeCourses.vue';
+import PurchasedCourses from '../ui/profile-view/PurchasedCourses.vue';
 
 const router = useRouter()
 const userInfo = ref<any>({})
