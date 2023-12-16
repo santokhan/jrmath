@@ -1,5 +1,5 @@
 <template>
-    <section v-if="coursesData.length" class="prose mt-8">
+    <section v-if="coursesData.length > 0" class="prose mt-8">
         <TitleBox>
             <Heading class="text-start">Purchased courses</Heading>
         </TitleBox>
@@ -25,12 +25,13 @@ const coursesData = ref<any[]>([]);
 onMounted(async () => {
     if (props.email) {
         const purchased = await sanityAPI.getCourseAccessByEmail(props.email);
-        if (!purchased) return;
+        if (!purchased.length) return;
         coursesAccess.value = purchased;
         // console.log(purchased);
         purchased.forEach(async (e: any) => {
             const course = await sanityAPI.getCourseByTitle(e.university, e.year, e.courseTitle);
             // console.log(course[0]);
+            if (!course.length) return;
             coursesData.value.push(course[0]);
         })
     }
