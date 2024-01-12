@@ -106,7 +106,7 @@ function handleVideoPlay(index: number) {
 async function otpPlayBackInfo(vdoChiperId: string) {
     // https://jrmath.goxupport.com/?vdoChiperId=4595b6ed1298443e9dd97dee7e407e66 
     // http://localhost/jrmath/?vdoChiperId=4595b6ed1298443e9dd97dee7e407e66
-    const url = `https://jrmath.goxupport.com/?vdoChiperId=${vdoChiperId}`
+    const url = `${import.meta.env.VDO_CHIPER_API}?vdoChiperId=${vdoChiperId}`
     await fetch(url).then(res => res.json()).then((data) => {
         // console.log(data)
         otp.otp = data.otp
