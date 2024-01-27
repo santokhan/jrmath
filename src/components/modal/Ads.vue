@@ -34,14 +34,18 @@
                                         </path>
                                     </svg>
                                 </button>
-                                <DialogTitle as="h3" class="text-[2.5rem] font-bold leading-6 text-orange-500 mt-8">
+                                <DialogTitle as="h3"
+                                    class="text-[2.25rem] leading-[1.1] font-bold leading-6 text-orange-500 mt-7">
                                     {{ ads.title }}
                                 </DialogTitle>
                                 <div class="">
-                                    <p
+                                    <div
                                         class="text-white text-lg font-bold mt-8 mb-6 px-1 max-h-[7rem] border+ overflow-hidden">
-                                        {{ ads.slogun }}
-                                    </p>
+                                        <ul class="text-start+">
+                                            <li v-for="(item, index) in splitSlogun(ads.slogun)" :key="index">{{ item }}
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <a :href="ads.link"
                                         class="w-full flex justify-center rounded-md border border-transparent bg-white px-4 py-3 text-sm font-bold text-orange-500 hover:bg-gray-100">
                                         ভর্তি হতে এখানে ক্লিক করুন
@@ -69,7 +73,11 @@ const ads = reactive<{ title: string, slogun: string, link: string }>({
     title: '45 BCS',
     slogun: 'অর্নাস ৪র্থ বর্ষের গণিত বিভাগের সকল কোর্সে ভর্তি চলছে',
     link: "/courses/nuh/4"
-})
+});
+
+function splitSlogun(slogun: string) {
+    return ads.slogun.split(/\n/g)
+}
 
 onMounted(async () => {
     const adsContent = await client.fetch(`*[_type in path("ads")][0]`);
