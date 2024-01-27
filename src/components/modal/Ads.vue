@@ -42,10 +42,10 @@
                                         class="text-white text-lg font-bold mt-8 mb-6 px-1 max-h-[7rem] border+ overflow-hidden">
                                         {{ ads.slogun }}
                                     </p>
-                                    <RouterLink :to="ads.link"
+                                    <a :href="ads.link"
                                         class="w-full flex justify-center rounded-md border border-transparent bg-white px-4 py-3 text-sm font-bold text-orange-500 hover:bg-gray-100">
                                         ভর্তি হতে এখানে ক্লিক করুন
-                                    </RouterLink>
+                                    </a>
                                 </div>
                             </div>
                         </DialogPanel>
