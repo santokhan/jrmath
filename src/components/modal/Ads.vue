@@ -5,7 +5,7 @@
             Open dialog
         </button>
     </div> -->
-    <TransitionRoot :appear="true" :show="isOpen" as="template">
+    <TransitionRoot :appear="loading === false" :show="isOpen" as="template">
         <Dialog as="div" @close="closeModal" class="relative z-10">
             <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
                 leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
@@ -42,7 +42,7 @@
                                         class="text-white text-lg font-bold mt-8 mb-6 px-1 max-h-[7rem] border+ overflow-hidden">
                                         {{ ads.slogun }}
                                     </p>
-                                    <RouterLink to="/courses/nuh/4"
+                                    <RouterLink :to="ads.link"
                                         class="w-full flex justify-center rounded-md border border-transparent bg-white px-4 py-3 text-sm font-bold text-orange-500 hover:bg-gray-100">
                                         ভর্তি হতে এখানে ক্লিক করুন
                                     </RouterLink>
@@ -64,17 +64,21 @@ import adsImage from '../../assets/images/ads/ads-main.png'
 import { client } from '../../sanity/sanityClient';
 
 const isOpen = ref<boolean>(true);
-const ads = reactive<{ title: string, slogun: string }>({
-    title: '46 BCS',
-    slogun: 'অর্নাস ৪র্থ বর্ষের গণিত বিভাগের সকল কোর্সে ভর্তি চলছে'
+const loading = ref<boolean>(true);
+const ads = reactive<{ title: string, slogun: string, link: string }>({
+    title: '45 BCS',
+    slogun: 'অর্নাস ৪র্থ বর্ষের গণিত বিভাগের সকল কোর্সে ভর্তি চলছে',
+    link: "/courses/nuh/4"
 })
 
 onMounted(async () => {
-    const adsContent = await client.fetch(`*[_type in path("ads")]`);
-    if (adsContent.title && adsContent.slogun) {
+    const adsContent = await client.fetch(`*[_type in path("ads")][0]`);
+    if (adsContent.title) {
         ads.title = adsContent.title;
-        ads.slogun = adsContent.slogun;
+        ads.slogun = adsContent.description;
+        ads.link = adsContent.link;
     }
+    loading.value = false;
 })
 
 function closeModal() {
