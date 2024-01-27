@@ -6,6 +6,7 @@
     <Blog />
     <CourseBuilder />
     <FAQs />
+    <Ads />
 </template>
 
 <script setup lang="ts">
@@ -15,5 +16,6 @@ import Blog from '../components/layout/blog/Blog.vue';
 import CourseBuilder from '../components/layout/course-builder/CourseBuilder.vue';
 import FAQs from '../components/layout/faqs/FAQs.vue';
 import CoursesForHome from '../components/layout/course/CoursesForHome.vue';
+import Ads from '../components/modal/Ads.vue';
 </script>
 

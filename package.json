@@ -14,6 +14,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@headlessui/vue": "^1.7.17",
     "@sanity/client": "^6.4.12",
     "@sanity/image-url": "^1.0.2",
     "@vueuse/core": "^10.4.1",
