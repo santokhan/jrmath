@@ -19,11 +19,13 @@
                         leave-to="opacity-0 scale-95">
                         <DialogPanel
                             class="w-full max-w-xs transform overflow-hidden rounded-2xl text-left align-middle shadow-xl transition-all bg-orange-500 text-center">
-                            <img :src="adsImage" alt="ads" class="object-contain">
+                            <RouterLink :to="ads.link || ''">
+                                <img :src="ads.image" alt="ads" class="object-contain">
+                            </RouterLink>
                             <div class="absolute left-0 top-0 h-full w-full flex flex-col justify-between p-6">
                                 <button type="button" @click="closeModal" :class="[
                                     'w-6 h-6 absolute right-4 top-4 bg-white',
-                                    'text-orange-500 hover:text-orange-700 font-medium rounded-full focus:outline-none'
+                                    'text-orange-500 hover:text-orange-700 font-medium rounded-full focus:outline-none bg-white border-2 border-white'
                                 ]">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24"
                                         fill="none">
@@ -35,10 +37,10 @@
                                     </svg>
                                 </button>
                                 <DialogTitle as="h3"
-                                    class="text-[2.25rem] leading-[1.1] font-bold leading-6 text-orange-500 mt-7">
+                                    class="text-[2.25rem] leading-[1.1] font-bold leading-6 text-orange-500 mt-7 hidden">
                                     {{ ads.title }}
                                 </DialogTitle>
-                                <div class="">
+                                <div class="hidden">
                                     <div
                                         class="text-white text-lg font-bold mt-8 mb-6 px-1 max-h-[7rem] border+ overflow-hidden">
                                         <ul class="text-start+">
@@ -65,14 +67,15 @@ import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } fro
 import { ref, onMounted, reactive } from 'vue';
 import Button from '../access/Button.vue';
 import adsImage from '../../assets/images/ads/ads-main.png'
-import { client } from '../../sanity/sanityClient';
+import { client, urlFor } from '../../sanity/sanityClient';
 
 const isOpen = ref<boolean>(true);
 const loading = ref<boolean>(true);
-const ads = reactive<{ title: string, slogun: string, link: string }>({
+const ads = reactive<{ title: string, slogun: string, link: string, image: string }>({
+    image: "",
     title: '45 BCS',
     slogun: 'অর্নাস ৪র্থ বর্ষের গণিত বিভাগের সকল কোর্সে ভর্তি চলছে',
-    link: "/courses/nuh/4"
+    link: "/courses/nuh/4",
 });
 
 function splitSlogun(slogun: string) {
@@ -81,12 +84,14 @@ function splitSlogun(slogun: string) {
 
 onMounted(async () => {
     const adsContent = await client.fetch(`*[_type in path("ads")][0]`);
-    if (adsContent.title) {
+    if (adsContent.image) {
+        ads.image = urlFor(adsContent.image).url();
+        ads.link = adsContent.link;
         ads.title = adsContent.title;
         ads.slogun = adsContent.description;
-        ads.link = adsContent.link;
+
+        loading.value = false;
     }
-    loading.value = false;
 })
 
 function closeModal() {
