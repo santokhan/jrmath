@@ -19,7 +19,7 @@
                         leave-to="opacity-0 scale-95">
                         <DialogPanel
                             class="w-full max-w-xs transform overflow-hidden rounded-2xl text-left align-middle shadow-xl transition-all bg-orange-500 text-center">
-                            <RouterLink :to="ads.link || ''">
+                            <RouterLink v-if="ads.image" :to="ads.link || ''">
                                 <img :src="ads.image" alt="ads" class="object-contain">
                             </RouterLink>
                             <div class="absolute left-0 top-0 h-full w-full flex flex-col justify-between p-6">
