@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { client } from '../../sanity/sanityClient';
 
-const title = ref<string[]>([]);
+const title = ref<string>("");
 
 onMounted(async () => {
     const data = await client.fetch(`*[_type in path("news-ticker")][0]`);
@@ -13,7 +13,7 @@ onMounted(async () => {
 <template>
     <div v-if="title" class="overflow-hidden">
         <div class="news-ticker w-full">
-            <h3 class="news-item text-xl">{{ title }}</h3>
+            <h3 class="news-item text-xl text-orange-500 font-semibold">{{ title }}</h3>
         </div>
     </div>
 </template>
