@@ -12,7 +12,6 @@
         </AppContainer>
     </section>
     <NotFound v-else>This course was not added in database.</NotFound>
-    <NewsTicker />
 </template>
 
 <script setup lang="ts">
@@ -29,7 +28,6 @@ import sanityAPI from '../../../api/sanity';
 import { ref } from 'vue'
 import NotFound from '../../NotFound.vue';
 import CCard from './element/CCard.vue';
-import NewsTicker from '../../news-ticker/NewsTicker.vue';
 
 const coursesData = ref<any[]>([])
 

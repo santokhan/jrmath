@@ -1,4 +1,5 @@
 <template>
+    <NewsTicker />
     <Hero />
     <div class="py-8 md:py-16"></div>
     <CoursesForHome />
@@ -17,5 +18,6 @@ import CourseBuilder from '../components/layout/course-builder/CourseBuilder.vue
 import FAQs from '../components/layout/faqs/FAQs.vue';
 import CoursesForHome from '../components/layout/course/CoursesForHome.vue';
 import Ads from '../components/modal/Ads.vue';
+import NewsTicker from '../components/news-ticker/NewsTicker.vue';
 </script>
 

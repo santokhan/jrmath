@@ -11,7 +11,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div v-if="title" class="max-w-screen-xl mx-auto overflow-hidden bg-orange-50">
+    <div v-if="title" class="overflow-hidden">
         <div class="news-ticker w-full">
             <h3 class="news-item text-xl">{{ title }}</h3>
         </div>
