@@ -20,6 +20,15 @@ const navs = [
                     { name: "4th year", to: "/courses/duac/4" },
                 ]
             },
+            {
+                name: "Job Preparation",
+                links: [
+                    { name: "NTRCA School Preli", to: "/courses/job-preparation/school-preli" },
+                    { name: "NTRCA School Written", to: "/courses/job-preparation/school-written" },
+                    { name: "NTRCA College Preli", to: "/courses/job-preparation/college-preli" },
+                    { name: "NTRCA College Written", to: "/courses/job-preparation/college-written" },
+                ]
+            },
         ]
     },
     { name: "question bank", to: "/question-bank" },

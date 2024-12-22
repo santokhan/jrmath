@@ -3,7 +3,7 @@
         <button type="button" class="w-full flex justify-between items-center font-medium px-4 py-2 hover:text-orange-500">
             {{ ddItem.name }} <i class="fa fa-angle-right text-base rotate-90 md:rotate-0 rotate-flip"></i></button>
 
-        <div class="md:absolute left-full top-0 bg-white hidden w-full md:w-40 md:shadow-lg z-[15] md:py-2 dropdown">
+        <div class="md:absolute left-full top-0 bg-white hidden w-full md:w-56 md:shadow-lg z-[15] md:py-2 dropdown">
             <RouterLink @click="props.hideDropdown" v-for="(link, linkIndex) in ddItem.links" :key="linkIndex" :to="link.to" :class="[
                 link.to === route.path ? 'block text-white bg-orange-500 md:bg-transparent md:text-orange-500' :
                     'block text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500',

@@ -34,7 +34,7 @@
                             ]">{{ item.name }}<i class="fa fa-angle-down group-hover:rotate-180"></i></div>
 
                             <div
-                                class="w-full group-hover:block hidden md:absolute top-full z-[51] bg-white md:w-40 md:shadow-lg md:py-2">
+                                class="w-full group-hover:block hidden md:absolute top-full z-[51] bg-white md:w-48 md:shadow-lg md:py-2">
                                 <!-- Hide dropdown on small screen when user navigate from dropdown -->
                                 <div class="hidden md:block">
                                     <NestedDropdown :nav="item" />
