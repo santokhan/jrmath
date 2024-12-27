@@ -39,7 +39,7 @@ class SanityAPI {
             callBack(data?.result)
         })
     }
-    async getCourses(university: string, year: number, callBack: (data: any) => void) {
+    async getCourses(university: string, year: number | string, callBack: (data: any) => void) {
         if (!university && !year) return;
 
         // ✅ It will show error because of `&&`. Use `%26%26` instead of `&&`
@@ -55,8 +55,14 @@ class SanityAPI {
         // The `"courses"` is collection on Sanity
         // ✅ Copy URL from Sanity Vision👁 then modify it till then it failed
         // ✅ Must have to use coutation on GROQ string query parameter. Example `'${university}'`
-        const url = `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('courses') %26%26 university == '${university}' %26%26 year == ${year}]` // ✅ Output `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('courses') %26%26 university == 'nuh' %26%26 year Output 
-
+        let url = `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('courses') %26%26 university == '${university}'`;
+        // ✅ Output `https://fxso6ppi.api.sanity.io/v2021-03-25/data/query/production?query=*[_type in path('courses') %26%26 university == 'nuh' %26%26 year == 3]` 
+        if (university === 'job-preparation') {
+            url += ` %26%26 class == '${year}'`
+        } else {
+            url += ` %26%26 year == ${year}`
+        }
+        url += `]`
         await fetch(url).then(res => res.json()).then(data => {
             callBack(data?.result)
         })

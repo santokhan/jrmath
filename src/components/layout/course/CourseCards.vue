@@ -49,9 +49,13 @@ const params = reactive<{ course: string, year: string }>({
  */
 function readCourseData(course: string, year: string) {
     if (course && year) {
-        sanityAPI.getCourses(course, parseInt(year), (data) => {
-            coursesData.value = data
-        })
+        sanityAPI.getCourses(
+            course,
+            // parseInt(year),
+            year,
+            (data) => {
+                coursesData.value = data
+            })
     }
 }
 readCourseData(params.course, params.year)
@@ -66,4 +70,3 @@ watch(() => route.params, () => {
     }
 })
 </script>
-

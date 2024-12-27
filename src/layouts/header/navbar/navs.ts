@@ -23,10 +23,10 @@ const navs = [
             {
                 name: "Job Preparation",
                 links: [
-                    { name: "NTRCA School Preli", to: "/courses/job-preparation/school-preli" },
-                    { name: "NTRCA School Written", to: "/courses/job-preparation/school-written" },
-                    { name: "NTRCA College Preli", to: "/courses/job-preparation/college-preli" },
-                    { name: "NTRCA College Written", to: "/courses/job-preparation/college-written" },
+                    { name: "NTRCA School Preli", to: "/courses/job-preparation/ntrca-school-preli" },
+                    { name: "NTRCA School Written", to: "/courses/job-preparation/ntrca-school-written" },
+                    { name: "NTRCA College Preli", to: "/courses/job-preparation/ntrca-college-preli" },
+                    { name: "NTRCA College Written", to: "/courses/job-preparation/ntrca-college-written" },
                 ]
             },
         ]
