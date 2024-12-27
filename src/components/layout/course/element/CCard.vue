@@ -69,7 +69,8 @@ interface Card {
     }
     title: string
     university: string
-    year: number | string
+    year: number | string // Should have class also
+    class?: string
 }
 
 const props = defineProps<{ data: Card }>()
@@ -95,9 +96,9 @@ function lessons(lessons: number): number {
     }
 }
 function to(props: Card): string {
-    const { university, year, _id } = props
+    const { university, year, class: _class, _id } = props
     // route pattern /courses/:university/:year/:id
-    return `/courses/${university}/${year}/${_id}` // output /courses/nuh/3/07deedcd-d6a8-4f3f-aec3-d5913fa8a18c
+    return `/courses/${university}/${year || _class}/${_id}` // output /courses/nuh/3/07deedcd-d6a8-4f3f-aec3-d5913fa8a18c
 }
 
 /**
