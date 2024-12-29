@@ -5,15 +5,17 @@
             <div class="w-full aspect-[16/9] relative" v-html="google_drive_iframe(vdoToPlay.googleDrive)"></div>
         </div>
         <div v-if="vdoToPlay.vdeoChiperId" class="w-full">
-            <iframe v-if="otp.otp" :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
+            <iframe v-if="otp.otp"
+                :src="`https://player.vdocipher.com/v2/?otp=${otp.otp}&playbackInfo=${otp.playbackInfo}`"
                 class="w-full aspect-[16/9] relative" allow="encrypted-media" allowfullscreen></iframe>
         </div>
 
         <div class=" flex flex-wrap">
             <div class="w-full md:w-2/3 mt-4">
                 <div class="flex items-center gap-8 justify-between">
-                    <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }} <span v-if="vdoToPlay.chapter">Chapter {{
-                        vdoToPlay.chapter }}</span></h3>
+                    <h3 class="my-4 text-2xl font-semibold">{{ vdoToPlay.title }} <span v-if="vdoToPlay.chapter">Chapter
+                            {{
+                                vdoToPlay.chapter }}</span></h3>
                     <Share />
                 </div>
                 <p class="whitespace-pre-wrap">{{ vdoToPlay.description }}</p>
@@ -48,7 +50,7 @@ const route = useRoute()
 const { course, year, courseId, videoId } = route.params
 const rq = reactive({
     course: valid(course),
-    year: parseInt(valid(year)),
+    year: valid(year),
     courseId: valid(courseId),
     videoId: valid(videoId)
 })
