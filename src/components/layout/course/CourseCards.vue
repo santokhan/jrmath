@@ -54,6 +54,7 @@ function readCourseData(course: string, year: string) {
             // parseInt(year),
             year,
             (data) => {
+                console.log(data)
                 coursesData.value = data
             })
     }

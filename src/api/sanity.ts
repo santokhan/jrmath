@@ -109,13 +109,12 @@ class SanityAPI {
                 // The `"videos"` is collection on Sanity
                 // ✅ output *[_type in path('videos') && university == 'nuh' && year == 3 && courseTitle == 'Numerical Analysis']
                 let url = `?query=*[_type in path("videos") %26%26 university == '${university}'`
-                if (university === 'job-preparation') {
+                if (university == 'job-preparation') {
                     url += ` %26%26 class == '${year}'`
                 } else {
-                    url += ` %26%26 year == ${year}`
+                    url += ` %26%26 year == ${year} %26%26 courseTitle == '${courseTitle}'`
                 }
-                url += ` %26%26 courseTitle == '${courseTitle}']`
-
+                url += `]`
                 await fetch(this.build_api(url)).catch(err => {
                     throw err
                 }).then(res => res.json()).then(data => {

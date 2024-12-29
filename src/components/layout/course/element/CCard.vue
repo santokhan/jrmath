@@ -69,7 +69,7 @@ interface Card {
     }
     title: string
     university: string
-    year: number | string // Should have class also
+    year?: number | string // Should have class also
     class?: string
 }
 
@@ -106,10 +106,8 @@ function to(props: Card): string {
  */
 const videoData = ref<any[]>([])
 function getVideos() {
-
-
     const university = props.data.university
-    const year = typeof props.data.year === 'string' ? parseInt(props.data.year) : props.data.year
+    const year = props.data.year || props.data.class
     const courseId = typeof props.data._id === 'string' && props.data._id
 
     if (university && year && courseId) {
