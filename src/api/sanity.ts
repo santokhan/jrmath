@@ -100,7 +100,7 @@ class SanityAPI {
         const data = await res.json()
         return data.result;
     }
-    async getVideoByCourseTitle(university: string, year: number, courseId: string, callBack: (data: any) => void) {
+    async getVideoByCourseTitle(university: string, year: string | number, courseId: string, callBack: (data: any) => void) {
         if (!university && !year && !courseId) return;
 
         this.getCourseTitle(courseId, async (data) => {
@@ -108,9 +108,15 @@ class SanityAPI {
                 const courseTitle = data[0].title
                 // The `"videos"` is collection on Sanity
                 // ✅ output *[_type in path('videos') && university == 'nuh' && year == 3 && courseTitle == 'Numerical Analysis']
-                const url = this.build_api(`?query=*[_type in path("videos") %26%26 university == '${university}' %26%26 year == ${year} %26%26 courseTitle == '${courseTitle}']`)
+                let url = `?query=*[_type in path("videos") %26%26 university == '${university}'`
+                if (university === 'job-preparation') {
+                    url += ` %26%26 class == '${year}'`
+                } else {
+                    url += ` %26%26 year == ${year}`
+                }
+                url += ` %26%26 courseTitle == '${courseTitle}']`
 
-                await fetch(url).catch(err => {
+                await fetch(this.build_api(url)).catch(err => {
                     throw err
                 }).then(res => res.json()).then(data => {
                     callBack(data)

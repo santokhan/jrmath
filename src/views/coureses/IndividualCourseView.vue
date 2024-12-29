@@ -50,6 +50,7 @@ const courseObject = ref<CourseType>();
 // The id will comes from route.params.id
 if (typeof id === "string") {
   sanityAPI.getCourseById(id, (data) => {
+    console.log(data)
     courseObject.value = data[0];
   });
 }

@@ -50,7 +50,7 @@ const route = useRoute()
 const { course, year, id } = route.params
 const params = reactive({
     course: valid(course),
-    year: parseInt(valid(year)),
+    year: valid(year),
     id: valid(id),
 })
 
