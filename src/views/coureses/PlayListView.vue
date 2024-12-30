@@ -90,7 +90,7 @@ function assignVideoData() {
 watch(() => route.params, () => {
     const { course, year, courseId, videoId } = route.params
     rq.course = valid(course)
-    rq.year = parseInt(valid(year))
+    rq.year = valid(year)
     rq.courseId = valid(courseId)
     rq.videoId = valid(videoId)
     assignVideoData()
